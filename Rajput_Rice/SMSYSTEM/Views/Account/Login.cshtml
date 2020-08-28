@@ -1,0 +1,207 @@
+﻿@model HrProperty.Models.User_Property 
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Complain Portal | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            @*<img src="~/dist/img/edgehr.png" style="width: 124px;">*@
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form method="post" id="signinform">
+                    <div class="input-group mb-3">
+                        @Html.EditorFor(model => model.loginId, new { htmlAttributes = new { @placeholder = "User Name", @class = "form-control" } })
+
+
+                        @*<input type="email" class="form-control" placeholder="Email">*@
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.loginId, "", new { @class = "text-danger" })
+
+
+                    <div class="input-group mb-3">
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @placeholder = "Password", @class = "form-control" } })
+                        @*<input type="password" class="form-control" placeholder="Password">*@
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+
+
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                @*@Html.CheckBoxFor(m => m.RemeberMe)*@
+                                @*@Html.CheckBoxFor(model => model.RemeberMe, new { @id= "remember", @value = "true", @Name = "AU1_Check" })*@
+                                <input type="checkbox" value="true" id="remember">
+                              @*  @Html.CheckBoxFor(m => m.RemeberMe, new { @id = "remember", @value = "true" })*@
+                                <label for="remember" style="display:none;">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12">
+                            <button type="button" id="btnsubmit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                @*<div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>*@
+                <!-- /.social-auth-links -->
+
+                @*<p class="mb-1">
+                    <a href="#">I forgot my password</a>
+                </p>*@
+                @*<p class="mb-0">
+                    <a href="register.html" class="text-center">Register a new membership</a>
+                </p>*@
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Dist/js/jquery.validate.min.js"></script>
+    <script src="~/Dist/js/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script>
+
+        $(document).on('keypress', function (e) {
+            if (e.which == 13) {
+                $("#btnsubmit").click();
+            }
+        });
+
+        $('#btnsubmit').click(function (e) {
+            e.preventDefault();
+            var form = $("#signinform");
+           //var formdata = new FormData(form[0]);
+           // var ch = false;
+           // if ($('#remember').is(":checked")) {
+           //     // it is checked
+           //     ch = true;
+           // }
+           // else {
+           //     ch = false;
+           // }
+            
+            //console.log(ch);
+            //formdata.append("RemeberMe", ch);
+            //console.log(formdata);
+            //    debugger;
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/Login",
+                    data: $(form).serialize(),
+                    //cache : false,
+                    //processData: false,
+                    success: function (res) {
+                        if (res.success && res.statuscode == 200) {
+                            Command: toastr["success"]("success", res.msg)
+
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-center",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            window.location.href = res.url;
+                        }
+                        else if (res.success == true && res.statuscode == 400) {
+                            Command: toastr["error"]("Invalid Credentials", res.msg)
+
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-center",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                        }
+                    },
+                    failure: function (res) {
+                        console.log(res);
+                    },
+                    err: function (res) {
+                        console.log(res);
+                    }
+
+                })
+            }
+            else {
+                return false;
+            }
+
+
+
+        });
+    </script>
+</body>
+</html>

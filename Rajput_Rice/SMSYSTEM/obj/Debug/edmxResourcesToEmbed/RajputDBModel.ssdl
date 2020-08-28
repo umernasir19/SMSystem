@@ -1,0 +1,779 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RAJPUT_RICE_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="accountGJ">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GLIdx" Type="int" />
+    <Property Name="tranTypeIdx" Type="int" />
+    <Property Name="userIdx" Type="int" />
+    <Property Name="vendorIdx" Type="int" />
+    <Property Name="employeeIdx" Type="int" />
+    <Property Name="customerIdx" Type="int" />
+    <Property Name="coaIdx" Type="int" />
+    <Property Name="invoiceNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="debit" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="credit" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="modifiedDate" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="accountMasterGL">
+    <Key>
+      <PropertyRef Name="idxx" />
+    </Key>
+    <Property Name="idxx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tranTypeIdx" Type="int" />
+    <Property Name="userIdx" Type="int" />
+    <Property Name="vendorIdx" Type="int" />
+    <Property Name="employeeIdx" Type="int" />
+    <Property Name="customerIdx" Type="int" />
+    <Property Name="invoiceNoIdx" Type="nvarchar" MaxLength="50" />
+    <Property Name="debit" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="credit" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="modifiedDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="paidAmount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="balance" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="isCredit" Type="int" />
+    <Property Name="creditDays" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="paymentModeIdx" Type="int" />
+    <Property Name="bankIdx" Type="int" />
+    <Property Name="chequeNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="memo" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="advanceSalary">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeIdx" Type="int" />
+    <Property Name="netSalary" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="advanceAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="deductionMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="deductionYear" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="statusBy" Type="int" />
+    <Property Name="statusDate" Type="varchar" MaxLength="50" />
+    <Property Name="isExpire" Type="int" />
+    <Property Name="isPaid" Type="int" />
+    <Property Name="Paid" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="Balance" Type="decimal" Precision="20" Scale="2" />
+  </EntityType>
+  <EntityType Name="bank">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="branch">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="branchName" Type="nvarchar(max)" />
+    <Property Name="headQuarter" Type="nvarchar(max)" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="contactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="isActive" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="ChartofAccountsChildHead">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subHeadIdx" Type="int" Nullable="false" />
+    <Property Name="headIdx" Type="int" Nullable="false" />
+    <Property Name="childHeadName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="childHeadCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="createdByUserIdx" Type="int" Nullable="false" />
+    <Property Name="lasModificationDate" Type="varchar" MaxLength="10" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChartofAccountsHead">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="accountCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="createdByUserIdx" Type="int" Nullable="false" />
+    <Property Name="parentIdx" Type="int" />
+  </EntityType>
+  <EntityType Name="ChartofAccountsSubHead">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="headIdx" Type="int" Nullable="false" />
+    <Property Name="subHeadName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="subHeadCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="createdByUserIdx" Type="int" Nullable="false" />
+    <Property Name="lasModificationDate" Type="varchar" MaxLength="10" />
+    <Property Name="lastModifiedByUserIdx" Type="int" Nullable="false" />
+    <Property Name="visible" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COA">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parentIdx" Type="int" />
+    <Property Name="headAccount" Type="int" />
+    <Property Name="accountName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoaLevel" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="nvarchar(max)" />
+    <Property Name="ownerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="STRN" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="contactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="companyLogo" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="isActive" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="companyBank">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bankIdx" Type="int" />
+    <Property Name="accountTitle" Type="nvarchar" MaxLength="30" />
+    <Property Name="Branch" Type="nvarchar" MaxLength="50" />
+    <Property Name="accountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="createdByUserIdx" Type="int" Nullable="false" />
+    <Property Name="visible" Type="nchar" MaxLength="10" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="13" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+  </EntityType>
+  <EntityType Name="consumption">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itemIdx" Type="int" />
+    <Property Name="consumedBy" Type="int" />
+    <Property Name="consumedQuanity" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="statusBy" Type="int" />
+    <Property Name="statusDate" Type="varchar" MaxLength="50" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+    <Property Name="lastModificationByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="visible" Type="int" />
+    <Property Name="stock" Type="decimal" Precision="20" Scale="2" />
+  </EntityType>
+  <EntityType Name="contract">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empCode" Type="int" />
+    <Property Name="employeeIdx" Type="int" />
+    <Property Name="departmentIdx" Type="int" />
+    <Property Name="designationIdx" Type="int" />
+    <Property Name="employeeTypeIdx" Type="int" />
+    <Property Name="contractTypeIdx" Type="int" />
+    <Property Name="contractStartDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractEndDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="ContractType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contractType" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contactPersonName" Type="nvarchar(max)" />
+    <Property Name="customerName" Type="nvarchar(max)" />
+    <Property Name="customerCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="customerAccountType" Type="int" />
+    <Property Name="cnic" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="accountNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ntn" Type="nvarchar" MaxLength="50" />
+    <Property Name="strnNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="openingBalance" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="departmentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="designation">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="departmentIdx" Type="int" />
+    <Property Name="designationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="employees">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hrmsNumber" Type="int" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="cnic" Type="nvarchar" MaxLength="50" />
+    <Property Name="dateOfBirth" Type="nvarchar" MaxLength="50" />
+    <Property Name="contactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="maritalIdx" Type="int" />
+    <Property Name="genderIdx" Type="int" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="departmentIdx" Type="int" />
+    <Property Name="designationIdx" Type="int" />
+    <Property Name="hiringDate" Type="varchar" MaxLength="50" />
+    <Property Name="avatar" Type="nvarchar(max)" />
+    <Property Name="isActive" Type="int" />
+    <Property Name="isTerminated" Type="int" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="employeeType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeType" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="gender">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="inventory">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productIdx" Type="int" />
+    <Property Name="stock" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="productTypeIdx" Type="int" />
+    <Property Name="unitPrice" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventoryDetail">
+    <Key>
+      <PropertyRef Name="Idx" />
+    </Key>
+    <Property Name="Idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InventoryIdx" Type="int" />
+    <Property Name="PurchaseDetailidx" Type="int" />
+    <Property Name="ConsumptionIdx" Type="int" />
+  </EntityType>
+  <EntityType Name="itemUnits">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="loan">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empIdx" Type="int" />
+    <Property Name="loanAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="numberOfInstallment" Type="int" />
+    <Property Name="installmentAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="modeOfPayment" Type="int" />
+    <Property Name="loanReqDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="endDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="purposeOfLoan" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="statusBy" Type="int" />
+    <Property Name="statusDate" Type="datetime" />
+    <Property Name="remarks" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="balance" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="paid" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="isPaid" Type="int" />
+    <Property Name="isExpire" Type="int" />
+  </EntityType>
+  <EntityType Name="loanInstallments">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="loanIdx" Type="int" />
+    <Property Name="loanAmount" Type="int" />
+    <Property Name="numberOfInstallment" Type="int" />
+    <Property Name="installmentAmount" Type="int" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="maritalStatus">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaritalStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="Month">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="month" Type="nvarchar" MaxLength="50" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="paymentMode">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="paymentMode" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="payroll">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="departmentIdx" Type="int" />
+    <Property Name="empIdx" Type="int" />
+    <Property Name="netSalary" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="totalLeave" Type="int" />
+    <Property Name="leaveDeductionAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="loanReamainingAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="loanDeductionAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="advanceRemainingAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="advanceDeductionAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="otherBenefits" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="totalSalary" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserrIDx" Type="int" />
+    <Property Name="lastModificationDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="statusBy" Type="int" />
+    <Property Name="statusDate" Type="nvarchar" MaxLength="10" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productTypeIdx" Type="int" />
+    <Property Name="itemName" Type="nvarchar(max)" />
+    <Property Name="itemCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="unit" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="productType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productType" Type="nvarchar" MaxLength="30" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="creationDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pruchaseDetails">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="purchaseIdx" Type="int" />
+    <Property Name="productTypeIdx" Type="int" Nullable="false" />
+    <Property Name="itemIdx" Type="int" />
+    <Property Name="unitPrice" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="qty" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="amount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="purchase">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="poNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="vendorIdx" Type="int" />
+    <Property Name="purchaseTypeIdx" Type="int" />
+    <Property Name="purchaseDate" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="netAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="paidAmount" Type="nvarchar" MaxLength="50" />
+    <Property Name="balanceAmount" Type="nvarchar" MaxLength="50" />
+    <Property Name="paymentModeIdx" Type="int" />
+    <Property Name="bankIdx" Type="int" />
+    <Property Name="accorChequeNumber" Type="varchar" MaxLength="50" />
+    <Property Name="paidDate" Type="varchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="paymentStatus" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="isPaid" Type="int" Nullable="false" />
+    <Property Name="discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="tax" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="taxAount" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="PurchaseType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="purchaseType" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeIdx" Type="int" />
+    <Property Name="pageUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="add" Type="bit" />
+    <Property Name="edit" Type="bit" />
+    <Property Name="delete" Type="bit" />
+    <Property Name="view" Type="bit" />
+    <Property Name="approved" Type="bit" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="salary">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empIdx" Type="int" />
+    <Property Name="basicSalary" Type="int" />
+    <Property Name="hraAllowance" Type="int" />
+    <Property Name="daAllowance" Type="int" />
+    <Property Name="conveyance" Type="int" />
+    <Property Name="medicalAllowance" Type="int" />
+    <Property Name="others" Type="int" />
+    <Property Name="netSalary" Type="int" />
+    <Property Name="isActive" Type="int" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="sales">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="soNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="customerIdx" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="taxAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="WithHoldingTax" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="SindhTax" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="netAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="Paid" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="Balance" Type="nchar" MaxLength="10" />
+    <Property Name="isPaid" Type="int" Nullable="false" />
+    <Property Name="discount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="paidDate" Type="varchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="paymentStatus" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="paymentModeIdx" Type="int" />
+    <Property Name="bankIdx" Type="int" />
+    <Property Name="chequeNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="salesDate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="salesDetails">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="salesIdx" Type="int" />
+    <Property Name="serviceIdx" Type="int" />
+    <Property Name="serviceCode" Type="nvarchar" MaxLength="30" />
+    <Property Name="unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="serviceRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="serviceDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="serviceQty" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="subAmount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="services">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serviceName" Type="nvarchar(max)" />
+    <Property Name="serviceCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="unitIdx" Type="int" />
+    <Property Name="serviceCost" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="stations">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stationName" Type="nvarchar(max)" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="isActive" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="transactionType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Url">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pageUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="pageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNIC" Type="nvarchar" MaxLength="50" />
+    <Property Name="cellNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="designationIdx" Type="int" />
+    <Property Name="departmentIdx" Type="int" />
+    <Property Name="loginId" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="gender" Type="int" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="isActive" Type="int" Nullable="false" />
+    <Property Name="visible" Type="int" Nullable="false" />
+    <Property Name="passCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="PascodeYNID" Type="int" />
+    <Property Name="Is_Admin" Type="bit" />
+  </EntityType>
+  <EntityType Name="vendors">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vendorName" Type="nvarchar(max)" />
+    <Property Name="vendorCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="contactPersonName" Type="nvarchar" MaxLength="50" />
+    <Property Name="vendorAccountType" Type="int" />
+    <Property Name="accountNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="strn" Type="nvarchar" MaxLength="50" />
+    <Property Name="ntn" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="creationDate" Type="datetime" />
+    <Property Name="createdByUserIdx" Type="int" />
+    <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
+    <Property Name="lastModifiedByUserIdx" Type="int" />
+    <Property Name="visible" Type="int" />
+    <Property Name="openingBalance" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityContainer Name="RAJPUT_RICE_DBModelStoreContainer">
+    <EntitySet Name="accountGJ" EntityType="Self.accountGJ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountMasterGL" EntityType="Self.accountMasterGL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="advanceSalary" EntityType="Self.advanceSalary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bank" EntityType="Self.bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="branch" EntityType="Self.branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChartofAccountsChildHead" EntityType="Self.ChartofAccountsChildHead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChartofAccountsHead" EntityType="Self.ChartofAccountsHead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChartofAccountsSubHead" EntityType="Self.ChartofAccountsSubHead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COA" EntityType="Self.COA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="companyBank" EntityType="Self.companyBank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consumption" EntityType="Self.consumption" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="contract" EntityType="Self.contract" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContractType" EntityType="Self.ContractType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="designation" EntityType="Self.designation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employeeType" EntityType="Self.employeeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inventory" EntityType="Self.inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventoryDetail" EntityType="Self.InventoryDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="itemUnits" EntityType="Self.itemUnits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loan" EntityType="Self.loan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loanInstallments" EntityType="Self.loanInstallments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="maritalStatus" EntityType="Self.maritalStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Month" EntityType="Self.Month" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="paymentMode" EntityType="Self.paymentMode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payroll" EntityType="Self.payroll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productType" EntityType="Self.productType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pruchaseDetails" EntityType="Self.pruchaseDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase" EntityType="Self.purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseType" EntityType="Self.PurchaseType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="salary" EntityType="Self.salary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="salesDetails" EntityType="Self.salesDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stations" EntityType="Self.stations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactionType" EntityType="Self.transactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vendors" EntityType="Self.vendors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Url" EntityType="Self.Url" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Url].[idx] AS [idx], 
+[Url].[pageUrl] AS [pageUrl], 
+[Url].[pageName] AS [pageName], 
+[Url].[creationDate] AS [creationDate], 
+[Url].[createdByUserIdx] AS [createdByUserIdx], 
+[Url].[lastModificationDate] AS [lastModificationDate], 
+[Url].[lastModifiedByUserIdx] AS [lastModifiedByUserIdx], 
+[Url].[visible] AS [visible]
+FROM [dbo].[Url] AS [Url]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

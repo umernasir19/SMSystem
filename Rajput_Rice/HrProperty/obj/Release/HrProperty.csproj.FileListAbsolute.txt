@@ -1,0 +1,15 @@
+D:\Umer\HrPortal\Project\HrProperty\bin\Release\HrProperty.dll
+D:\Umer\HrPortal\Project\HrProperty\bin\Release\HrProperty.pdb
+D:\Umer\HrPortal\Project\HrProperty\obj\Release\HrProperty.csprojResolveAssemblyReference.cache
+D:\Umer\HrPortal\Project\HrProperty\obj\Release\HrProperty.dll
+D:\Umer\HrPortal\Project\HrProperty\obj\Release\HrProperty.pdb
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\bin\Release\HrProperty.dll
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\bin\Release\HrProperty.pdb
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\obj\Release\HrProperty.csprojResolveAssemblyReference.cache
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\obj\Release\HrProperty.dll
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\obj\Release\HrProperty.pdb
+E:\Talha\Main Projects\HrPortal\HrProperty\bin\Release\HrProperty.dll
+E:\Talha\Main Projects\HrPortal\HrProperty\bin\Release\HrProperty.pdb
+E:\Talha\Main Projects\HrPortal\HrProperty\obj\Release\HrProperty.csprojResolveAssemblyReference.cache
+E:\Talha\Main Projects\HrPortal\HrProperty\obj\Release\HrProperty.dll
+E:\Talha\Main Projects\HrPortal\HrProperty\obj\Release\HrProperty.pdb

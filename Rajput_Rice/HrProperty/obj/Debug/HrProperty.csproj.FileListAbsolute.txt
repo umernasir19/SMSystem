@@ -1,0 +1,25 @@
+D:\Umer\HrPortal\Project\HrProperty\bin\Debug\HrProperty.dll
+D:\Umer\HrPortal\Project\HrProperty\bin\Debug\HrProperty.pdb
+D:\Umer\HrPortal\Project\HrProperty\obj\Debug\HrProperty.dll
+D:\Umer\HrPortal\Project\HrProperty\obj\Debug\HrProperty.pdb
+D:\Umer\HrPortal\Project\HrProperty\obj\Debug\HrProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\Project\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\Project\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\HRPortalSystem\HRPortalSystem\Project\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\HRPortalSystem\HRPortalSystem\Project\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\HRPortalSystem\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\HRPortalSystem\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\AppiCoders\HRPortal\HRPortalSystem\HRPortalSystem\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.pdb
+E:\Talha\Main Projects\HrPortal\HrProperty\bin\Debug\HrProperty.dll
+E:\Talha\Main Projects\HrPortal\HrProperty\bin\Debug\HrProperty.pdb
+E:\Talha\Main Projects\HrPortal\HrProperty\obj\Debug\HrProperty.csprojResolveAssemblyReference.cache
+E:\Talha\Main Projects\HrPortal\HrProperty\obj\Debug\HrProperty.dll
+E:\Talha\Main Projects\HrPortal\HrProperty\obj\Debug\HrProperty.pdb
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\bin\Debug\HrProperty.dll
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\bin\Debug\HrProperty.pdb
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.csprojResolveAssemblyReference.cache
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.dll
+D:\Umer\HrPortal\HRPortalSystem\Project\HrProperty\obj\Debug\HrProperty.pdb

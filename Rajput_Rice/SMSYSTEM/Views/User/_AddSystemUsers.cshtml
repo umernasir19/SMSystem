@@ -1,0 +1,35 @@
+﻿
+@model HrProperty.Models.User_Property
+@{
+    Layout = null;
+}
+
+
+
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Employee Type:</label>
+                    @Html.EditorFor(model => model.loginId, new { htmlAttributes = new { @placeholder = "User Type", @class = "form-control", @id = "txtboxdeprtmntname" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.loginId, "", new { @class = "text-danger" })
+
+
+            </div>
+            @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
+            @*<div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @placeholder = "Customer Name", @class = "form-control", @id = "txtboxcustomername" } })
+                    </div>
+                    <br />
+                    @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                </div>*@
+        </div>
+    </form>
+</div>

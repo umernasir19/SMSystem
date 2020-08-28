@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSYSTEM", "SMSYSTEM\SMSYSTEM.csproj", "{316F49A1-4717-4645-9FB1-8F532D1B383E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalProperty", "HrProperty\PortalProperty.csproj", "{474CC4E3-92E9-4EC6-92E8-3AEF0B16F7D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{316F49A1-4717-4645-9FB1-8F532D1B383E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316F49A1-4717-4645-9FB1-8F532D1B383E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316F49A1-4717-4645-9FB1-8F532D1B383E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316F49A1-4717-4645-9FB1-8F532D1B383E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{474CC4E3-92E9-4EC6-92E8-3AEF0B16F7D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{474CC4E3-92E9-4EC6-92E8-3AEF0B16F7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{474CC4E3-92E9-4EC6-92E8-3AEF0B16F7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{474CC4E3-92E9-4EC6-92E8-3AEF0B16F7D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
