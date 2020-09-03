@@ -39,36 +39,20 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Cell Number</th>
+                                <th>CNIC</th>
+                                <th>Login ID</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Actions</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                           
-                            <tr>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                            <tr>
-                                <td>Misc</td>
-                                <td>PSP browser</td>
-                                <td>PSP</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                            <tr>
-                                <td>Other browsers</td>
-                                <td>All others</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>U</td>
-                            </tr>
+                       
                         </tbody>
                         
                     </table>
@@ -108,6 +92,11 @@
 <!-- ./wrapper -->
 @section MyScripts{ 
 <script type="text/javascript">
+
+  
+    $(document).ready(function () {
+        bindDataToTable();
+    });
     //show popup
     $("#btnaddnewpopup").click(function () {
         //$.post("/Customer/AddCustomer", function (data) {
@@ -127,15 +116,221 @@
 
 
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
+    //$("#example1").DataTable();
+    //$('#example2').DataTable({
+    //  "paging": true,
+    //  "lengthChange": false,
+    //  "searching": false,
+    //  "ordering": true,
+    //  "info": true,
+    //  "autoWidth": false,
+    //});
+  });
+
+  function bindDataToTable() {
+      $.ajax({
+          url: "/User/ViewSystemUsers",
+          success: function (data) {
+              console.log(data);
+              bindCustomersInDataTable(data);
+          }
+      });
+  }
+
+  function bindCustomersInDataTable(data) {
+      var status = "Blocked".toString();
+      var table = $('#example1').DataTable({
+          data:data.data,// JSON.parse(data.data),
+          columns: [
+              { data: 'firstname' },
+              { data: 'lastname' },
+              { data: 'cellnumber' },
+              { data: 'cnic' },//or { data: 'MONTH', title: 'Month' }`
+                                     
+              { data: 'loginId' },
+              { data: 'datecreated' },                       
+              { data: 'createdby' },
+              {
+                  "data": "ID",
+                  "render": function (ID, type, full, meta) {
+
+                      return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a> <a href="#" class="btn btn-danger" onclick="ConfirmDelete(' + ID + ')"><i class="fa fa-trash"></i></a>'
+
+                  },
+                  "orderable": true,
+                  "searchable": true,
+
+
+              }
+          ]
+      });
+
+  }
+  function ShowEmployee(CustomerID) {
+
+      var url = "/Employee/ShowEmployee?Id=" + CustomerID;
+      window.location.href = url;
+      //$("#modelbody").load(url, function (e) {
+      //    var id = $('#Customer_Id').val();
+      //    if (id > 0) {
+      //        $('#btnaddnewcustomer').html("update ");
+      //    }
+      //    $("#modal-default").modal("show");
+      //});
+  }
+  function ConfirmDelete(CustomerID) {
+      const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: "",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, Delete!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+      }).then((result) => {
+          if (result.value) {
+              $.ajax({
+                  type: 'GET',
+                  url: '/Employee/DeleteEmployee?id=' + CustomerID,
+                  dataType: 'JSON',
+                  success: function (res) {
+                      if (res.success) {
+                          swalWithBootstrapButtons.fire(
+                              'Done!',
+                              'Blocked',
+                              'success'
+                              )
+                          window.location.href = "/Employee/ViewEmployee"
+                      }
+                      else {
+                          swalWithBootstrapButtons.fire(
+                              'Error!',
+                              'Failes',
+                              'success'
+                              )
+                      }
+                  },
+                  failure: function (res) {
+                      console.log(res);
+                  },
+                  err: function (res) {
+                      console.log(res);
+                  }
+              })
+
+
+
+
+          } else if (
+              /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                '',
+                'error'
+              )
+          }
+      })
+
+  }
+ 
+
+
+
+  $('#btnaddnewemptype').click(function (e) {
+      e.preventDefault();
+      var form = $("#formadddemptype");
+      //var formdata = new FormData(form[0]);
+      // var ch = false;
+      // if ($('#remember').is(":checked")) {
+      //     // it is checked
+      //     ch = true;
+      // }
+      // else {
+      //     ch = false;
+      // }
+
+      //console.log(ch);
+      //formdata.append("RemeberMe", ch);
+      //console.log(formdata);
+      //    debugger;
+      $.validator.unobtrusive.parse(form);
+      if ($(form).valid()) {
+          $.ajax({
+              type: "POST",
+              url: "/User/AddUpdate",
+              data: $(form).serialize(),
+              //cache : false,
+              //processData: false,
+              success: function (res) {
+                  if (res.success && res.statuscode == 200) {
+                      Command: toastr["success"]("success", res.msg)
+
+                      toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "newestOnTop": false,
+                          "progressBar": true,
+                          "positionClass": "toast-top-center",
+                          "preventDuplicates": false,
+                          "onclick": null,
+                          "showDuration": "300",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                      }
+                      window.location.href = res.url;
+                  }
+                  else if (res.success == true && res.statuscode == 300) {
+                          Command: toastr["error"]("Error", res.msg)
+
+                      toastr.options = {
+                          "closeButton": false,
+                          "debug": false,
+                          "newestOnTop": false,
+                          "progressBar": true,
+                          "positionClass": "toast-top-center",
+                          "preventDuplicates": false,
+                          "onclick": null,
+                          "showDuration": "300",
+                          "hideDuration": "1000",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                      }
+                  }
+              },
+              failure: function (res) {
+                  console.log(res);
+              },
+              err: function (res) {
+                  console.log(res);
+              }
+
+          })
+      }
+      else {
+          return false;
+      }
+
+
+
   });
 </script>
 }

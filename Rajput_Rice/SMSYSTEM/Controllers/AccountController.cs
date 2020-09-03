@@ -38,6 +38,7 @@ namespace SMSYSTEM.Controllers
                         msg = "Login Successfull";
                         Session["LoggedIn"] = true;
                         Session["LoginID"] = objUser.loginId;
+                        Session["Useridx"] = objUser.idx;
                         Session["IsAdmin"] = objUser.Is_Admin;
                         return Json(new { success = true, statuscode = 200, msg = "Login Successfull", url = "/Dashboard/Dashboard" }, JsonRequestBehavior.AllowGet);
                     }

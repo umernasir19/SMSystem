@@ -1,0 +1,77 @@
+﻿
+@model HrProperty.Models.Vendor_Property
+@{
+    Layout = null;
+}
+
+
+
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+
+        @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Vendor Name*:</label>
+                    @Html.EditorFor(model => model.vendorName, new { htmlAttributes = new { @placeholder = "vendorName", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.vendorName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+            <!-- text input -->
+            <div class="form-group">
+                <label>V Code*:</label>
+                @Html.EditorFor(model => model.vendorCode, new { htmlAttributes = new { @placeholder = "vendor Code ", @class = "form-control" } })
+                @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+            </div>
+            @Html.ValidationMessageFor(model => model.vendorCode, "", new { @class = "text-danger" })
+        </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>contact PersonName*:</label>
+                    @Html.EditorFor(model => model.contactPersonName, new { htmlAttributes = new { @placeholder = "contact Person Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.contactPersonName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>openingBalance:</label>
+                    @Html.EditorFor(model => model.openingBalance, new { htmlAttributes = new { @placeholder = "openingBalance", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.openingBalance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Account No*:</label>
+                    @Html.EditorFor(model => model.accountNo, new { htmlAttributes = new { @placeholder = "Account", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.accountNo, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Contact:</label>
+                    @Html.EditorFor(model => model.contact, new { htmlAttributes = new { @placeholder = "Contact", @class = "form-control" } })
+
+                </div>
+                @Html.ValidationMessageFor(model => model.contact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </form>
+</div>

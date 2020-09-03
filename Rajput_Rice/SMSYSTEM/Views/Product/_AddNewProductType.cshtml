@@ -1,0 +1,30 @@
+﻿
+
+
+@model HrProperty.Models.ProductType_Property
+@{
+    Layout = null;
+}
+
+
+
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+      
+        @Html.HiddenFor(model => model.idx,new { @value=0})
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Product Type*:</label>
+                    @Html.EditorFor(model => model.productType, new { htmlAttributes = new { @placeholder = "Product Type", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.productType, "", new { @class = "text-danger" })
+            </div>
+           
+        </div>
+        
+    </form>
+</div>

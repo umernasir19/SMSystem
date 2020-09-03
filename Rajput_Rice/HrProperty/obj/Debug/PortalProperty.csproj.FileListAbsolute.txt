@@ -12,3 +12,4 @@ E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrPr
 E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
 E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
 E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache

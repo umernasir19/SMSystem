@@ -688,8 +688,12 @@
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="customer.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
@@ -860,6 +864,14 @@
     <Content Include="Views\User\SystemUsers.cshtml" />
     <Content Include="Views\Account\NotAuthorized.cshtml" />
     <Content Include="Views\User\_AddSystemUsers.cshtml" />
+    <Content Include="Views\Product\ViewProducts.cshtml" />
+    <Content Include="Views\Product\_AddNewProduct.cshtml" />
+    <Content Include="Views\Product\ViewProductType.cshtml" />
+    <Content Include="Views\Product\_AddNewProductType.cshtml" />
+    <Content Include="Views\Customer\ViewAllCustomers.cshtml" />
+    <Content Include="Views\Customer\_AddNewCustomer.cshtml" />
+    <Content Include="Views\Vendor\ViewVendors.cshtml" />
+    <Content Include="Views\Vendor\_AddNewVendor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -869,6 +881,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -52,5 +52,37 @@
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>loginID*:</label>
+                    @Html.EditorFor(model => model.CNIC, new { htmlAttributes = new { @placeholder = "LoginID", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.CNIC, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Password*:</label>
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @placeholder = "Password", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>IsAdmin*:</label>
+                    @Html.CheckBoxFor(model => model.Is_Admin, new { htmlAttributes = new { @placeholder = "", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.CNIC, "", new { @class = "text-danger" })
+            </div>
+        </div>
     </form>
 </div>
