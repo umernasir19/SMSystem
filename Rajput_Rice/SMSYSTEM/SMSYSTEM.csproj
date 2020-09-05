@@ -692,6 +692,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="customer.cs">
@@ -872,6 +873,8 @@
     <Content Include="Views\Customer\_AddNewCustomer.cshtml" />
     <Content Include="Views\Vendor\ViewVendors.cshtml" />
     <Content Include="Views\Vendor\_AddNewVendor.cshtml" />
+    <Content Include="Views\Purchase\ViewPurchase.cshtml" />
+    <Content Include="Views\Purchase\_AddPurchase.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

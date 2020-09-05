@@ -13,3 +13,12 @@ E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrPr
 E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
 E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
 E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb

@@ -1,0 +1,175 @@
+﻿
+@model HrProperty.Models.PurchaseVM
+@{
+    Layout = null;
+}
+
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+        @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Product Type*:</label>
+                    @Html.DropDownListFor(model => model.vendorIdx, new SelectList(Model.VendorLST, "idx", "vendorName"), "Select VEndor", new { @Class = "form-control font-weight-bold" })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.vendorIdx, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>PO Number*:</label>
+                    @Html.EditorFor(model => model.poNumber, new { htmlAttributes = new { @placeholder = "PO Number*:", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.poNumber, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>purchase Date*:</label>
+                    @Html.EditorFor(model => model.purchaseDate, new { htmlAttributes = new { @placeholder = "purchase Date*:", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.purchaseDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+
+        <div class="row" id="PurchaseDetails">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Purchase Details</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="inputName">Item Name</label>
+                                            @Html.DropDownListFor(model => model.itemIdx, new SelectList(Model.ProductList, "idx", "itemName"), "Select Product", new { @Class = "form-control font-weight-bold",@id= "txtboxmilestonename" })
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">Qty</label>
+                                            @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @placeholder = "Qty", @class = "form-control", @id = "txtboxstartdate" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">Unit Price</label>
+                                            @Html.EditorFor(model => model.unitPrice, new { htmlAttributes = new { @placeholder = "Unit Price", @class = "form-control", @id = "txtboxenddate" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">.</label>
+                                            <input type="button" class="btn btn-primary form-control" value="Add MileStone" id="btnaddtogrid" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row" style="display:none; overflow:scroll" id="milestones">
+                            <div class="col-md-12">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">MileStones</h3>
+
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <table id="example2" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product Name</th>
+                                                    <th>Qty</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+
+                                        </table>
+
+
+                                    </div>
+
+
+
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
+
+
+        </div>
+
+    </form>  
+</div>
+
+<script type="text/javascript">
+    // Add To grid
+
+    //Add Project Button Event start
+
+    $("#btnaddtogrid").click(function (e) {
+       // alert("hello");
+        $('#milestones').show();
+        var closebutton = '<button type="button" class="close" style="float:left" id="deleterow" aria-label="Close">' +
+                         '<span aria-hidden="true" styel="color:red">&times;</span>' +
+                          '</button>'
+        var milestone = $("#txtboxmilestonename option:selected").text();
+        var ProductID = $("#txtboxmilestonename option:selected").val();
+        var startdate = $("#txtboxstartdate").val();
+        var enddate = $("#txtboxenddate").val();
+        var markup = "<tr><td style='display:none;'>" + ProductID + "</td><td>" + milestone + "</td><td>" + startdate + "</td><td>" + enddate + "</td><td>" + closebutton + "</td></tr>";
+        //if (milestone == "") {
+        //    alert("Enter milestone");
+        //    return;
+        //} else {
+
+        $("#example2 tbody").append(markup);
+        // }
+        //$("#example1").dataTable();
+    });
+</script>
+
+    
+

@@ -46,6 +46,9 @@
     <Compile Include="Models\ProductType_Property.cs" />
     <Compile Include="Models\ProductVM.cs" />
     <Compile Include="Models\Product_Property.cs" />
+    <Compile Include="Models\PurchaseDetail_Property.cs" />
+    <Compile Include="Models\PurchaseVM.cs" />
+    <Compile Include="Models\Purchase_Property.cs" />
     <Compile Include="Models\User_Property.cs" />
     <Compile Include="Models\Vendor_Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

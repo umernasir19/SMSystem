@@ -82,7 +82,7 @@ namespace SMSYSTEM.Controllers
         {
             if (Session["LoggedIn"] != null)
             {
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {//if valid
 
                     try

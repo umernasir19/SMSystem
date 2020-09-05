@@ -1,95 +1,45 @@
 ﻿
 @{
-    ViewBag.Title = "ViewProducts";
+    ViewBag.Title = "ViewPurchase";
 }
+
 
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Products</h1>
+                <h1>Product Type</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Products</li>
+                    <li class="breadcrumb-item active">Purchase</li>
                 </ol>
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
-
 <!-- Main content -->
 <section class="content">
-
     <div class="row">
         <div class="col-12">
-
             <!-- /.card -->
-
             <div class="card">
                 <div class="card-header">
-
-                    <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Product</button></h3>
-
+                    <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Purchase</button></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>Product Type</th>
+                                <th>creation Date</th>
+                                <th>Actions(s)</th>
+
                             </tr>
                         </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                            <tr>
-                                <td>Misc</td>
-                                <td>PSP browser</td>
-                                <td>PSP</td>
-                                <td>-</td>
-                                <td>C</td>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                            <tr>
-                                <td>Other browsers</td>
-                                <td>All others</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>U</td>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                        </tbody>
-
+                        <tbody></tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -102,16 +52,15 @@
 </section>
 <!-- /.content -->
 <div class="modal fade" id="modal-default" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add New Products</h4>
+                <h4 class="modal-title">Add New Purchase</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" id="modelbody">
-
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -132,18 +81,21 @@
             bindDataToTable();
         });
         //show popup
+        //show popup
         $("#btnaddnewpopup").click(function () {
             //$.post("/Customer/AddCustomer", function (data) {
             //    $("#modal-default").html(data);
             //});
 
-            $("#modelbody").load("/Product/AddNewProduct", function (e) {
+            $("#modelbody").load("/Purchase/AddPurchase", function (e) {
                 $("#modal-default").modal("show");
 
 
             });
 
         })
+
+
 
 
 
@@ -164,7 +116,7 @@
 
         function bindDataToTable() {
             $.ajax({
-                url: "/Product/ViewProducts",
+                url: "/Product/ViewALLProductType",
                 success: function (data) {
                     console.log(data);
                     bindCustomersInDataTable(data);
@@ -280,7 +232,7 @@
 
 
 
-        $('#btnaddnewemptype').click(function (e) {
+        $('#btnaddneemptype').click(function (e) {
             e.preventDefault();
             var form = $("#formadddemptype");
             //var formdata = new FormData(form[0]);
@@ -301,7 +253,7 @@
             if ($(form).valid()) {
                 $.ajax({
                     type: "POST",
-                    url: "/Product/AddUpdate",
+                    url: "/Purchase/AddUpdate",
                     data: $(form).serialize(),
                     //cache : false,
                     //processData: false,
@@ -366,6 +318,120 @@
 
 
         });
+        //add milestone button event
+        $("#btnaddnewemptype").click(function (e) {
+            //console.log($('#Project_ID').val());
+
+            e.preventDefault();
+            var table = $("#example2 tbody");
+
+            var milestonearray = [];
+            var milestonedetails = {
+            };
+            table.find('tr').each(function (i) {
+                var $tds = $(this).find('td'),
+                    milestone = $tds.eq(0).text(),
+                    startdate = $tds.eq(1).text(),
+                    enddate = $tds.eq(2).text(),
+                pid = 0;
+                //console.log(i);
+                //console.log(milestone);
+                //console.log(startdate);
+                //console.log(enddate);
+                // do something with productId, product, Quantity
+
+                milestonedetails.vendorIdx = 1;
+                milestonedetails.poNumber = 1+pid;
+                milestonedetails.itemid = pid;
+               // milestonedetails.Expected_Completed_Date = enddate;
+
+                //console.log(milestonedetails);
+
+                milestonearray.push(Object.assign({}, milestonedetails));
+                //console.log(milestonearray);
+
+
+                pid++;
+
+
+
+            });
+            console.log(JSON.stringify('TimeLine_Property', milestonearray));
+
+
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Purchase/ADDUpdate",
+                data: JSON.stringify(milestonearray),// $(form).serialize(),
+                contentType: 'application/json',
+                dataType: 'json',
+                //contentType: false,
+                //processData: false,
+                //cache: false,
+                success: function (res) {
+                    console.log(res);
+                    if (res.success) {
+                        Command: toastr["success"]("", "Added Successfuly")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        window.location.href = "/Project/AddTask"
+                    }
+                    else if (res.success == false && res.msg == 'Failed') {
+                            Command: toastr["error"]("Invalid ", " Failed")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-center",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                },
+                failure: function (res) {
+                    console.log(res);
+                },
+                err: function (res) {
+                    console.log(res);
+                }
+
+            })
+
+
+
+
+
+
+        });
+        
     </script>
 }
 
