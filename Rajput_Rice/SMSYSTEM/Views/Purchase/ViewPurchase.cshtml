@@ -232,92 +232,6 @@
 
 
 
-        $('#btnaddneemptype').click(function (e) {
-            e.preventDefault();
-            var form = $("#formadddemptype");
-            //var formdata = new FormData(form[0]);
-            // var ch = false;
-            // if ($('#remember').is(":checked")) {
-            //     // it is checked
-            //     ch = true;
-            // }
-            // else {
-            //     ch = false;
-            // }
-
-            //console.log(ch);
-            //formdata.append("RemeberMe", ch);
-            //console.log(formdata);
-            //    debugger;
-            $.validator.unobtrusive.parse(form);
-            if ($(form).valid()) {
-                $.ajax({
-                    type: "POST",
-                    url: "/Purchase/AddUpdate",
-                    data: $(form).serialize(),
-                    //cache : false,
-                    //processData: false,
-                    success: function (res) {
-                        if (res.success && res.statuscode == 200) {
-                            Command: toastr["success"]("success", res.msg)
-
-                            toastr.options = {
-                                "closeButton": false,
-                                "debug": false,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-center",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                            }
-                            window.location.href = res.url;
-                        }
-                        else if (res.success == true && res.statuscode == 300) {
-                                Command: toastr["error"]("Error", res.msg)
-
-                            toastr.options = {
-                                "closeButton": false,
-                                "debug": false,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-center",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                            }
-                        }
-                    },
-                    failure: function (res) {
-                        console.log(res);
-                    },
-                    err: function (res) {
-                        console.log(res);
-                    }
-
-                })
-            }
-            else {
-                return false;
-            }
-
-
-
-        });
         //add milestone button event
         $("#btnaddnewemptype").click(function (e) {
             //console.log($('#Project_ID').val());
@@ -328,37 +242,51 @@
             var milestonearray = [];
             var milestonedetails = {
             };
+            var pomasternetamount = 0;
             table.find('tr').each(function (i) {
                 var $tds = $(this).find('td'),
-                    milestone = $tds.eq(0).text(),
-                    startdate = $tds.eq(1).text(),
-                    enddate = $tds.eq(2).text(),
-                pid = 0;
+                    productid = $tds.eq(0).text(),
+                    qty = $tds.eq(2).text(),
+                    unitprice = $tds.eq(3).text(),
+                    itemamount = $tds.eq(4).text(),
+                    duedate = $tds.eq(5).text();
+               
                 //console.log(i);
                 //console.log(milestone);
                 //console.log(startdate);
                 //console.log(enddate);
                 // do something with productId, product, Quantity
 
-                milestonedetails.vendorIdx = 1;
-                milestonedetails.poNumber = 1+pid;
-                milestonedetails.itemid = pid;
+                milestonedetails.vendorIdx = $("#vendorIdx option:selected").val();
+                milestonedetails.poNumber = $("#poNumber").val();
+                milestonedetails.purchaseDate = $("#purchaseDate").val();
+                milestonedetails.description = $("#description").val();
+                milestonedetails.netAmount = $("#netAmount").val();
+                milestonedetails.tax = $("#tax").val();
+                milestonedetails.taxAount = $("#taxAount").val(); 
+                milestonedetails.paidAmount = $("#paidAmount").val();
+                milestonedetails.purchaseduedate = $("#purchaseduedate").val();
                // milestonedetails.Expected_Completed_Date = enddate;
-
+                milestonedetails.itemIdx = productid;
+                milestonedetails.qty = qty;
+                milestonedetails.unitPrice = unitprice;
+                milestonedetails.amount = itemamount;
+                milestonedetails.DueDate = duedate;
                 //console.log(milestonedetails);
 
                 milestonearray.push(Object.assign({}, milestonedetails));
                 //console.log(milestonearray);
 
 
-                pid++;
+                
 
-
+                console.log(milestonearray);
 
             });
             console.log(JSON.stringify('TimeLine_Property', milestonearray));
 
 
+            console.log(milestonearray);
 
 
             $.ajax({
@@ -392,7 +320,7 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                        window.location.href = "/Project/AddTask"
+                       // window.location.href = "/Project/AddTask"
                     }
                     else if (res.success == false && res.msg == 'Failed') {
                             Command: toastr["error"]("Invalid ", " Failed")

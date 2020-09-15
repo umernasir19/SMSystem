@@ -4,6 +4,7 @@
     <EntitySetMapping Name="accountGJs">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.accountGJ">
         <MappingFragment StoreEntitySet="accountGJ">
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
           <ScalarProperty Name="idx" ColumnName="idx" />
           <ScalarProperty Name="GLIdx" ColumnName="GLIdx" />
           <ScalarProperty Name="tranTypeIdx" ColumnName="tranTypeIdx" />
@@ -23,6 +24,7 @@
     <EntitySetMapping Name="accountMasterGLs">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.accountMasterGL">
         <MappingFragment StoreEntitySet="accountMasterGL">
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
           <ScalarProperty Name="idxx" ColumnName="idxx" />
           <ScalarProperty Name="tranTypeIdx" ColumnName="tranTypeIdx" />
           <ScalarProperty Name="userIdx" ColumnName="userIdx" />
@@ -508,6 +510,7 @@
     <EntitySetMapping Name="pruchaseDetails">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.pruchaseDetail">
         <MappingFragment StoreEntitySet="pruchaseDetails">
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
           <ScalarProperty Name="idx" ColumnName="idx" />
           <ScalarProperty Name="purchaseIdx" ColumnName="purchaseIdx" />
           <ScalarProperty Name="productTypeIdx" ColumnName="productTypeIdx" />
@@ -526,6 +529,7 @@
     <EntitySetMapping Name="purchases">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.purchase">
         <MappingFragment StoreEntitySet="purchase">
+          <ScalarProperty Name="purchaseduedate" ColumnName="purchaseduedate" />
           <ScalarProperty Name="idx" ColumnName="idx" />
           <ScalarProperty Name="poNumber" ColumnName="poNumber" />
           <ScalarProperty Name="vendorIdx" ColumnName="vendorIdx" />
@@ -759,6 +763,19 @@
           <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
           <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
           <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inventory_logs">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.inventory_logs">
+        <MappingFragment StoreEntitySet="inventory_logs">
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="productTypeIdx" ColumnName="productTypeIdx" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="productIdx" ColumnName="productIdx" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

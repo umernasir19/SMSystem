@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace HrProperty.Models
         public string poNumber { get; set; }
         public int vendorIdx { get; set; }
         public int purchaseTypeIdx { get; set; }
+        [DataType(DataType.Date)]
         public string purchaseDate { get; set; }
         public string description { get; set; }
         public decimal totalAmount { get; set; }
@@ -38,6 +40,10 @@ namespace HrProperty.Models
         public decimal unitPrice { get; set; }
         public decimal qty { get; set; }
         public decimal amount { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DueDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime purchaseduedate { get; set; }
 
         public List<Vendor_Property> VendorLST { get; set; }
 

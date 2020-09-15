@@ -722,6 +722,9 @@
     <Compile Include="InventoryDetail.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="inventory_logs.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="itemUnit.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>

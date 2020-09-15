@@ -17,6 +17,7 @@
     <Property Name="credit" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="createDate" Type="DateTime" Precision="3" />
     <Property Name="modifiedDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="accountMasterGL">
     <Key>
@@ -43,6 +44,7 @@
     <Property Name="bankIdx" Type="Int32" />
     <Property Name="chequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="advanceSalary">
     <Key>
@@ -489,6 +491,7 @@
     <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="lastModifiedByUserIdx" Type="Int32" />
     <Property Name="visible" Type="Int32" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="purchase">
     <Key>
@@ -519,6 +522,7 @@
     <Property Name="discount" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="tax" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="taxAount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="purchaseduedate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="PurchaseType">
     <Key>
@@ -762,5 +766,18 @@
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="vendors" EntityType="Self.vendor" />
     <EntitySet Name="Urls" EntityType="Self.Url" />
+    <EntitySet Name="inventory_logs" EntityType="RAJPUT_RICE_DBModel.inventory_logs" />
   </EntityContainer>
+  <EntityType Name="inventory_logs">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productIdx" Type="Int32" />
+    <Property Name="stock" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="productTypeIdx" Type="Int32" />
+    <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

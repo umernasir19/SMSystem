@@ -15,12 +15,22 @@ namespace SMSYSTEM
 using System;
     using System.Collections.Generic;
     
-public partial class paymentMode
+public partial class inventory_logs
 {
 
     public int idx { get; set; }
 
-    public string paymentMode1 { get; set; }
+    public Nullable<int> productIdx { get; set; }
+
+    public Nullable<decimal> stock { get; set; }
+
+    public Nullable<int> productTypeIdx { get; set; }
+
+    public Nullable<decimal> unitPrice { get; set; }
+
+    public Nullable<decimal> totalAmount { get; set; }
+
+    public System.DateTime creationDate { get; set; }
 
 }
 

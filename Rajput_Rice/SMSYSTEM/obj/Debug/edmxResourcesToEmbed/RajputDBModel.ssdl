@@ -17,6 +17,7 @@
     <Property Name="credit" Type="decimal" Precision="10" Scale="2" />
     <Property Name="createDate" Type="datetime" />
     <Property Name="modifiedDate" Type="varchar" MaxLength="10" />
+    <Property Name="DueDate" Type="datetime" />
   </EntityType>
   <EntityType Name="accountMasterGL">
     <Key>
@@ -43,6 +44,7 @@
     <Property Name="bankIdx" Type="int" />
     <Property Name="chequeNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="memo" Type="nvarchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
   </EntityType>
   <EntityType Name="advanceSalary">
     <Key>
@@ -339,6 +341,18 @@
     <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
     <Property Name="creationDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="inventory_logs">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productIdx" Type="int" />
+    <Property Name="stock" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="productTypeIdx" Type="int" />
+    <Property Name="unitPrice" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="InventoryDetail">
     <Key>
       <PropertyRef Name="Idx" />
@@ -489,6 +503,7 @@
     <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
     <Property Name="lastModifiedByUserIdx" Type="int" />
     <Property Name="visible" Type="int" />
+    <Property Name="DueDate" Type="datetime" />
   </EntityType>
   <EntityType Name="purchase">
     <Key>
@@ -519,6 +534,7 @@
     <Property Name="discount" Type="decimal" Precision="10" Scale="2" />
     <Property Name="tax" Type="decimal" Precision="10" Scale="2" />
     <Property Name="taxAount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="purchaseduedate" Type="datetime" />
   </EntityType>
   <EntityType Name="PurchaseType">
     <Key>
@@ -741,6 +757,7 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
     <EntitySet Name="employeeType" EntityType="Self.employeeType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="inventory" EntityType="Self.inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inventory_logs" EntityType="Self.inventory_logs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryDetail" EntityType="Self.InventoryDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="itemUnits" EntityType="Self.itemUnits" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="loan" EntityType="Self.loan" Schema="dbo" store:Type="Tables" />

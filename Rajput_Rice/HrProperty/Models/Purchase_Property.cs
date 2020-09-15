@@ -182,6 +182,6 @@ namespace HrProperty.Models
             get { return _taxAount; }
             set { _taxAount = value; }
         }
-
+        public DateTime purchaseduedate { get; set; }
     }
 }
