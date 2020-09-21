@@ -21,7 +21,7 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>PO Number*:</label>
-                    @Html.EditorFor(model => model.poNumber, new { htmlAttributes = new { @placeholder = "PO Number*:", @class = "form-control" } })
+                    @Html.EditorFor(model => model.poNumber, new { htmlAttributes = new { @placeholder = "PO Number*:", @class = "form-control",@readonly=true } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
                 @Html.ValidationMessageFor(model => model.poNumber, "", new { @class = "text-danger" })
@@ -180,7 +180,6 @@
                                 @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @placeholder = "Total Price", @class = "form-control", @readonly = true } })
                             </div>
                         </div>
-                        
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <label for="inputProjectLeader">Paid Amount</label>
@@ -189,15 +188,33 @@
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
+                                <label for="inputProjectLeader">Balance Amount</label>
+                                @Html.EditorFor(model => model.balanceAmount, new { htmlAttributes = new { @placeholder = "Balance Amount", @class = "form-control",@readonly=true } })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
                                 <label for="inputProjectLeader">Due Date</label>
                                 @Html.EditorFor(model => model.purchaseduedate, new { htmlAttributes = new { @placeholder = "purchaseduedate", @class = "form-control" } })
                             </div>
                         </div>
+                        
                     </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>PPayment Mode*:</label>
+                                @Html.DropDownListFor(model => model.paymentModeIdx, new SelectList(Model.Paymentmodelist, "idx", "paymentMode"), "Select payment Mode", new { @Class = "form-control font-weight-bold" })
+                                @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                            </div>
+                            @Html.ValidationMessageFor(model => model.vendorIdx, "", new { @class = "text-danger" })
+                        </div>
 
-                </div>
+                    </div>
+                    </div>
             </div>
-
+            
 
         </div>
 
@@ -222,21 +239,30 @@
         $("#amount").val(totalamount);
     });
     $("#tax").keyup(function () {
-        var labourcost = $(this).val();
-        var transportcost = $("#taxAount").val();
-        var totalamount = $("#totalAmount").val();
-        var netamount = parseFloat(labourcost) + parseFloat(totalamount) + parseFloat(transportcost);
+        //var labourcost = $(this).val();
+        //var transportcost = $("#taxAount").val();
+        //var totalamount = $("#totalAmount").val();
+        //var netamount = parseFloat(labourcost) + parseFloat(totalamount) + parseFloat(transportcost);
 
-        $("#totalAmount").val(netamount);
+        //$("#totalAmount").val(netamount);
     });
     $("#taxAount").keyup(function () {
-        var transportcost = $(this).val();
-        var labourcost = $("#tax").val();
-        var totalamount = $("#totalAmount").val();
-        var netamount = parseFloat(transportcost) + parseFloat(totalamount) + parseFloat(labourcost);
+        //var transportcost = $(this).val();
+        //var labourcost = $("#tax").val();
+        //var totalamount = $("#totalAmount").val();
+        //var netamount = parseFloat(transportcost) + parseFloat(totalamount) + parseFloat(labourcost);
 
-        $("#totalAmount").val(netamount);
+        //$("#totalAmount").val(netamount);
     });
+    $("#paidAmount").keyup(function () {
+        var paidAmount = $(this).val();
+        
+        var totalamount = $("#totalAmount").val();
+        var blnceamnt = parseFloat(totalamount) - parseFloat(paidAmount);
+
+        $("#balanceAmount").val(blnceamnt);
+    });
+
     $("#btnaddtogrid").click(function (e) {
        // alert("hello");
         $('#milestones').show();

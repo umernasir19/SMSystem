@@ -3,6 +3,7 @@ using SMSYSTEM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,6 +40,11 @@ namespace SMSYSTEM.Controllers
                     idx = p.idx,
                     itemName = p.itemName
                 }).ToList();
+                objPrchseVM.Paymentmodelist = DBClass.db.paymentModes.ToList().Select(p => new PaymentMode_Property
+                {
+                    idx = p.idx,
+                    paymentMode = p.paymentMode1
+                }).ToList();
                 int lastPOid =Convert.ToInt16(DBClass.db.purchases.OrderByDescending(x => x.idx).Select(x => x.idx).FirstOrDefault().ToString())+1;
                 objPrchseVM.poNumber = "PR-00" + lastPOid;
                 //objPrchseVM.purchaseDate =DateTime.Now.ToString("YYYY-DD-MM");
@@ -59,77 +65,110 @@ namespace SMSYSTEM.Controllers
         [HttpPost]
         public JsonResult ADDUpdate(List<PurchaseVM> timeline)
         {
-            
+
             try
             {
-                string pdamount = timeline[0].paidAmount;
-                DateTime newduedate = timeline[0].DueDate;
-                int vndrid = timeline[0].vendorIdx;
-                //seprating data of PO Master and PO Details
-
-                #region PO Master
-
-                purchase objPOMaster = new purchase();
-                objPOMaster.poNumber = timeline[0].poNumber;
-                objPOMaster.vendorIdx = timeline[0].vendorIdx;
-                objPOMaster.purchaseTypeIdx = timeline[0].purchaseTypeIdx;
-                objPOMaster.purchaseDate = timeline[0].purchaseDate;
-                objPOMaster.description = timeline[0].description;
-                objPOMaster.totalAmount = timeline.Sum(x => x.amount);
-                objPOMaster.netAmount = timeline[0].tax+ timeline[0].taxAount+ objPOMaster.totalAmount;
-                objPOMaster.paidAmount = timeline[0].paidAmount;
-                //objPOMaster.paidDate = timeline[0].paidDate;
-                objPOMaster.tax = timeline[0].tax;
-                //objPOMaster.balanceAmount =Convert.ToString(timeline[0].netAmount- objPOMaster.paidAmount);
-                objPOMaster.taxAount = timeline[0].taxAount;
-                objPOMaster.purchaseduedate = timeline[0].purchaseduedate;
-                objPOMaster.creationDate = DateTime.Now;
-                objPOMaster.createdByUserIdx =Convert.ToInt16(Session["Useridx"].ToString());
-                objPOMaster.status = timeline[0].status;
-                DBClass.db.purchases.Add(objPOMaster);
-                DBClass.db.SaveChanges();
-
-                int POMasterID = objPOMaster.idx;
-
-                #endregion
-                // objPOMaster.poNumber=
-                //PO Detail
-                #region POdetail
-                List<pruchaseDetail> purchasedetaillist = new List<pruchaseDetail>();
-                for (int i = 0; i < timeline.Count(); i++)
+                using (var txn = new TransactionScope())
                 {
-                    pruchaseDetail objprchasedetail = new pruchaseDetail();
-                    objprchasedetail.purchaseIdx = POMasterID;
-                    objprchasedetail.productTypeIdx = POMasterID;
-                    objprchasedetail.itemIdx = timeline[i].itemIdx;
-                    objprchasedetail.qty = timeline[i].qty;
-                    objprchasedetail.unitPrice = timeline[i].unitPrice;
-                    objprchasedetail.qty = timeline[i].qty;
-                    objprchasedetail.amount = timeline[i].qty*timeline[i].unitPrice;
-                    objprchasedetail.creationDate = DateTime.Now;
-                    objprchasedetail.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                    objprchasedetail.lastModificationDate = DateTime.Now.ToString();
-                    objprchasedetail.visible =1;
-                    objprchasedetail.DueDate = timeline[i].DueDate;
-                    purchasedetaillist.Add(objprchasedetail);
-                    DBClass.db.pruchaseDetails.Add(objprchasedetail);
+                   
+                    string pdamount = timeline[0].paidAmount;
+                    DateTime newduedate = timeline[0].purchaseduedate;
+                    int vndrid = timeline[0].vendorIdx;
+                    //seprating data of PO Master and PO Details
+
+                    #region PO Master
+
+                    purchase objPOMaster = new purchase();
+                    objPOMaster.poNumber = timeline[0].poNumber;
+                    objPOMaster.vendorIdx = timeline[0].vendorIdx;
+                    objPOMaster.purchaseTypeIdx = timeline[0].purchaseTypeIdx;
+                    objPOMaster.purchaseDate = timeline[0].purchaseDate;
+                    objPOMaster.description = timeline[0].description;
+                    objPOMaster.totalAmount = timeline.Sum(x => x.amount);
+                    objPOMaster.netAmount = timeline[0].tax + timeline[0].taxAount + objPOMaster.totalAmount;
+                    objPOMaster.paidAmount = timeline[0].paidAmount;
+                    //objPOMaster.paidDate = timeline[0].paidDate;
+                    objPOMaster.tax = timeline[0].tax;
+                    objPOMaster.balanceAmount = timeline[0].balanceAmount;
+                    objPOMaster.taxAount = timeline[0].taxAount;
+                    //objPOMaster.purchaseduedate = Convert.ToDateTime(timeline[0].purchaseduedate.ToString("yyyy-MM-dd"));
+                    objPOMaster.creationDate = DateTime.Now;//  Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));//DateTime.Now;//
+                    objPOMaster.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objPOMaster.status = timeline[0].status;
+                    DBClass.db.purchases.Add(objPOMaster);
                     DBClass.db.SaveChanges();
 
-                    int purchasedtlid = objprchasedetail.idx;
-                    //////////////Purcahse details end
+                    int POMasterID = objPOMaster.idx;
 
-                    #region Inventory
-                    
+                    #endregion
+                    // objPOMaster.poNumber=
+                    //PO Detail
+                    #region POdetail
+                    List<pruchaseDetail> purchasedetaillist = new List<pruchaseDetail>();
+                    for (int i = 0; i < timeline.Count(); i++)
+                    {
+                        pruchaseDetail objprchasedetail = new pruchaseDetail();
+                        objprchasedetail.purchaseIdx = POMasterID;
+                        objprchasedetail.productTypeIdx = POMasterID;
+                        objprchasedetail.itemIdx = timeline[i].itemIdx;
+                        objprchasedetail.qty = timeline[i].qty;
+                        objprchasedetail.unitPrice = timeline[i].unitPrice;
+                        //objprchasedetail.qty = timeline[i].qty;
+                        objprchasedetail.amount = timeline[i].qty * timeline[i].unitPrice;
+                        objprchasedetail.creationDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));// DateTime.Now;
+                        objprchasedetail.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                        objprchasedetail.lastModificationDate = DateTime.Now.ToString();
+                        objprchasedetail.visible = 1;
+                        objprchasedetail.DueDate = timeline[i].DueDate;
+                        purchasedetaillist.Add(objprchasedetail);
+                        DBClass.db.pruchaseDetails.Add(objprchasedetail);
+                        DBClass.db.SaveChanges();
+
+                        int purchasedtlid = objprchasedetail.idx;
+                        //////////////Purcahse details end
+
+                        #region Inventory
+
                         //checking product id
                         if (CheckProductInInventoryMaster(timeline[i].itemIdx))
                         {
-                        //exist
-                        int itemidx = timeline[i].itemIdx;
-                        var invmastrid = DBClass.db.inventories.Where(p => p.productIdx == itemidx).Select(p=>p.idx).FirstOrDefault();
-                        var purchsedtlid = DBClass.db.InventoryDetails.Where(p => p.InventoryIdx == invmastrid).Select(x => x.PurchaseDetailidx).ToArray();
-                        var purchases = DBClass.db.pruchaseDetails.Where(p => !purchsedtlid.Contains(p.idx)).ToList();
+                            //exist
+                            int itemidx = timeline[i].itemIdx;
+                            var invmastrid = DBClass.db.inventories.Where(p => p.productIdx == itemidx).FirstOrDefault();
+                            
+                            var purchsedtlid = DBClass.db.InventoryDetails.Where(p => p.InventoryIdx == invmastrid.idx).Select(x => x.PurchaseDetailidx).ToArray();
+                            var purchases = DBClass.db.pruchaseDetails.Where(p => !purchsedtlid.Contains(p.idx) && p.itemIdx== invmastrid.productIdx).ToList();
+                            decimal stockqty = Convert.ToDecimal(invmastrid.stock);
+                            decimal unitprice = Convert.ToDecimal(invmastrid.unitPrice);
+                            for (int j = 0; j < purchases.Count(); j++)
+                            {
+                                stockqty = stockqty + Convert.ToDecimal(purchases[j].qty);
+                                unitprice = unitprice + Convert.ToDecimal(purchases[j].unitPrice);
 
-                    }
+                            }
+                            unitprice = unitprice / 2;
+                            DBClass.db.Database.ExecuteSqlCommand("UPDATE inventory SET stock = {0} ,unitPrice={1} WHERE idx = {2} ", stockqty, unitprice, invmastrid.idx);
+                            for (int j = 0; j < purchases.Count(); j++)
+                            {
+                                InventoryDetail objinvdetails = new InventoryDetail();
+                                objinvdetails.InventoryIdx = invmastrid.idx;
+                                objinvdetails.PurchaseDetailidx = purchases[j].idx;
+                                objinvdetails.ConsumptionIdx = 0;
+                                DBClass.db.InventoryDetails.Add(objinvdetails);
+                                DBClass.db.SaveChanges();
+
+                            }
+
+                            inventory_logs objinvntrylogs = new inventory_logs();
+                            objinvntrylogs.productIdx = timeline[i].itemIdx;
+                            objinvntrylogs.stock = timeline[i].qty;
+                            objinvntrylogs.unitPrice = timeline[i].unitPrice;
+                            objinvntrylogs.totalAmount = timeline[i].qty * timeline[i].unitPrice;
+                            objinvntrylogs.creationDate = DateTime.Now;
+                            DBClass.db.inventory_logs.Add(objinvntrylogs);
+                            DBClass.db.SaveChanges();
+
+                        }
                         else
                         {
                             //not exist
@@ -143,114 +182,228 @@ namespace SMSYSTEM.Controllers
                             DBClass.db.SaveChanges();
 
                             int invntrymasterid = objinvntry.idx;
-                        //inv details
-                        InventoryDetail objinvdetails = new InventoryDetail();
-                        objinvdetails.InventoryIdx = invntrymasterid;
-                        objinvdetails.PurchaseDetailidx = purchasedtlid;
-                        objinvdetails.ConsumptionIdx = 0;
-                        DBClass.db.InventoryDetails.Add(objinvdetails);
+                            //inv details
+                            InventoryDetail objinvdetails = new InventoryDetail();
+                            objinvdetails.InventoryIdx = invntrymasterid;
+                            objinvdetails.PurchaseDetailidx = purchasedtlid;
+                            objinvdetails.ConsumptionIdx = 0;
+                            DBClass.db.InventoryDetails.Add(objinvdetails);
+                            DBClass.db.SaveChanges();
+
+                            //inv logs
+                            inventory_logs objinvntrylogs = new inventory_logs();
+                            objinvntrylogs.productIdx = timeline[i].itemIdx;
+                            objinvntrylogs.stock = timeline[i].qty;
+                            objinvntrylogs.unitPrice = timeline[i].unitPrice;
+                            objinvntrylogs.totalAmount = timeline[i].qty * timeline[i].unitPrice;
+                            objinvntrylogs.creationDate = DateTime.Now;
+                            DBClass.db.inventory_logs.Add(objinvntrylogs);
+                            DBClass.db.SaveChanges();
+                        }
+
+
+                        #endregion
+
+                        //Accounts
+                        #region Account
+                        accountMasterGL objaccountmaster = new accountMasterGL();
+                        objaccountmaster.tranTypeIdx = 1;
+                        objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                        objaccountmaster.vendorIdx = timeline[0].vendorIdx;
+                        objaccountmaster.invoiceNoIdx = timeline[0].poNumber;
+                        objaccountmaster.debit = timeline[i].qty * timeline[i].unitPrice;//Should be total Amount
+                        objaccountmaster.credit = timeline[i].qty * timeline[i].unitPrice;
+                       ;//Should be total Amount
+                        if(Convert.ToDecimal(timeline[i].paidAmount) == timeline.Sum(x => x.amount))
+                        {
+                            objaccountmaster.balance = 0.00m;
+                            objaccountmaster.isCredit = 0;
+                            objaccountmaster.paidAmount = Convert.ToDecimal(timeline[i].qty * timeline[i].unitPrice);
+                        }
+                        else
+                        {
+                            objaccountmaster.balance = (timeline[i].qty * timeline[i].unitPrice);
+                            objaccountmaster.isCredit = 1;
+                            objaccountmaster.paidAmount = Convert.ToDecimal(timeline[i].qty * timeline[i].unitPrice);
+                        }
+                        
+                        
+
+                        objaccountmaster.DueDate = timeline[i].DueDate;
+                       
+                        objaccountmaster.createDate = DateTime.Now;
+                        DBClass.db.accountMasterGLs.Add(objaccountmaster);
                         DBClass.db.SaveChanges();
 
-                        //inv logs
-                        inventory_logs objinvntrylogs = new inventory_logs();
-                        objinvntrylogs.productIdx = timeline[i].itemIdx;
-                        objinvntrylogs.stock = timeline[i].qty;
-                        objinvntrylogs.unitPrice = timeline[i].unitPrice;
-                        objinvntrylogs.totalAmount = timeline[i].qty * timeline[i].unitPrice;
-                        objinvntrylogs.creationDate = DateTime.Now;
-                        DBClass.db.inventory_logs.Add(objinvntrylogs);
+                        int acountmsid = objaccountmaster.idxx;
+
+                        accountGJ objacountgj = new accountGJ();
+                        objacountgj.tranTypeIdx = 1;
+                        objacountgj.GLIdx = acountmsid;
+                        objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                        objacountgj.vendorIdx = timeline[0].vendorIdx;
+                        objacountgj.invoiceNo = timeline[0].poNumber;
+                        objacountgj.debit = timeline[i].qty * timeline[i].unitPrice;
+                        objacountgj.credit = 0.00m;
+                        objacountgj.coaIdx = 60;
+                        objacountgj.createDate = DateTime.Now;
+                        DBClass.db.accountGJs.Add(objacountgj);
                         DBClass.db.SaveChanges();
+                        //credit entry for gj
+                        objacountgj = new accountGJ();
+                        objacountgj.tranTypeIdx = 1;
+                        objacountgj.GLIdx = acountmsid;
+                        objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                        objacountgj.vendorIdx = timeline[0].vendorIdx;
+                        objacountgj.invoiceNo = timeline[0].poNumber;
+                        objacountgj.debit = 0.00m;
+                        objacountgj.credit = timeline[i].qty * timeline[i].unitPrice;
+                        objacountgj.coaIdx = 43;
+                        objacountgj.createDate = DateTime.Now;
+                        DBClass.db.accountGJs.Add(objacountgj);
+                        DBClass.db.SaveChanges();
+                        #endregion
+
+
+
+
+
+
+
                     }
+                    //if (Convert.ToDecimal(pdamount) > 0)
+                    //{
+                    //    string pinvoice = timeline[0].poNumber;
+                    //    var previousam = DBClass.db.accountMasterGLs.Where(p => p.invoiceNoIdx == pinvoice && p.isCredit == 1).ToList();
+                    //    decimal? totalamount = previousam.Sum(x => x.balance);
+                    //    totalamount = totalamount - Convert.ToDecimal(pdamount);
+                    //    DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} WHERE invoiceNoIdx = {1} ", 0, pinvoice);
 
 
+                    //    accountMasterGL objaccountmaster = new accountMasterGL();
+                    //    objaccountmaster.tranTypeIdx = 1;
+                    //    objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //    objaccountmaster.vendorIdx = timeline[0].vendorIdx;
+                    //    objaccountmaster.invoiceNoIdx ="BI-00"+ timeline[0].poNumber;//auto increment of mater
+                    //    objaccountmaster.debit = totalamount;
+                    //    objaccountmaster.credit = totalamount;
+                    //    objaccountmaster.balance =Convert.ToDecimal(timeline[0].balanceAmount);
+                    //    objaccountmaster.DueDate = timeline[0].purchaseduedate;
+                    //    objaccountmaster.paidAmount = Convert.ToDecimal(timeline[0].paidAmount);
+                    //    if (objaccountmaster.balance > 0)
+                    //    {
+                    //        objaccountmaster.isCredit = 1;
+                    //    }
+                    //    else
+                    //    {
+                    //        objaccountmaster.isCredit = 0;
+                    //    }
+                    //    objaccountmaster.createDate = DateTime.Now;
+                    //    DBClass.db.accountMasterGLs.Add(objaccountmaster);
+                    //    DBClass.db.SaveChanges();
+
+                    //    int acountmsid = objaccountmaster.idxx;
+
+                    //    accountGJ objacountgj = new accountGJ();
+                    //    objacountgj.tranTypeIdx = 1;
+                    //    objacountgj.GLIdx = acountmsid;
+                    //    objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //    objacountgj.vendorIdx = timeline[0].vendorIdx;
+                    //    objacountgj.invoiceNo = timeline[0].poNumber;
+                    //    objacountgj.debit = totalamount;
+                    //    objacountgj.credit = 0.00m;
+                    //    objacountgj.coaIdx = 60;
+
+                    //    objacountgj.createDate = DateTime.Now;
+                    //    DBClass.db.accountGJs.Add(objacountgj);
+                    //    DBClass.db.SaveChanges();
+                    //    objacountgj = new accountGJ();
+                    //    objacountgj.tranTypeIdx = 1;
+                    //    objacountgj.GLIdx = acountmsid;
+                    //    objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //    objacountgj.vendorIdx = timeline[0].vendorIdx;
+                    //    objacountgj.invoiceNo = timeline[0].poNumber;
+                    //    objacountgj.debit = 0.00m;
+                    //    objacountgj.credit = totalamount;
+                    //    objacountgj.coaIdx = 43;
+                    //    objacountgj.createDate = DateTime.Now;
+                    //    DBClass.db.accountGJs.Add(objacountgj);
+                    //    DBClass.db.SaveChanges();
+
+
+                    //    //Payment Entry
+                    //     objaccountmaster = new accountMasterGL();
+                    //    objaccountmaster.tranTypeIdx = 6;
+                    //    objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //    objaccountmaster.vendorIdx = timeline[0].vendorIdx;
+                    //    objaccountmaster.invoiceNoIdx = "PL-00" + timeline[0].poNumber;//auto increment of mater
+                    //    objaccountmaster.debit = totalamount;
+                    //    objaccountmaster.credit = totalamount;
+                        
+                    //    objaccountmaster.balance = Convert.ToDecimal(timeline[0].balanceAmount);
+                    //    objaccountmaster.DueDate = timeline[0].purchaseduedate;
+                    //    objaccountmaster.paidAmount = Convert.ToDecimal(timeline[0].paidAmount);
+                    //    if (objaccountmaster.balance > 0)
+                    //    {
+                    //        objaccountmaster.isCredit = 1;
+                    //    }
+                    //    else
+                    //    {
+                    //        objaccountmaster.isCredit = 0;
+                    //    }
+                    //    objaccountmaster.createDate = DateTime.Now;
+                    //    DBClass.db.accountMasterGLs.Add(objaccountmaster);
+                    //    DBClass.db.SaveChanges();
+
+                    //     acountmsid = objaccountmaster.idxx;
+
+                    //     objacountgj = new accountGJ();
+                    //    objacountgj.tranTypeIdx = 6;
+                    //    objacountgj.GLIdx = acountmsid;
+                    //    objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //    objacountgj.vendorIdx = timeline[0].vendorIdx;
+                    //    objacountgj.invoiceNo = timeline[0].poNumber;
+                    //    objacountgj.debit = Convert.ToDecimal(timeline[0].paidAmount);
+                    //    objacountgj.credit = 0.00m;
+                    //    objacountgj.coaIdx = 43;
+
+                    //    objacountgj.createDate = DateTime.Now;
+                    //    DBClass.db.accountGJs.Add(objacountgj);
+                    //    DBClass.db.SaveChanges();
+                    //    objacountgj = new accountGJ();
+                    //    objacountgj.tranTypeIdx = 6;
+                    //    objacountgj.GLIdx = acountmsid;
+                    //    objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //    objacountgj.vendorIdx = timeline[0].vendorIdx;
+                    //    objacountgj.invoiceNo = timeline[0].poNumber;
+                    //    objacountgj.debit = 0.00m;
+                    //    objacountgj.credit = Convert.ToDecimal(timeline[0].paidAmount);
+                    //    objacountgj.coaIdx = 56;//ya phir 64
+                    //    objacountgj.createDate = DateTime.Now;
+                    //    DBClass.db.accountGJs.Add(objacountgj);
+                    //    DBClass.db.SaveChanges();
+
+
+
+
+
+                    //}
                     #endregion
 
-                    //Accounts
-                    #region Account
-                    accountMasterGL objaccountmaster = new accountMasterGL();
-                    objaccountmaster.tranTypeIdx = 1;
-                    objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                    objaccountmaster.vendorIdx = timeline[0].vendorIdx;
-                    objaccountmaster.invoiceNoIdx = timeline[0].poNumber;
-                    objaccountmaster.debit = timeline[i].qty * timeline[i].unitPrice;
-                    objaccountmaster.credit = timeline[i].qty * timeline[i].unitPrice;
-                    objaccountmaster.DueDate = timeline[i].purchaseduedate;
-                    objaccountmaster.isCredit = 1;
-                    objaccountmaster.createDate = DateTime.Now;
-                    DBClass.db.accountMasterGLs.Add(objaccountmaster);
-                    DBClass.db.SaveChanges();
-
-                    int acountmsid = objaccountmaster.idxx;
-
-                    accountGJ objacountgj = new accountGJ();
-                    objacountgj.tranTypeIdx = 1;
-                    objacountgj.GLIdx = acountmsid;
-                    objacountgj.userIdx= Convert.ToInt16(Session["Useridx"].ToString());
-                    objacountgj.vendorIdx= timeline[0].vendorIdx;
-                    objacountgj.invoiceNo = timeline[0].poNumber;
-                    objacountgj.debit = timeline[i].totalAmount;
-                    objacountgj.credit = timeline[i].totalAmount;
-                    objacountgj.createDate =DateTime.Now;
-                    DBClass.db.accountGJs.Add(objacountgj);
-                    DBClass.db.SaveChanges();
-
-                    #endregion
+                    //Inventory
+                    txn.Complete();
 
 
 
-
-
-
-
+                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }
-                if (Convert.ToDecimal(pdamount) > 0)
-                {
-                    var previousam = DBClass.db.accountMasterGLs.Where(p => p.DueDate <= newduedate && p.vendorIdx== vndrid &&p.isCredit==1).ToList();
-                    decimal? totalamount = previousam.Sum(x => x.debit);
-                    totalamount = totalamount - Convert.ToDecimal(pdamount);
-                    DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} WHERE DueDate <= {1}", 0, newduedate);
-
-
-                    accountMasterGL objaccountmaster = new accountMasterGL();
-                    objaccountmaster.tranTypeIdx = 1;
-                    objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                    objaccountmaster.vendorIdx = timeline[0].vendorIdx;
-                    objaccountmaster.invoiceNoIdx = timeline[0].poNumber;
-                    objaccountmaster.debit = totalamount;
-                    objaccountmaster.credit = totalamount;
-                    objaccountmaster.DueDate = newduedate;
-                    objaccountmaster.isCredit = 1;
-                    objaccountmaster.createDate = DateTime.Now;
-                    DBClass.db.accountMasterGLs.Add(objaccountmaster);
-                    DBClass.db.SaveChanges();
-
-                    int acountmsid = objaccountmaster.idxx;
-
-                    accountGJ objacountgj = new accountGJ();
-                    objacountgj.tranTypeIdx = 1;
-                    objacountgj.GLIdx = acountmsid;
-                    objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                    objacountgj.vendorIdx = timeline[0].vendorIdx;
-                    objacountgj.invoiceNo = timeline[0].poNumber;
-                    objacountgj.debit = totalamount;
-                    objacountgj.credit = totalamount;
-                    objacountgj.createDate = DateTime.Now;
-                    DBClass.db.accountGJs.Add(objacountgj);
-                    DBClass.db.SaveChanges();
-                }
-                #endregion
-
-                //Inventory
-
-
-
-
-                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
+
             catch (Exception ex)
             {
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
+            
            
         }
 

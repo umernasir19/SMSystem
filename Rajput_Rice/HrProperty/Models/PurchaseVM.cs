@@ -49,6 +49,7 @@ namespace HrProperty.Models
 
         public List<Product_Property> ProductList { get; set; }
 
+        public List<PaymentMode_Property> Paymentmodelist { get; set; }
         public List<PurchaseDetail_Property> PurchaseDetailLST { get; set; }
 
 

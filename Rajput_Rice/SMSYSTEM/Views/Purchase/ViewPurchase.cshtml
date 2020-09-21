@@ -3,7 +3,6 @@
     ViewBag.Title = "ViewPurchase";
 }
 
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -36,7 +35,6 @@
                                 <th>Product Type</th>
                                 <th>creation Date</th>
                                 <th>Actions(s)</th>
-
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -234,6 +232,31 @@
 
         //add milestone button event
         $("#btnaddnewemptype").click(function (e) {
+            if ($('#paidAmount').val()!=0 && $('#paidAmount').val() != $('#totalAmount').val()) {
+
+                
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                Command: toastr["error"]("Paid Amount should be Equal To Total Amount or Zero", "Partial Payment Not Allowed!")
+                return;
+            }
+
             //console.log($('#Project_ID').val());
 
             e.preventDefault();
@@ -250,7 +273,7 @@
                     unitprice = $tds.eq(3).text(),
                     itemamount = $tds.eq(4).text(),
                     duedate = $tds.eq(5).text();
-               
+
                 //console.log(i);
                 //console.log(milestone);
                 //console.log(startdate);
@@ -263,10 +286,11 @@
                 milestonedetails.description = $("#description").val();
                 milestonedetails.netAmount = $("#netAmount").val();
                 milestonedetails.tax = $("#tax").val();
-                milestonedetails.taxAount = $("#taxAount").val(); 
+                milestonedetails.taxAount = $("#taxAount").val();
                 milestonedetails.paidAmount = $("#paidAmount").val();
+                milestonedetails.balanceAmount = $("#balanceAmount").val();
                 milestonedetails.purchaseduedate = $("#purchaseduedate").val();
-               // milestonedetails.Expected_Completed_Date = enddate;
+                // milestonedetails.Expected_Completed_Date = enddate;
                 milestonedetails.itemIdx = productid;
                 milestonedetails.qty = qty;
                 milestonedetails.unitPrice = unitprice;
@@ -278,7 +302,7 @@
                 //console.log(milestonearray);
 
 
-                
+
 
                 console.log(milestonearray);
 
@@ -320,7 +344,7 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                       // window.location.href = "/Project/AddTask"
+                        // window.location.href = "/Project/AddTask"
                     }
                     else if (res.success == false && res.msg == 'Failed') {
                             Command: toastr["error"]("Invalid ", " Failed")
@@ -359,7 +383,6 @@
 
 
         });
-        
+
     </script>
 }
-

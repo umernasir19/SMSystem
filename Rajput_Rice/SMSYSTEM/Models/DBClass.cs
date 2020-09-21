@@ -8,6 +8,6 @@ namespace SMSYSTEM.Models
     public static class DBClass
     {
         public static RAJPUT_RICE_DBEntities  db = new RAJPUT_RICE_DBEntities();
-
+     //  var static dbtransaction =db.Database.BeginTransaction();
     }
 }
