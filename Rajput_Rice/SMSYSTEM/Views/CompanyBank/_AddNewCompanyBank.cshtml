@@ -1,0 +1,56 @@
+﻿
+
+
+@model HrProperty.Models.CompanyBankVM
+@{ Layout = null; }
+
+
+
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+
+        @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
+        <div class="row">
+
+            <div class="col-sm-6">
+                
+                <div class="form-group">
+                    <label>Bank*:</label>
+                    @Html.DropDownListFor(model => model.bankIdx, new SelectList(Model.Banklst, "idx", "bankName"), "Select Bank", new { @Class = "form-control font-weight-bold" })
+                    
+                </div>
+                @Html.ValidationMessageFor(model => model.bankIdx, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                 
+                <div class="form-group">
+                    <label>Account Title*:</label>
+                    @Html.EditorFor(model => model.accountTitle, new { htmlAttributes = new { @placeholder = "Account Title*:", @class = "form-control" } })
+                    
+                </div>
+                @Html.ValidationMessageFor(model => model.accountTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                
+                <div class="form-group">
+                    <label>Account Number*:</label>
+                    @Html.EditorFor(model => model.accountNumber, new { htmlAttributes = new { @placeholder = "Account Number", @class = "form-control" } })
+                    
+                </div>
+                @Html.ValidationMessageFor(model => model.accountNumber, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                      <div class="form-group">
+                    <label>Branch:</label>
+                    @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @placeholder = "Branch", @class = "form-control" } })
+                    
+                </div>
+                @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
+            </div>
+        </div>
+  
+    </form>
+</div>

@@ -428,5 +428,63 @@ namespace SMSYSTEM.Controllers
             }
         }
 
+
+        #region Purchase Return
+
+        public ActionResult PurchaseReturn()
+        {
+            if (Session["LoggedIn"] != null)
+            {
+                PurchaseReturn_Property objprrtrn = new PurchaseReturn_Property();
+                objprrtrn.VendorLsit = DBClass.db.vendors.ToList().Select(p => new Vendor_Property
+                {
+                    idx = p.idx,
+                    vendorName = p.vendorName
+                }).ToList();
+                objprrtrn.PurchaseLiit = DBClass.db.purchases.ToList().Select(p => new Purchase_Property
+                {
+                    idx = p.idx,
+                    poNumber = p.poNumber
+                }).ToList();
+
+                //   DBClass.db.vendors.ToList();
+                return View(objprrtrn);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+
+        public JsonResult SearchPurchases(PurchaseReturn_Property objprchse)
+        {
+            var purchasemaster = DBClass.db.purchases.Where(p => p.poNumber == objprchse.PRNumber).FirstOrDefault();
+            var data = (from a in DBClass.db.pruchaseDetails
+                        join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
+                        join C in DBClass.db.products on B.productIdx equals C.idx
+                        where B.stock > 0 
+                        select new 
+                        {
+                           productid=C.idx,
+                           productname=C.itemName,
+                           inventorystock=B.stock,
+                           inventoryunitprice=B.unitPrice,
+                           purchaseqty=a.qty,
+                           purchaseunitprice=a.unitPrice,
+                           purchasetotalamount=(a.unitPrice*a.qty),
+                           purchaseid=a.purchaseIdx
+                        }
+                        ) .ToList();
+
+
+            return Json(new {data=data }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        #endregion
+
+
     }
 }

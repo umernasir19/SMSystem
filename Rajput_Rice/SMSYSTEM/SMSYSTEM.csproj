@@ -690,11 +690,13 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CompanyBank.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="customer.cs">
@@ -881,6 +883,9 @@
     <Content Include="Views\Purchase\ViewPurchase.cshtml" />
     <Content Include="Views\Purchase\_AddPurchase.cshtml" />
     <Content Include="Views\Payment\ViewPayments.cshtml" />
+    <Content Include="Views\Purchase\PurchaseReturn.cshtml" />
+    <Content Include="Views\CompanyBank\ViewCompanyBanks.cshtml" />
+    <Content Include="Views\CompanyBank\_AddNewCompanyBank.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -891,6 +896,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Sale\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

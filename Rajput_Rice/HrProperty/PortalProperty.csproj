@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Bank_Property.cs" />
+    <Compile Include="Models\CompanyBankVM.cs" />
+    <Compile Include="Models\companyBank_Property.cs" />
     <Compile Include="Models\Customer_Property.cs" />
     <Compile Include="Models\PaymentMode_Property.cs" />
     <Compile Include="Models\Payment_Property.cs" />
@@ -49,6 +52,7 @@
     <Compile Include="Models\ProductVM.cs" />
     <Compile Include="Models\Product_Property.cs" />
     <Compile Include="Models\PurchaseDetail_Property.cs" />
+    <Compile Include="Models\PurchaseReturn_Property.cs" />
     <Compile Include="Models\PurchaseVM.cs" />
     <Compile Include="Models\Purchase_Property.cs" />
     <Compile Include="Models\User_Property.cs" />
