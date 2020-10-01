@@ -17,42 +17,27 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-
 <!-- Main content -->
 <section class="content">
-
     <div class="row">
         <div class="col-12">
-
             <!-- /.card -->
-
             <div class="card">
                 <div class="card-header">
-
                     <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Vendors</button></h3>
-
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>Vendor Code</th>
+                                <th>Vendor Name</th>
+                                <th>Contact Person</th>
+                                <th>Contact No</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                        </tbody>
-
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -74,7 +59,6 @@
                 </button>
             </div>
             <div class="modal-body" id="modelbody">
-
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -115,7 +99,7 @@
 
         function bindDataToTable() {
             $.ajax({
-                url: "/Customer/ViewCustomers",
+                url: "/Vendor/ViewAllVendors",
                 success: function (data) {
                     console.log(data);
                     bindCustomersInDataTable(data);
@@ -128,12 +112,12 @@
             var table = $('#example1').DataTable({
                 data: data.data,// JSON.parse(data.data),
                 columns: [
-                    { data: 'customerName' },
-                    { data: 'customerCode' },
-                    { data: 'cnic' },
+                    { data: 'vendorCode' },
+                    { data: 'vendorName' },
+                    { data: 'contactPersonName' },
                     { data: 'contact' },//or { data: 'MONTH', title: 'Month' }`
 
-                    { data: 'accountNo' },
+                    //{ data: 'accountNo' },
 
                     {
                         "data": "idx",
@@ -319,6 +303,9 @@
         });
     </script>
 }
+
+
+
 
 
 

@@ -19,20 +19,18 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-
 <!-- Main content -->
 <section class="content">
-    
+
     <div class="row">
         <div class="col-12">
-         
-            <!-- /.card -->
 
+            <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                    
-                        <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Users</button></h3>
-                  
+
+                    <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Users</button></h3>
+
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -47,14 +45,11 @@
                                 <th>Created Date</th>
                                 <th>Created By</th>
                                 <th>Actions</th>
-                                
+
                             </tr>
                         </thead>
-                        <tbody>
-                          
-                       
-                        </tbody>
-                        
+                        <tbody></tbody>
+
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -76,7 +71,6 @@
                 </button>
             </div>
             <div class="modal-body" id="modelbody">
-
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -90,10 +84,10 @@
 <!-- /.modal -->
 <!-- /.modal -->
 <!-- ./wrapper -->
-@section MyScripts{ 
-<script type="text/javascript">
+@section MyScripts{
+    <script type="text/javascript">
 
-  
+
     $(document).ready(function () {
         bindDataToTable();
     });
@@ -146,9 +140,13 @@
               { data: 'lastname' },
               { data: 'cellnumber' },
               { data: 'cnic' },//or { data: 'MONTH', title: 'Month' }`
-                                     
+
               { data: 'loginId' },
-              { data: 'datecreated' },                       
+              {
+                  data: 'datecreated',
+                  render: function (data, type, sort) {
+                      return moment(data).format("DD-MM-YYYY");
+                  } },
               { data: 'createdby' },
               {
                   "data": "ID",
@@ -242,7 +240,7 @@
       })
 
   }
- 
+
 
 
 
@@ -332,5 +330,5 @@
 
 
   });
-</script>
+    </script>
 }
