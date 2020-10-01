@@ -36,6 +36,7 @@ namespace HrProperty.Models
         public int status { get; set; }
         public int paymentModeIdx { get; set; }
         public int bankIdx { get; set; }
+        public string bankName { get; set; }
         public string chequeNumber { get; set; }
         [DataType(DataType.Date)]
         public string salesDate { get; set; }
@@ -43,7 +44,11 @@ namespace HrProperty.Models
 
         public List<Product_Property> ProductList { get; set; }
 
-        public List<Sale_Details_Property>SalesDetailsLST { get; set; }
+        public List<Sale_Details_Property> SalesDetailsLST { get; set; }
+
+        public List<PaymentMode_Property> paymentModesLST { get; set; }
+        public List<companyBank_Property> companyBankLST { get; set; }
+
 
     }
 }

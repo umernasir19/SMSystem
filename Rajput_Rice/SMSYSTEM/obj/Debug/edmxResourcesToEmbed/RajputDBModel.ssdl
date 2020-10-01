@@ -45,6 +45,7 @@
     <Property Name="chequeNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="memo" Type="nvarchar(max)" />
     <Property Name="DueDate" Type="datetime" />
+    <Property Name="ItemId" Type="int" />
   </EntityType>
   <EntityType Name="advanceSalary">
     <Key>

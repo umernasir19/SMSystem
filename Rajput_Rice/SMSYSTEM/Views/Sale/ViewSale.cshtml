@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Product Type</h1>
+                <h1>Sale</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Purchase</li>
+                    <li class="breadcrumb-item active">Sales</li>
                 </ol>
             </div>
         </div>
@@ -26,16 +26,19 @@
             <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Purchase</button></h3>
+                    <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Sale</button></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Product Type</th>
-                                <th>creation Date</th>
-                                <th>Actions(s)</th>
+                                <th>Invoice#</th>
+                                <th>Customer</th>
+                                <th>Sales Date</th>
+                                <th>Net Amount</th>
+                                <th>Description</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -54,7 +57,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add New Purchase</h4>
+                <h4 class="modal-title">Add New Sales</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -81,7 +84,7 @@
         });
         //show popup
         //show popup
-       
+
         $("#btnaddnewpopup").click(function () {
             //$.post("/Customer/AddCustomer", function (data) {
             //    $("#modal-default").html(data);
@@ -115,7 +118,7 @@
 
         function bindDataToTable() {
             $.ajax({
-                url: "/Product/ViewALLProductType",
+                url: "/Sale/ViewAllSales",
                 success: function (data) {
                     console.log(data);
                     bindCustomersInDataTable(data);
@@ -128,12 +131,17 @@
             var table = $('#example1').DataTable({
                 data: data.data,// JSON.parse(data.data),
                 columns: [
-                    { data: 'productType1' },
-                    { data: 'creationDate' },
-                    //{ data: 'cnic' },
-                    //{ data: 'contact' },//or { data: 'MONTH', title: 'Month' }`
+                    { data: 'soNumber' },
+                    { data: 'customerName' },
+                    {
+                        data: 'salesDate',
+                        render: function (data, type, sort) {
+                            return moment(data).format("DD-MM-YYYY");
+                        }
+                    },
+                    { data: 'netAmount' },
+                    { data: 'description' },
 
-                    //{ data: 'accountNo' },
 
                     {
                         "data": "idx",
@@ -261,6 +269,16 @@
                 milestonedetails.salesDate = $("#salesDate").val();
                 milestonedetails.description = $("#description").val();
                 milestonedetails.totalAmount = $("#totalAmount").val();
+                milestonedetails.Paid = $("#Paid").val();
+                var balance = $("#Balance").val()
+                if (balance == "" || balance == null) {
+                    balance = 0;
+                }
+                milestonedetails.balance = balance;
+                milestonedetails.paymentModeIdx = $("#paymentModeIdx").val();
+                milestonedetails.bankIdx = $("#bankIdx").val();
+
+
                 //milestonedetails.tax = $("#tax").val();
                 //milestonedetails.taxAount = $("#taxAount").val();
                 //milestonedetails.paidAmount = $("#paidAmount").val();

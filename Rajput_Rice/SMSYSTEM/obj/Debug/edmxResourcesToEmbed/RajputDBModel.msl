@@ -24,6 +24,7 @@
     <EntitySetMapping Name="accountMasterGLs">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.accountMasterGL">
         <MappingFragment StoreEntitySet="accountMasterGL">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
           <ScalarProperty Name="DueDate" ColumnName="DueDate" />
           <ScalarProperty Name="idxx" ColumnName="idxx" />
           <ScalarProperty Name="tranTypeIdx" ColumnName="tranTypeIdx" />

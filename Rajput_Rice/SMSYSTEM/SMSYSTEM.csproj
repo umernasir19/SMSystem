@@ -690,7 +690,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CompanyBank.cs" />
+    <Compile Include="Controllers\CompanyBankController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -886,6 +886,8 @@
     <Content Include="Views\Purchase\PurchaseReturn.cshtml" />
     <Content Include="Views\CompanyBank\ViewCompanyBanks.cshtml" />
     <Content Include="Views\CompanyBank\_AddNewCompanyBank.cshtml" />
+    <Content Include="Views\Sale\ViewSale.cshtml" />
+    <Content Include="Views\Sale\_AddSale.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -896,7 +898,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Sale\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

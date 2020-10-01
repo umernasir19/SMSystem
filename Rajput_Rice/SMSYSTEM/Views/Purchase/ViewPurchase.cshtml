@@ -32,12 +32,14 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Product Type</th>
-                                <th>creation Date</th>
-                                <th>Actions(s)</th>
+                                <th>PO Number#</th>
+                                <th>Vendor</th>
+                                <th>Purchase Date</th>
+                                <th>Net Amount</th>
+                                <th>Description</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -75,6 +77,7 @@
 @section MyScripts{
     <script type="text/javascript">
         var dataTable;
+        var errorarray;
         $(document).ready(function () {
             bindDataToTable();
         });
@@ -111,10 +114,9 @@
             //});
         });
 
-
         function bindDataToTable() {
             $.ajax({
-                url: "/Product/ViewALLProductType",
+                url: "/Purchase/ViewAllPurchase",
                 success: function (data) {
                     console.log(data);
                     bindCustomersInDataTable(data);
@@ -127,12 +129,17 @@
             var table = $('#example1').DataTable({
                 data: data.data,// JSON.parse(data.data),
                 columns: [
-                    { data: 'productType1' },
-                    { data: 'creationDate' },
-                    //{ data: 'cnic' },
-                    //{ data: 'contact' },//or { data: 'MONTH', title: 'Month' }`
+                    { data: 'poNumber' },
+                    { data: 'vendorName' },
+                    {
+                        data: 'purchaseDate',
+                        render: function (data, type, sort) {
+                            return moment(data).format("DD-MM-YYYY");
+                        }
+                    },
+                    { data: 'netAmount' },
+                    { data: 'description' },
 
-                    //{ data: 'accountNo' },
 
                     {
                         "data": "idx",
@@ -227,11 +234,30 @@
 
         }
 
-
+        function validateEntrires() {
+            errorarray = [];
+            alert(errorarray.length);
+            if ($('#vendorIdx option:selected').val()=='') {
+                errorarray.push("Please Select Vendor")
+                alert(errorarray.length);
+            }
+            if ($('#paidAmount').val()=='') {
+                errorarray.push("Paid Amount is not correct")
+                alert(errorarray.length);
+            }
+            alert(errorarray.length);
+        }
 
 
         //add milestone button event
         $("#btnaddnewemptype").click(function (e) {
+            validateEntrires();
+            if (errorarray.length > 0) {
+                for (var i = 0; i < errorarray.length; i++) {
+                    alert(errorarray[i])
+                    return;
+                }
+            }
             if ($('#paidAmount').val()!=0 && $('#paidAmount').val() != $('#totalAmount').val()) {
 
                 
@@ -383,6 +409,8 @@
 
 
         });
+
+
 
     </script>
 }

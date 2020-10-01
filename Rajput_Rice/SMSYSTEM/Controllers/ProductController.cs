@@ -30,12 +30,16 @@ namespace SMSYSTEM.Controllers
             {
                 try
                 {
-                    var products = DBClass.db.products.ToList();
+                    var products = from s in DBClass.db.products
+                                   join sa in DBClass.db.productTypes on s.productTypeIdx equals sa.idx
+                                   where s.visible == 1
+                                   select new { productType = sa.productType1, itemCode = s.itemCode, itemName = s.itemName, description = s.description, creationDate = s.creationDate };
+                    //var products = DBClass.db.products.ToList();
                     return Json(new { data = products, success = true, statuscode = 200 }, JsonRequestBehavior.AllowGet);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    return Json(new { data = "Error:"+ex.Message, success = false, statuscode = 500 }, JsonRequestBehavior.AllowGet);
+                    return Json(new { data = "Error:" + ex.Message, success = false, statuscode = 500 }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
@@ -50,14 +54,14 @@ namespace SMSYSTEM.Controllers
             {
                 ProductVM objprdctvm = new ProductVM();
 
-                if (id!=null && id > 0)
+                if (id != null && id > 0)
                 {
                     ViewBag.ptlist = DBClass.db.productTypes.ToList();
                 }
                 else
                 {
                     //ViewBag.ptlist = DBClass.db.productTypes.ToList();
-                   // ProductVM objprdctvm = new ProductVM();
+                    // ProductVM objprdctvm = new ProductVM();
                     objprdctvm.Producttypelst = DBClass.db.productTypes.ToList().Select(p => new ProductType_Property
                     {
                         productType = p.productType1,
@@ -66,9 +70,9 @@ namespace SMSYSTEM.Controllers
 
 
                 }
-                
-                
-                
+
+
+
 
                 return PartialView("_AddNewProduct", objprdctvm);
             }
@@ -96,21 +100,22 @@ namespace SMSYSTEM.Controllers
                         //}
                         //else
                         //{
-                            product objproduct = new product()
-                            {
-                                productTypeIdx = objproducttypeVm.productTypeIdx,
-                                itemName=objproducttypeVm.itemName,
-                                itemCode= objproducttypeVm.itemCode,
-                                unit=1,
-                                description= objproducttypeVm.description,
-                                creationDate = DateTime.Now,
-                                createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString())
-                            };
-                            DBClass.db.products.Add(objproduct);
-                            DBClass.db.SaveChanges();
-                            return Json(new { success = true, statuscode = 200, msg = "Added Successfully", url = "/Product/ViewProducts" }, JsonRequestBehavior.AllowGet);
+                        product objproduct = new product()
+                        {
+                            productTypeIdx = objproducttypeVm.productTypeIdx,
+                            itemName = objproducttypeVm.itemName,
+                            itemCode = objproducttypeVm.itemCode,
+                            unit = 1,
+                            description = objproducttypeVm.description,
+                            creationDate = DateTime.Now,
+                            createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString()),
+                            visible = 1
+                        };
+                        DBClass.db.products.Add(objproduct);
+                        DBClass.db.SaveChanges();
+                        return Json(new { success = true, statuscode = 200, msg = "Added Successfully", url = "/Product/ViewProducts" }, JsonRequestBehavior.AllowGet);
 
-//                        }
+                        //                        }
 
                     }
                     catch (Exception ex)
@@ -190,7 +195,7 @@ namespace SMSYSTEM.Controllers
             {
                 if (!ModelState.IsValid)
                 {//if valid
-                    
+
                     try
                     {
                         //Checking Database 
@@ -204,9 +209,9 @@ namespace SMSYSTEM.Controllers
                         {
                             productType objProdctType = new productType()
                             {
-                                productType1=objproducttype.productType,
-                                creationDate=DateTime.Now,
-                                createdByUserIdx=Convert.ToInt32(Session["Useridx"].ToString())
+                                productType1 = objproducttype.productType,
+                                creationDate = DateTime.Now,
+                                createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString())
                             };
                             DBClass.db.productTypes.Add(objProdctType);
                             DBClass.db.SaveChanges();

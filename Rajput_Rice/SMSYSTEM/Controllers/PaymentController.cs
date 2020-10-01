@@ -99,19 +99,29 @@ namespace SMSYSTEM.Controllers
                 {
                     using (var txn = new TransactionScope())
                     {
+
+
+
                         //  string pinvoice = timeline[0].poNumber;
                         var previousam = DBClass.db.accountMasterGLs.Where(p => p.idxx == objpayment.AccountId).ToList();
+                        string mstid = previousam[0].invoiceNoIdx;
+                        var purchasemstr = DBClass.db.purchases.Where(p => p.poNumber == mstid).FirstOrDefault();
+                        
                         decimal? totalamount = previousam.Sum(x => x.balance);
                         totalamount = totalamount - Convert.ToDecimal(objpayment.PaidAmount);
+
+                        decimal purchaseblnceamt =Convert.ToDecimal(Convert.ToDecimal(purchasemstr.balanceAmount)-totalamount);
+                        decimal purchasetotalamt = Convert.ToDecimal(Convert.ToDecimal(purchasemstr.totalAmount) - totalamount);
                         if (totalamount > 0)
                         {
                             DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} ,balance={1},DueDate={2} WHERE idxx = {3} ", 1, totalamount, objpayment.NextDueDate, objpayment.AccountId);
+                           DBClass.db.Database.ExecuteSqlCommand("UPDATE purchase SET balanceAmount={0} WHERE poNumber = {1} ", purchaseblnceamt, previousam[0].invoiceNoIdx);
 
                         }
                         else
                         {
                             DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0},balance={1} WHERE idxx = {2}", 0, 0,objpayment.AccountId);
-
+                            DBClass.db.Database.ExecuteSqlCommand("UPDATE purchase SET balanceAmount={0} WHERE poNumber = {1} ", purchaseblnceamt, previousam[0].invoiceNoIdx);
                         }
 
 

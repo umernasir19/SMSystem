@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "ViewProducts";
 }
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -18,78 +17,28 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-
 <!-- Main content -->
 <section class="content">
-
     <div class="row">
         <div class="col-12">
-
             <!-- /.card -->
-
             <div class="card">
                 <div class="card-header">
-
                     <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Product</button></h3>
-
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
+                                <th>Product Code</th>
+                                <th>Product Type</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Creation Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                            <tr>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                            <tr>
-                                <td>Misc</td>
-                                <td>PSP browser</td>
-                                <td>PSP</td>
-                                <td>-</td>
-                                <td>C</td>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                            <tr>
-                                <td>Other browsers</td>
-                                <td>All others</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>U</td>
-                                <td>Misc</td>
-                                <td>IE Mobile</td>
-                                <td>Windows Mobile 6</td>
-                                <td>-</td>
-                                <td>C</td>
-                            </tr>
-                        </tbody>
-
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -111,7 +60,6 @@
                 </button>
             </div>
             <div class="modal-body" id="modelbody">
-
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -149,22 +97,12 @@
 
 
 
-        $(function () {
-            //$("#example1").DataTable();
-            //$('#example2').DataTable({
-            //    "paging": true,
-            //    "lengthChange": false,
-            //    "searching": false,
-            //    "ordering": true,
-            //    "info": true,
-            //    "autoWidth": false,
-            //});
-        });
+
 
 
         function bindDataToTable() {
             $.ajax({
-                url: "/Product/ViewProducts",
+                url: "/Product/ViewAllProducts",
                 success: function (data) {
                     console.log(data);
                     bindCustomersInDataTable(data);
@@ -177,12 +115,16 @@
             var table = $('#example1').DataTable({
                 data: data.data,// JSON.parse(data.data),
                 columns: [
-                    { data: 'productType1' },
-                    { data: 'creationDate' },
-                    //{ data: 'cnic' },
-                    //{ data: 'contact' },//or { data: 'MONTH', title: 'Month' }`
+                    { data: 'itemCode' },
+                    { data: 'productType' },
+                    { data: 'itemName' },
+                    { data: 'description' },
 
-                    //{ data: 'accountNo' },
+
+                    { data: 'creationDate',
+                    render: function (data, type, sort) {
+                        return moment(data).format("DD-MM-YYYY");
+                    } },
 
                     {
                         "data": "idx",
@@ -368,4 +310,3 @@
         });
     </script>
 }
-

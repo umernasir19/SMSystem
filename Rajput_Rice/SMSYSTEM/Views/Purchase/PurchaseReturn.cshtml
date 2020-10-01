@@ -58,8 +58,13 @@
                         <thead>
                             <tr>
 
-                                <th>Vendor Name</th>
+                                <th>Product Name</th>
+                                <th>Stock in Inventory</th>
+                                <th>Inventory Amount</th>
+                                <th>Purchase Qty</th>
+                                <th>Purchasing Amount</th>
                                 <th>Total Amount</th>
+                                
 
                                 <th>Actions(s)</th>
                             </tr>
@@ -91,21 +96,30 @@
             <div class="modal-body" id="modelbody">
                 <div class="card-body">
                     <form role="form" id="paymentform">
-                        @Html.HiddenFor(model => model.AccountId)
+                        @Html.HiddenFor(model => model.prchsdtlid)
                         <div class="row">
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Total Amount*:</label>
-                                    @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @placeholder = "", @class = "form-control", @readonly = true } })
+                                    <label>Purchase Qty*:</label>
+                                    @Html.EditorFor(model => model.Purchaseqty, new { htmlAttributes = new { @placeholder = "", @class = "form-control", @readonly = true } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Paid Amount*:</label>
-                                    @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control" } })
+                                    <label>Availble QTy Stock*:</label>
+                                    @Html.EditorFor(model => model.StockQty, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Purhcase Amount*:</label>
+                                    @Html.EditorFor(model => model.PurchaseAmnt, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
 
@@ -122,12 +136,13 @@
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Next Due Date*:</label>
-                                    @Html.EditorFor(model => model.NextDueDate, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control" } })
+                                    <label>Qty To Return*:</label>
+                                    @Html.EditorFor(model => model.returnqty, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control" } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
 
                             </div>
+                            
                         </div>
 
                     </form>
@@ -204,10 +219,14 @@
                 data: data,// JSON.parse(data.data),
                 columns: [
 
-                    { data: 'vendorName' },
-                    { data: 'balance' },
+                    { data: 'productname' },
+                    { data: 'inventorystock' },
+                    { data: 'inventoryunitprice' },
+                    { data: 'purchaseqty' },
+                    { data: 'purchaseunitprice' },
+                    { data: 'purchasetotalamount' },
                     {
-                        "data": "idxx",
+                        "data": "dtlid",
                         "render": function (ID, type, full, meta) {
 
                             return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a>'
@@ -258,11 +277,15 @@
             // console.log(data);
             searchdata = data;
             console.log(data);
-            $("#totalAmount").val(data[0].balance);
+            $("#prchsdtlid").val(data[0].pdid);
+            $("#Purchaseqty").val(data[0].purchasedstock);
+            $("#StockQty").val(data[0].availblestock);
+            $("#PurchaseAmnt").val(data[0].totalamount);
+            $("#balanceamount").val(data[0].balanceamount);
 
         }
         function ShowEmployee(paymentid) {
-            $.post("/Payment/ViewBill?id=" + paymentid, function (data) {
+            $.post("/Purchase/CheckInverntoryforProductStock?id=" + paymentid, function (data) {
                 bindvaluesinModal(data.data);
                // $("#modal-default").html(data);
             });
@@ -442,14 +465,17 @@
         });
         $('#paytovendor').click(function (e) {
             e.preventDefault();
-
+            if (searchdata[0].availblestock < $("#returnqty").val()) {
+                alert("Return Qty ust be less then availble Qty");
+                return;
+            }
             var form = $("#paymentform");
             var formdata = new FormData(form[0]);
 
 
             console.log(searchdata);
-            formdata.append("vendor_Id", searchdata[0].vendorIdx);
-            formdata.append("DueDate", moment(searchdata[0].DueDate).format('YYYY-MM-DD'));
+           // formdata.append("vendor_Id", searchdata[0].vendorIdx);
+           // formdata.append("DueDate", moment(searchdata[0].DueDate).format('YYYY-MM-DD'));
             for (var value of formdata.values()) {
                 console.log(value);
             }
@@ -459,7 +485,7 @@
             if ($(form).valid()) {
                 $.ajax({
                     type: "POST",
-                    url: "/Payment/AddUpdate",
+                    url: "/Purchase/ReturnPurchase",
                     data:formdata,// $(form).serialize(),
                     contentType: false,
                     processData: false,

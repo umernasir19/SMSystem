@@ -23,6 +23,29 @@ namespace SMSYSTEM.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+        public JsonResult ViewAllPurchase()
+        {
+            if (Session["LoggedIn"] != null)
+            {
+                try
+                {
+                    var purchases = from s in DBClass.db.purchases
+                                    join sa in DBClass.db.vendors on s.vendorIdx equals sa.idx
+                                    where s.visible == 1
+                                    select new { poNumber = s.poNumber, vendorName = sa.vendorName, purchaseDate = s.purchaseDate, netAmount = s.netAmount, description = s.description };
+                    //var products = DBClass.db.products.ToList();
+                    return Json(new { data = purchases, success = true, statuscode = 200 }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { data = "Error:" + ex.Message, success = false, statuscode = 500 }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { data = "No Login Found", success = true, statuscode = 400 }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult AddPurchase()
         {
@@ -44,6 +67,11 @@ namespace SMSYSTEM.Controllers
                 {
                     idx = p.idx,
                     paymentMode = p.paymentMode1
+                }).ToList();
+                objPrchseVM.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
+                {
+                    idx = p.idx,
+                    bankName = p.bankName
                 }).ToList();
                 int lastPOid =Convert.ToInt16(DBClass.db.purchases.OrderByDescending(x => x.idx).Select(x => x.idx).FirstOrDefault().ToString())+1;
                 objPrchseVM.poNumber = "PR-00" + lastPOid;
@@ -91,6 +119,7 @@ namespace SMSYSTEM.Controllers
                     objPOMaster.tax = timeline[0].tax;
                     objPOMaster.balanceAmount = timeline[0].balanceAmount;
                     objPOMaster.taxAount = timeline[0].taxAount;
+                    objPOMaster.visible = 1;
                     //objPOMaster.purchaseduedate = Convert.ToDateTime(timeline[0].purchaseduedate.ToString("yyyy-MM-dd"));
                     objPOMaster.creationDate = DateTime.Now;//  Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));//DateTime.Now;//
                     objPOMaster.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
@@ -213,6 +242,7 @@ namespace SMSYSTEM.Controllers
                         objaccountmaster.invoiceNoIdx = timeline[0].poNumber;
                         objaccountmaster.debit = timeline[i].qty * timeline[i].unitPrice;//Should be total Amount
                         objaccountmaster.credit = timeline[i].qty * timeline[i].unitPrice;
+                        objaccountmaster.ItemId = timeline[i].itemIdx;
                        ;//Should be total Amount
                         if(Convert.ToDecimal(timeline[i].paidAmount) == timeline.Sum(x => x.amount))
                         {
@@ -457,10 +487,10 @@ namespace SMSYSTEM.Controllers
         }
 
         [HttpPost]
-
         public JsonResult SearchPurchases(PurchaseReturn_Property objprchse)
         {
-            var purchasemaster = DBClass.db.purchases.Where(p => p.poNumber == objprchse.PRNumber).FirstOrDefault();
+            int purchasemasterid = Convert.ToInt16(objprchse.PRNumber.ToString());
+            var purchasemaster = DBClass.db.purchases.Where(p => p.idx == purchasemasterid).FirstOrDefault();
             var data = (from a in DBClass.db.pruchaseDetails
                         join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
                         join C in DBClass.db.products on B.productIdx equals C.idx
@@ -474,7 +504,9 @@ namespace SMSYSTEM.Controllers
                            purchaseqty=a.qty,
                            purchaseunitprice=a.unitPrice,
                            purchasetotalamount=(a.unitPrice*a.qty),
-                           purchaseid=a.purchaseIdx
+                           purchaseid=a.purchaseIdx,
+                           duedate=a.DueDate,
+                           dtlid=a.idx
                         }
                         ) .ToList();
 
@@ -483,6 +515,69 @@ namespace SMSYSTEM.Controllers
 
         }
 
+        public JsonResult CheckInverntoryforProductStock(int id)
+        {
+            var data = (from a in DBClass.db.pruchaseDetails
+                        join c in DBClass.db.purchases on a.purchaseIdx equals c.idx
+                        join b in DBClass.db.inventories on a.itemIdx equals b.productIdx
+                        where a.idx == id && b.stock > 0
+                        select new
+                        {
+                            pdid=a.idx,
+                            availblestock=b.stock,
+                            balanceamount=c.balanceAmount,
+                            purchasedstock=a.qty,
+                            totalamount=a.amount,
+                            duedate=a.DueDate
+                        }).ToList();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        [HttpPost]
+        public JsonResult ReturnPurchase(PurchaseReturn_Property objprchse)
+        {
+            using (var txn = new TransactionScope())
+            {
+                var purshsedtl = DBClass.db.pruchaseDetails.Where(p => p.idx == objprchse.prchsdtlid).FirstOrDefault();
+                var purcahsemster = DBClass.db.purchases.Where(p => p.idx == purshsedtl.purchaseIdx).FirstOrDefault();
+                var acountmaster = DBClass.db.accountMasterGLs.Where(p => p.invoiceNoIdx == purcahsemster.poNumber && p.tranTypeIdx==1 && p.ItemId==purshsedtl.itemIdx).FirstOrDefault();
+                var acountdtl = DBClass.db.accountGJs.Where(p => p.GLIdx == acountmaster.idxx).ToList();
+                var invntrymstr = DBClass.db.inventories.Where(p => p.productIdx == purshsedtl.itemIdx).FirstOrDefault();
+
+                int newqty = objprchse.Purchaseqty - objprchse.returnqty;
+                decimal newamnt =Convert.ToDecimal(newqty * purshsedtl.unitPrice);
+                decimal newntamnt = Convert.ToDecimal( purcahsemster.netAmount - (objprchse.returnqty* purshsedtl.unitPrice));
+                decimal acntblnce = Convert.ToDecimal(acountmaster.balance - (objprchse.returnqty * purshsedtl.unitPrice));
+                DBClass.db.Database.ExecuteSqlCommand("update pruchaseDetails set qty={0},amount={1} where idx={2}", newqty, newamnt, purshsedtl.idx);
+                DBClass.db.Database.ExecuteSqlCommand("update purchase set totalAmount={0},netAmount={1} where idx={1}", newamnt, newntamnt, purcahsemster.idx);
+               // DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idx={1}", newamnt, newamnt, acntblnce, acountmaster.idxx);
+                DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idxx={3}", newamnt, newamnt, acntblnce, acountmaster.idxx);
+                for(int i = 0; i < acountdtl.Count(); i++)
+                {
+                    if (acountdtl[i].debit > 0)
+                    {
+                        DBClass.db.Database.ExecuteSqlCommand("update accountGJ set debit={0} where idx={1}", newamnt, acountdtl[i].idx);
+
+                    }
+                    if (acountdtl[i].credit > 0)
+                    {
+                        DBClass.db.Database.ExecuteSqlCommand("update accountGJ set credit={0} where idx={1}", newamnt, acountdtl[i].idx);
+
+                    }
+
+                }
+                //for inventry
+                var newstock=invntrymstr.stock-objprchse.returnqty;
+                var purchsedtlunitprcsum =Convert.ToDecimal(DBClass.db.pruchaseDetails.Where(p => p.itemIdx == purshsedtl.itemIdx).Sum(p => p.unitPrice).Value.ToString());
+                var newunitprice = (invntrymstr.unitPrice + purchsedtlunitprcsum) / 2;
+                DBClass.db.Database.ExecuteSqlCommand("update inventory set stock={0},unitPrice={1},totalAmount={2} where idx={3}", newstock, newunitprice, newstock*newunitprice, invntrymstr.idx);
+
+                txn.Complete();
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
 

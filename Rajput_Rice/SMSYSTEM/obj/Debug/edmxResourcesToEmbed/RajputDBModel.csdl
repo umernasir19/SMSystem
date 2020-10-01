@@ -45,6 +45,7 @@
     <Property Name="chequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="ItemId" Type="Int32" />
   </EntityType>
   <EntityType Name="advanceSalary">
     <Key>

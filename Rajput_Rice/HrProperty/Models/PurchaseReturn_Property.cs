@@ -29,5 +29,15 @@ namespace HrProperty.Models
         public decimal balanceamount { get; set; }
         [DataType(DataType.Date)]
         public DateTime NextDueDate { get; set; }
+
+        public int prchsdtlid { get; set; }
+
+        public int Purchaseqty { get; set; }
+
+        public int StockQty { get; set; }
+
+        public decimal PurchaseAmnt { get; set; }
+
+        public int returnqty { get; set; }
     }
 }

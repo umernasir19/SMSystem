@@ -62,6 +62,8 @@ public partial class accountMasterGL
 
     public Nullable<System.DateTime> DueDate { get; set; }
 
+    public Nullable<int> ItemId { get; set; }
+
 }
 
 }
