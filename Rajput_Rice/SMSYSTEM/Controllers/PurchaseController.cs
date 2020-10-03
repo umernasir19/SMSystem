@@ -120,6 +120,13 @@ namespace SMSYSTEM.Controllers
                     objPOMaster.balanceAmount = timeline[0].balanceAmount;
                     objPOMaster.taxAount = timeline[0].taxAount;
                     objPOMaster.visible = 1;
+                    objPOMaster.paymentModeIdx = timeline[0].paymentModeIdx;
+                    objPOMaster.bankIdx = timeline[0].bankIdx;
+                    objPOMaster.accorChequeNumber = timeline[0].accorChequeNumber;
+                    if (timeline[0].paymentModeIdx == 2)
+                    {
+                        objPOMaster.paidDate = timeline[0].paidDate;
+                    }
                     //objPOMaster.purchaseduedate = Convert.ToDateTime(timeline[0].purchaseduedate.ToString("yyyy-MM-dd"));
                     objPOMaster.creationDate = DateTime.Now;//  Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));//DateTime.Now;//
                     objPOMaster.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
@@ -243,8 +250,12 @@ namespace SMSYSTEM.Controllers
                         objaccountmaster.debit = timeline[i].qty * timeline[i].unitPrice;//Should be total Amount
                         objaccountmaster.credit = timeline[i].qty * timeline[i].unitPrice;
                         objaccountmaster.ItemId = timeline[i].itemIdx;
-                       ;//Should be total Amount
-                        if(Convert.ToDecimal(timeline[i].paidAmount) == timeline.Sum(x => x.amount))
+                        objaccountmaster.paymentModeIdx = timeline[i].paymentModeIdx;
+                        objaccountmaster.bankIdx = timeline[i].bankIdx;
+                        objaccountmaster.chequeNumber = timeline[i].accorChequeNumber;
+                       // objaccountmaster. = timeline[i].accorChequeNumber;
+                        //Should be total Amount
+                        if (Convert.ToDecimal(timeline[i].paidAmount) == timeline.Sum(x => x.amount))
                         {
                             objaccountmaster.balance = 0.00m;
                             objaccountmaster.isCredit = 0;
@@ -275,10 +286,33 @@ namespace SMSYSTEM.Controllers
                         objacountgj.invoiceNo = timeline[0].poNumber;
                         objacountgj.debit = timeline[i].qty * timeline[i].unitPrice;
                         objacountgj.credit = 0.00m;
-                        objacountgj.coaIdx = 60;
+                        //for cash
+                        if (timeline[0].paymentModeIdx == 1)
+                        {
+
+
+                            objacountgj.coaIdx = 56;
+                        }
+                        else if (timeline[0].paymentModeIdx == 2)
+                        {
+                            //for cheque
+
+                            objacountgj.coaIdx = 43;
+                        }
+                        
+                        else
+                        {
+                            //for bank
+                          
+                            objacountgj.coaIdx = 64;
+                        }
+
+
                         objacountgj.createDate = DateTime.Now;
                         DBClass.db.accountGJs.Add(objacountgj);
                         DBClass.db.SaveChanges();
+
+
                         //credit entry for gj
                         objacountgj = new accountGJ();
                         objacountgj.tranTypeIdx = 1;
@@ -286,9 +320,13 @@ namespace SMSYSTEM.Controllers
                         objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
                         objacountgj.vendorIdx = timeline[0].vendorIdx;
                         objacountgj.invoiceNo = timeline[0].poNumber;
+                        
+                        //for cash
                         objacountgj.debit = 0.00m;
                         objacountgj.credit = timeline[i].qty * timeline[i].unitPrice;
-                        objacountgj.coaIdx = 43;
+                        objacountgj.coaIdx = 60;
+                        //for cheque
+
                         objacountgj.createDate = DateTime.Now;
                         DBClass.db.accountGJs.Add(objacountgj);
                         DBClass.db.SaveChanges();
@@ -494,7 +532,7 @@ namespace SMSYSTEM.Controllers
             var data = (from a in DBClass.db.pruchaseDetails
                         join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
                         join C in DBClass.db.products on B.productIdx equals C.idx
-                        where B.stock > 0 
+                        where B.stock > 0 && a.purchaseIdx==purchasemaster.idx
                         select new 
                         {
                            productid=C.idx,
@@ -517,10 +555,13 @@ namespace SMSYSTEM.Controllers
 
         public JsonResult CheckInverntoryforProductStock(int id)
         {
+            DBClass.db.Dispose();
+            DBClass.db = new RAJPUT_RICE_DBEntities();
             var data = (from a in DBClass.db.pruchaseDetails
                         join c in DBClass.db.purchases on a.purchaseIdx equals c.idx
                         join b in DBClass.db.inventories on a.itemIdx equals b.productIdx
-                        where a.idx == id && b.stock > 0
+                        join d in DBClass.db.accountMasterGLs on a.itemIdx equals d.ItemId
+                        where a.idx == id && b.stock > 0 &&d.invoiceNoIdx==c.poNumber
                         select new
                         {
                             pdid=a.idx,
@@ -528,7 +569,9 @@ namespace SMSYSTEM.Controllers
                             balanceamount=c.balanceAmount,
                             purchasedstock=a.qty,
                             totalamount=a.amount,
-                            duedate=a.DueDate
+                            duedate=a.DueDate,
+                            itembalance=d.balance,
+                            purchaseunitprice=a.unitPrice
                         }).ToList();
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
 

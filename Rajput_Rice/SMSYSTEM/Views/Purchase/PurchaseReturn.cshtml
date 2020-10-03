@@ -106,6 +106,22 @@
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Purchasing Unit Cost:</label>
+                                @Html.EditorFor(model => model.unitprice, new { htmlAttributes = new { @placeholder = "", @class = "form-control", @readonly = true } })
+                                @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                            </div>
+
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Purhcase Amount Total:</label>
+                                    @Html.EditorFor(model => model.PurchaseAmnt, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+
+                            </div>
+
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
@@ -115,11 +131,12 @@
                                 </div>
 
                             </div>
+
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Purhcase Amount*:</label>
-                                    @Html.EditorFor(model => model.PurchaseAmnt, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
+                                    <label>Invoice Balance Amount*:</label>
+                                    @Html.EditorFor(model => model.balanceamount, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
 
@@ -127,8 +144,8 @@
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Balance Amount*:</label>
-                                    @Html.EditorFor(model => model.balanceamount, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
+                                    <label>Item Balance Amount*:</label>
+                                    @Html.EditorFor(model => model.itembalance, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
 
@@ -142,21 +159,23 @@
                                 </div>
 
                             </div>
-                            
+
                         </div>
 
                     </form>
                 </div>
             </div>
+
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" id="paytovendor" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+        </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-</div>
+
 <!-- /.modal -->
 <!-- /.modal -->
 <!-- ./wrapper -->
@@ -282,6 +301,8 @@
             $("#StockQty").val(data[0].availblestock);
             $("#PurchaseAmnt").val(data[0].totalamount);
             $("#balanceamount").val(data[0].balanceamount);
+            $("#itembalance").val(data[0].itembalance);
+            $("#unitprice").val(data[0].purchaseunitprice);
 
         }
         function ShowEmployee(paymentid) {
@@ -463,10 +484,50 @@
 
 
         });
+        function checkvalidationofQty() {
+            var qtyrtn = $("#returnqty").val();
+            var itemblnceamount = $("#itembalance").val();
+            var purchaseunitprice = $("#unitprice").val();
+            var rtrngamnt = qtyrtn * purchaseunitprice;
+            if (rtrngamnt > itemblnceamount) {
+               
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                Command: toastr["error"]("Returning Qty Amount is greator then remaining amount", "Returning Qty amount is greater then Balnce amount!")
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
         $('#paytovendor').click(function (e) {
             e.preventDefault();
             if (searchdata[0].availblestock < $("#returnqty").val()) {
                 alert("Return Qty ust be less then availble Qty");
+                return;
+            }
+            if ($("#returnqty").val() >searchdata[0].purchasedstock  ) {
+                alert("Return Qty ust be less then/equal to Purchased Qty");
+                return;
+            }
+            if (!checkvalidationofQty()) {
+                //alert("Return Qty ust be less then/equal to Purchased Qty");
                 return;
             }
             var form = $("#paymentform");

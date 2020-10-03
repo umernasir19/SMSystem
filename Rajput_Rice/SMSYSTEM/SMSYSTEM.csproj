@@ -696,6 +696,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
@@ -888,6 +889,7 @@
     <Content Include="Views\CompanyBank\_AddNewCompanyBank.cshtml" />
     <Content Include="Views\Sale\ViewSale.cshtml" />
     <Content Include="Views\Sale\_AddSale.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

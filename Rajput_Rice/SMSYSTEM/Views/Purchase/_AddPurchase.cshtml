@@ -5,7 +5,7 @@
 }
 
 <div class="card-body">
-    <form role="form" id="formadddemptype">
+    <form role="form" id="purchaseform">
         @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
         <div class="row">
             <div class="col-sm-3">
@@ -209,7 +209,7 @@
                                 @Html.DropDownListFor(model => model.paymentModeIdx, new SelectList(Model.Paymentmodelist, "idx", "paymentMode"), "Select payment Mode", new { @Class = "form-control font-weight-bold" })
                                 @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                             </div>
-                            @Html.ValidationMessageFor(model => model.vendorIdx, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.paymentModeIdx, "", new { @class = "text-danger" })
                         </div>
 
                     </div>
@@ -218,30 +218,8 @@
                 </div>
             </div>
 
-            <div class="row" id="chequemode" style="display:none">
-                <div class="col-sm-4">
-                    <!-- text input -->
-                    <div class="form-group">
-                        <label>Chequenumber*:</label>
-                        @Html.EditorFor(model => model.accorChequeNumber, new { htmlAttributes = new { @placeholder = "Cheque Number", @class = "form-control" } })
-                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                    </div>
-                    @Html.ValidationMessageFor(model => model.accorChequeNumber, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-sm-4">
-                    <!-- text input -->
-                    <div class="form-group">
-                        <label>Paid Date*:</label>
-                        @Html.EditorFor(model => model.paidDate, new { htmlAttributes = new { @placeholder = "Cheque Number", @class = "form-control" } })
-                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                    </div>
-                    @Html.ValidationMessageFor(model => model.accorChequeNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="row" id="BankMode" style="display:none">
-                <div class="col-sm-4">
+            <div class="row" id="pymnmode" style="display:none">
+                <div class="col-sm-4 bnkchqpaymnt">
                     <!-- text input -->
                     <div class="form-group">
                         <label>Bank Name*:</label>
@@ -250,15 +228,27 @@
                     </div>
                     @Html.ValidationMessageFor(model => model.bankIdx, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 bnkchqpaymnt">
                     <!-- text input -->
                     <div class="form-group">
-                        <label>Account Number:</label>
-                        @Html.EditorFor(model => model.accorChequeNumber, new { htmlAttributes = new { @placeholder = "Account Number", @class = "form-control" } })
+                        <label>Account/Cheque Number*:</label>
+                        @Html.EditorFor(model => model.accorChequeNumber, new { htmlAttributes = new { @placeholder = "Cheque/Account Number", @class = "form-control" } })
                         @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                     </div>
                     @Html.ValidationMessageFor(model => model.accorChequeNumber, "", new { @class = "text-danger" })
                 </div>
+                <div class="col-sm-4 bnkpddt">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Paid Date*:</label>
+                        @Html.EditorFor(model => model.paidDate, new { htmlAttributes = new { @placeholder = "Cheque Number", @class = "form-control" } })
+                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.accorChequeNumber, "", new { @class = "text-danger" })
+                </div>
+         
+                
+                
             </div>
 
         </div>
@@ -326,18 +316,20 @@
             //$('#chequemode').css('display', 'none');
             //$('#BankMode').css('display', 'none');
 
-            $('#chequemode').hide();
-            $('#BankMode').hide();
+            $('#pymnmode').hide();
+            
         }
         if (paymentModeIdx == "2") {
             //cheque
-            $('#chequemode').show();//('display', 'block');
-            $('#BankMode').css('display', 'none');
+            $('#pymnmode').show();//('display', 'block');
+           
+            $('.bnkpddt').show();
         }
         if (paymentModeIdx == "3") {
             //bank
-            $('#chequemode').css('display', 'none');
-            $('#BankMode').show();//('display', 'block');
+            $('#pymnmode').show();
+            $('.bnkpddt').css('display', 'none');
+           
         }
       
     });
@@ -377,7 +369,21 @@
         // }
         //$("#example1").dataTable();
     });
+    $('#purchaseDate').change(function () {
+        var date = $(this).val();
+        console.log(date, 'change')
+        var GivenDate = date;
+        var CurrentDate = new Date();
+        GivenDate = new Date(GivenDate);
 
+        if (GivenDate > CurrentDate) {
+            alert('Given date is greater than the current date.');
+            var today = moment().format('YYYY-MM-DD');
+            $('#purchaseDate').val(today);
+        } else {
+           // alert('Given date is not greater than the current date.');
+        }
+    });
 
     function gridValidation(Id) {
         errmsg = [];

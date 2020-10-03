@@ -22,7 +22,17 @@ namespace SMSYSTEM.Controllers
                     idx = p.idx,
                     vendorName = p.vendorName
                 }).ToList();
-             //   DBClass.db.vendors.ToList();
+                objpayment.Paymentmodelist = DBClass.db.paymentModes.ToList().Select(p => new PaymentMode_Property
+                {
+                    idx = p.idx,
+                    paymentMode = p.paymentMode1
+                }).ToList();
+                objpayment.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
+                {
+                    idx = p.idx,
+                    bankName = p.bankName
+                }).ToList();
+                //   DBClass.db.vendors.ToList();
                 return View(objpayment);
             }
             else
@@ -110,8 +120,8 @@ namespace SMSYSTEM.Controllers
                         decimal? totalamount = previousam.Sum(x => x.balance);
                         totalamount = totalamount - Convert.ToDecimal(objpayment.PaidAmount);
 
-                        decimal purchaseblnceamt =Convert.ToDecimal(Convert.ToDecimal(purchasemstr.balanceAmount)-totalamount);
-                        decimal purchasetotalamt = Convert.ToDecimal(Convert.ToDecimal(purchasemstr.totalAmount) - totalamount);
+                        decimal purchaseblnceamt =Convert.ToDecimal(Convert.ToDecimal(purchasemstr.balanceAmount)- objpayment.PaidAmount);
+                        //decimal purchasetotalamt = Convert.ToDecimal(Convert.ToDecimal(purchasemstr.totalAmount) - totalamount);
                         if (totalamount > 0)
                         {
                             DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} ,balance={1},DueDate={2} WHERE idxx = {3} ", 1, totalamount, objpayment.NextDueDate, objpayment.AccountId);
@@ -132,6 +142,10 @@ namespace SMSYSTEM.Controllers
                         objaccountmaster.invoiceNoIdx = "PMT-00" + previousam[0].idxx;
                         objaccountmaster.debit = totalamount;
                         objaccountmaster.credit = totalamount;
+                        objaccountmaster.paymentModeIdx = objpayment.paymentModeIdx;
+                        objaccountmaster.bankIdx = objpayment.bankIdx;
+                        objaccountmaster.chequeNumber = objpayment.accorChequeNumber;
+                        //objaccountmaster.da = objpayment.paymentModeIdx;
                         objaccountmaster.balance = Convert.ToDecimal(objpayment.balanceamount);
                         objaccountmaster.DueDate = objpayment.NextDueDate;
                         objaccountmaster.paidAmount = Convert.ToDecimal(objpayment.PaidAmount);
@@ -150,21 +164,32 @@ namespace SMSYSTEM.Controllers
                         int acountmsid = objaccountmaster.idxx;
 
                         accountGJ objacountgj = new accountGJ();
-                        objacountgj.tranTypeIdx = 1;
+                        objacountgj.tranTypeIdx = 6;
                         objacountgj.GLIdx = acountmsid;
                         objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
                         objacountgj.vendorIdx = objpayment.vendor_Id;
                         objacountgj.invoiceNo = objaccountmaster.invoiceNoIdx;
                         objacountgj.debit = totalamount;
                         objacountgj.credit = 0.00m;
-                        objacountgj.coaIdx = 60;
+                        if (objpayment.paymentModeIdx == 1)
+                        {
+                            objacountgj.coaIdx = 56;
+                        }
+                        if (objpayment.paymentModeIdx == 2)
+                        {
+                            objacountgj.coaIdx = 43;
+                        }
+                        if (objpayment.paymentModeIdx == 3)
+                        {
+                            objacountgj.coaIdx = 64;
+                        }
                         objacountgj.createDate = DateTime.Now;
                         DBClass.db.accountGJs.Add(objacountgj);
                         DBClass.db.SaveChanges();
 
 
                         objacountgj = new accountGJ();
-                        objacountgj.tranTypeIdx = 1;
+                        objacountgj.tranTypeIdx = 6;
                         objacountgj.GLIdx = acountmsid;
                         objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
                         objacountgj.vendorIdx = objpayment.vendor_Id;
@@ -179,14 +204,14 @@ namespace SMSYSTEM.Controllers
                         txn.Complete();
                     }
                 }
-                return Json(new { data = "ok", success = true, statuscode = 400, url = "/Customer/ViewAllCustomers" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = "ok", success = true, statuscode = 400, url = "/Payment/ViewPayments" }, JsonRequestBehavior.AllowGet);
 
 
 
             }
             else
             {
-                return Json(new { data = "No Login Found", success = true, statuscode = 400, url = "/Customer/ViewAllCustomers" }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = "No Login Found", success = true, statuscode = 400, url = "/Payment/ViewPayments" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -194,7 +219,8 @@ namespace SMSYSTEM.Controllers
         {
             try
             {
-
+                DBClass.db.Dispose();
+                DBClass.db = new RAJPUT_RICE_DBEntities();
                 var data = DBClass.db.accountMasterGLs.Where(p => p.idxx == id).ToList();
                 return Json(new { data = data, success = true, statuscode = 400, url = "" }, JsonRequestBehavior.AllowGet);
 

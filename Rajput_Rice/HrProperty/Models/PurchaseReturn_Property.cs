@@ -39,5 +39,9 @@ namespace HrProperty.Models
         public decimal PurchaseAmnt { get; set; }
 
         public int returnqty { get; set; }
+
+        public decimal itembalance { get; set; }
+        public decimal unitprice { get; set; }
+
     }
 }
