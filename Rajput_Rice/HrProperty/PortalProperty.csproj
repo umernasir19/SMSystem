@@ -48,6 +48,7 @@
     <Compile Include="Models\Customer_Property.cs" />
     <Compile Include="Models\PaymentMode_Property.cs" />
     <Compile Include="Models\Payment_Property.cs" />
+    <Compile Include="Models\Planner _Property.cs" />
     <Compile Include="Models\ProductType_Property.cs" />
     <Compile Include="Models\ProductVM.cs" />
     <Compile Include="Models\Product_Property.cs" />

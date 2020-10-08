@@ -694,6 +694,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PlannerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -751,6 +752,9 @@
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="payroll.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="planner.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="product.cs">
@@ -890,6 +894,8 @@
     <Content Include="Views\Sale\ViewSale.cshtml" />
     <Content Include="Views\Sale\_AddSale.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Planner\ViewPlanner.cshtml" />
+    <Content Include="Views\Planner\_AddNewPlanner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

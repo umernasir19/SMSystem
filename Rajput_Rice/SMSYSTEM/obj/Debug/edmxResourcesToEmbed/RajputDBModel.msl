@@ -780,5 +780,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="planners">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.planner">
+        <MappingFragment StoreEntitySet="planner">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="TO_DO_Date" ColumnName="TO_DO_Date" />
+          <ScalarProperty Name="TO_DO" ColumnName="TO_DO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

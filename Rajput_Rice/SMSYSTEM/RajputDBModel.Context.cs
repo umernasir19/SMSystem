@@ -122,6 +122,8 @@ public partial class RAJPUT_RICE_DBEntities : DbContext
 
     public DbSet<inventory_logs> inventory_logs { get; set; }
 
+    public DbSet<planner> planners { get; set; }
+
 }
 
 }

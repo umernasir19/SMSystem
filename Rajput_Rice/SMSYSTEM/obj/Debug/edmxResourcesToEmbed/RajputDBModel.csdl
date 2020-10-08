@@ -768,6 +768,7 @@
     <EntitySet Name="vendors" EntityType="Self.vendor" />
     <EntitySet Name="Urls" EntityType="Self.Url" />
     <EntitySet Name="inventory_logs" EntityType="RAJPUT_RICE_DBModel.inventory_logs" />
+    <EntitySet Name="planners" EntityType="RAJPUT_RICE_DBModel.planner" />
   </EntityContainer>
   <EntityType Name="inventory_logs">
     <Key>
@@ -780,5 +781,16 @@
     <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
     <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
     <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="planner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TO_DO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TO_DO_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Boolean" />
   </EntityType>
 </Schema>

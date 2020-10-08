@@ -1,0 +1,32 @@
+﻿
+@model HrProperty.Models.Planner__Property
+@{
+    Layout = null;
+}
+
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+        @Html.HiddenFor(model => model.ID, new { id = "natureOfVisitField", value = 0 })
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Plan*:</label>
+                    @Html.EditorFor(model => model.TO_DO, new { htmlAttributes = new { @placeholder = "TO_DO", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.TO_DO, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Plan Completion Date*:</label>
+                    @Html.EditorFor(model => model.TO_DO_Date, new { htmlAttributes = new { @placeholder = "*:", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.TO_DO_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+    </form>
+</div>

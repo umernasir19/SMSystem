@@ -463,6 +463,17 @@
     <Property Name="statusDate" Type="nvarchar" MaxLength="10" />
     <Property Name="visible" Type="int" />
   </EntityType>
+  <EntityType Name="planner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TO_DO" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TO_DO_Date" Type="datetime" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
   <EntityType Name="products">
     <Key>
       <PropertyRef Name="idx" />
@@ -767,6 +778,7 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
     <EntitySet Name="Month" EntityType="Self.Month" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="paymentMode" EntityType="Self.paymentMode" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="payroll" EntityType="Self.payroll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="planner" EntityType="Self.planner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="productType" EntityType="Self.productType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pruchaseDetails" EntityType="Self.pruchaseDetails" Schema="dbo" store:Type="Tables" />

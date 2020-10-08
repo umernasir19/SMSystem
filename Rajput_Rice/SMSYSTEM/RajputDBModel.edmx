@@ -468,6 +468,17 @@
           <Property Name="statusDate" Type="nvarchar" MaxLength="10" />
           <Property Name="visible" Type="int" />
         </EntityType>
+        <EntityType Name="planner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TO_DO" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TO_DO_Date" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
         <EntityType Name="products">
           <Key>
             <PropertyRef Name="idx" />
@@ -772,6 +783,7 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
           <EntitySet Name="Month" EntityType="Self.Month" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="paymentMode" EntityType="Self.paymentMode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payroll" EntityType="Self.payroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="planner" EntityType="Self.planner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productType" EntityType="Self.productType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pruchaseDetails" EntityType="Self.pruchaseDetails" Schema="dbo" store:Type="Tables" />
@@ -1571,6 +1583,7 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <EntitySet Name="vendors" EntityType="Self.vendor" />
           <EntitySet Name="Urls" EntityType="Self.Url" />
           <EntitySet Name="inventory_logs" EntityType="RAJPUT_RICE_DBModel.inventory_logs" />
+          <EntitySet Name="planners" EntityType="RAJPUT_RICE_DBModel.planner" />
         </EntityContainer>
         <EntityType Name="inventory_logs">
           <Key>
@@ -1583,6 +1596,17 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="planner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TO_DO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TO_DO_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2366,6 +2390,18 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
                 <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="productIdx" ColumnName="productIdx" />
                 <ScalarProperty Name="idx" ColumnName="idx" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="planners">
+            <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.planner">
+              <MappingFragment StoreEntitySet="planner">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TO_DO_Date" ColumnName="TO_DO_Date" />
+                <ScalarProperty Name="TO_DO" ColumnName="TO_DO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
