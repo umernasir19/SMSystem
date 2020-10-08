@@ -344,9 +344,10 @@
 
        // alert("hello");
         $('#milestones').show();
-        var closebutton = '<button type="button" class="close" style="float:left" id="deleterow" aria-label="Close">' +
-                         '<span aria-hidden="true" styel="color:red">&times;</span>' +
-                          '</button>'
+        var closebutton = '<input type="button" value="close" id="deleterow" onclick="SomeDeleteRowFunction(this)" class="close" />';
+            //'<button type="button" class="close" style="float:left" id="deleterow" aria-label="Close">' +
+                         //'<span aria-hidden="true" styel="color:red">&times;</span>' +
+                         // '</button>'
         var productname = $("#itemIdx option:selected").text();
         var ProductID = $("#itemIdx option:selected").val();
         var Qty = $("#qty").val();
@@ -368,6 +369,8 @@
         $("#totalAmount").val(tamount);
         // }
         //$("#example1").dataTable();
+
+        
     });
     $('#purchaseDate').change(function () {
         var date = $(this).val();
@@ -384,7 +387,14 @@
            // alert('Given date is not greater than the current date.');
         }
     });
+    function SomeDeleteRowFunction(o) {
+        //alert(id);
+        var p = o.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+        $(this).closest('tr').remove();
 
+    };
+    
     function gridValidation(Id) {
         errmsg = [];
         var myTab = $("#example2 tbody");
@@ -418,7 +428,7 @@
         //}
         return rtrn;
     }
-
+    
     function displayerror() {
         for (var i = 0; i < errmsg.length; i++) {
             toastr.options = {
