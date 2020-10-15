@@ -2,6 +2,7 @@
 using SMSYSTEM.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -176,11 +177,18 @@ namespace SMSYSTEM.Controllers
             }
         }
 
-        public ActionResult AddNewProductType()
+        public ActionResult AddNewProductType(int? Id)
         {
+            ProductType_Property _producttype = new ProductType_Property();
             if (Session["LoggedIn"] != null)
             {
-                return PartialView("_AddNewProductType");
+                if (Id > 0)
+                {
+                    var prdcttype = DBClass.db.productTypes.Where(p => p.idx == Id).FirstOrDefault();
+                    _producttype.idx = prdcttype.idx;
+                    _producttype.productType = prdcttype.productType1;
+                }
+                return PartialView("_AddNewProductType", _producttype);
             }
             else
             {
@@ -193,7 +201,7 @@ namespace SMSYSTEM.Controllers
         {
             if (Session["LoggedIn"] != null)
             {
-                if (!ModelState.IsValid)
+                if (ModelState.IsValid)
                 {//if valid
 
                     try
@@ -207,16 +215,32 @@ namespace SMSYSTEM.Controllers
                         }
                         else
                         {
-                            productType objProdctType = new productType()
+                            if (objproducttype.idx > 0)
                             {
-                                productType1 = objproducttype.productType,
-                                creationDate = DateTime.Now,
-                                createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString())
-                            };
-                            DBClass.db.productTypes.Add(objProdctType);
-                            DBClass.db.SaveChanges();
-                            return Json(new { success = true, statuscode = 200, msg = "Added Successfully", url = "/Product/ViewProductType" }, JsonRequestBehavior.AllowGet);
+                                productType data = DBClass.db.productTypes.Where(p => p.idx == objproducttype.idx).FirstOrDefault();
 
+                                data.idx = data.idx;
+                                data.productType1 = objproducttype.productType;
+                                data.creationDate = data.creationDate;
+                                data.createdByUserIdx = data.createdByUserIdx;
+                                DBClass.db.SaveChanges();
+                                return Json(new { success = true, statuscode = 200, msg = "Updated Successfully", url = "/Product/ViewProductType" }, JsonRequestBehavior.AllowGet);
+
+
+                            }
+                            else
+                            {
+
+                                productType objProdctType = new productType()
+                                {
+                                    productType1 = objproducttype.productType,
+                                    creationDate = DateTime.Now,
+                                    createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString())
+                                };
+                                DBClass.db.productTypes.Add(objProdctType);
+                                DBClass.db.SaveChanges();
+                                return Json(new { success = true, statuscode = 200, msg = "Added Successfully", url = "/Product/ViewProductType" }, JsonRequestBehavior.AllowGet);
+                            }
                         }
 
                     }

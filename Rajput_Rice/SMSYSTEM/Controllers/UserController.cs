@@ -11,6 +11,7 @@ namespace SMSYSTEM.Controllers
 {
     public class UserController : Controller
     {
+        User_Property _objUser;
         // GET: User
         public ActionResult SystemUsers()
         {
@@ -60,11 +61,30 @@ namespace SMSYSTEM.Controllers
 
         }
 
-        public ActionResult AddSystemUsers()
+        public ActionResult AddSystemUsers(int? Id)
         {
             if (Session["IsAdmin"] != null && Convert.ToBoolean(Session["IsAdmin"].ToString()) == true)
             {
-                return PartialView("_AddSystemUsers");
+                _objUser = new User_Property();
+                if (Id > 0)
+                {
+                    var user = DBClass.db.Users.Where(p => p.idx == Id).FirstOrDefault();
+                    if (user != null)
+                    {
+                        _objUser.idx = user.idx;
+                        _objUser.firstName = user.firstName;
+                        _objUser.lastName = user.lastName;
+                        _objUser.CNIC = user.CNIC;
+                        _objUser.email  = user.email;
+                        _objUser.loginId = user.loginId;
+                        _objUser.password = user.password;
+                        _objUser.Is_Admin =Convert.ToBoolean(user.Is_Admin);
+
+                    }
+                }
+
+
+                return PartialView("_AddSystemUsers", _objUser);
             }
             else
             {
@@ -87,30 +107,65 @@ namespace SMSYSTEM.Controllers
                         var model = new SMSYSTEM.User();
                         if (objUser.idx > 0)
                         {//update
-                            return Json(new { success = true, statuscode = 400, msg = "Validation Failed", url = "/user/SystemUsers" }, JsonRequestBehavior.AllowGet);
+                            
+                                var checkExists = DBClass.db.Users.Any(x => x.loginId == objUser.loginId || x.CNIC == objUser.CNIC);
 
+                                if (checkExists)
+                                {
+                                    return Json(new { success = false, msg = "LoginID/CNIC Already Exists", statusCode = HttpStatusCode.Ambiguous }, JsonRequestBehavior.DenyGet);
+                                }
+                            
+                            else
+                            {
+
+                                model = DBClass.db.Users.Where(p => p.idx == objUser.idx).FirstOrDefault();
+                                    model.idx = objUser.idx;
+                                    model.firstName = objUser.firstName;
+                                    model.lastName = objUser.lastName;
+                                    model.CNIC = objUser.CNIC;
+                                    model.email = objUser.email;
+                                    model.loginId = objUser.loginId;
+                                    model.loginId = objUser.loginId;
+                                    model.password = objUser.password;
+                                    model.lastModificationDate = DateTime.Now.ToString("MM/dd/yyyy");
+                                    model.Is_Admin = objUser.Is_Admin;
+                                    model.lastModifiedByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                                    model.isActive = 1;
+                                                       // DBClass.db.Entry(model).CurrentValues.SetValues(model);
+                                 //  DBClass.db.Entry(model).State = System.Data.EntityState.Modified;
+                                //DBClass.db.Users.Find(model.idx);
+                                    DBClass.db.SaveChanges();
+                                    return Json(new { success = true, statuscode = 200, msg = "User Updated Succesfully", url = "/user/SystemUsers" }, JsonRequestBehavior.AllowGet);
+                                
+
+                                //return Json(new { success = true, statuscode = 400, msg = "Validation Failed", url = "/user/SystemUsers" }, JsonRequestBehavior.AllowGet);
+                            }
                         }
                         else
                         {//insert
-                            var checkExists = DBClass.db.Users.Any(x => x.loginId == model.loginId);
+                            var checkExists = DBClass.db.Users.Any(x => x.loginId == objUser.loginId || x.CNIC==objUser.CNIC);
                             if (checkExists)
                             {
-                                return Json(new { success = false, message = "Name Already Exists", statusCode = HttpStatusCode.Ambiguous }, JsonRequestBehavior.DenyGet);
+                                return Json(new { success = false, msg = "LoginID/CNIC Already Exists", statusCode = HttpStatusCode.Ambiguous }, JsonRequestBehavior.DenyGet);
                             }
                             else
                             {
-                                model.firstName = objUser.firstName;
-                                model.lastName = objUser.lastName;
-                                model.CNIC = objUser.CNIC;
-                                model.email = objUser.email;
-                                model.loginId = objUser.loginId;
-                                model.loginId = objUser.loginId;
-                                model.password = objUser.password;
-                                model.creationDate = DateTime.Now;
-                                model.Is_Admin = objUser.Is_Admin;
-                                DBClass.db.Users.Add(model);
-                                DBClass.db.SaveChanges();
-                                return Json(new { success = true, statuscode = 200, msg = "User Inserted Succesfully", url = "/user/SystemUsers" }, JsonRequestBehavior.AllowGet);
+                                
+                                    model.firstName = objUser.firstName;
+                                    model.lastName = objUser.lastName;
+                                    model.CNIC = objUser.CNIC;
+                                    model.email = objUser.email;
+                                    model.loginId = objUser.loginId;
+                                    model.loginId = objUser.loginId;
+                                    model.password = objUser.password;
+                                    model.creationDate = DateTime.Now;
+                                    model.Is_Admin = objUser.Is_Admin;
+                                    model.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                                    model.isActive = 1;// objUser.Is_Admin;
+                                    DBClass.db.Users.Add(model);
+                                    DBClass.db.SaveChanges();
+                                    return Json(new { success = true, statuscode = 200, msg = "User Inserted Succesfully", url = "/user/SystemUsers" }, JsonRequestBehavior.AllowGet);
+                                
                             }
 
                         }

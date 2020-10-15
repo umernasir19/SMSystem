@@ -16,8 +16,10 @@ namespace HrProperty.Models
             get { return _idx; }
             set { _idx = value; }
         }
-
+        
         private string _firstName;
+        [Required(ErrorMessage = "Please Enter First Name")]
+        [StringLength(55)]
         public string firstName
         {
             get { return _firstName; }
@@ -25,6 +27,8 @@ namespace HrProperty.Models
         }
 
         private string _lastName;
+        [Required(ErrorMessage = "Please Enter Last Name")]
+        [StringLength(55)]
         public string lastName
         {
             get { return _lastName; }
@@ -32,6 +36,8 @@ namespace HrProperty.Models
         }
 
         private string _CNIC;
+        [Required(ErrorMessage = "Please Enter CNIC")]
+        [StringLength(13)]
         public string CNIC
         {
             get { return _CNIC; }
@@ -39,6 +45,8 @@ namespace HrProperty.Models
         }
 
         private string _cellNumber;
+        [Required(ErrorMessage = "Please Enter CNIC")]
+        [StringLength(11)]
         public string cellNumber
         {
             get { return _cellNumber; }

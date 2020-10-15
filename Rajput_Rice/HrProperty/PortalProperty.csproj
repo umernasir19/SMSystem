@@ -46,6 +46,7 @@
     <Compile Include="Models\CompanyBankVM.cs" />
     <Compile Include="Models\companyBank_Property.cs" />
     <Compile Include="Models\Customer_Property.cs" />
+    <Compile Include="Models\Login_Property.cs" />
     <Compile Include="Models\PaymentMode_Property.cs" />
     <Compile Include="Models\Payment_Property.cs" />
     <Compile Include="Models\Planner _Property.cs" />

@@ -22,7 +22,7 @@ namespace SMSYSTEM.Controllers
         }
         //Post Request from View
         [HttpPost]
-        public JsonResult Login(User_Property objuser)
+        public JsonResult Login(Login_Property objuser)
         {
             //checking Validation at backend
             if (ModelState.IsValid)

@@ -58,10 +58,10 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>loginID*:</label>
-                    @Html.EditorFor(model => model.CNIC, new { htmlAttributes = new { @placeholder = "LoginID", @class = "form-control" } })
+                    @Html.EditorFor(model => model.loginId, new { htmlAttributes = new { @placeholder = "LoginID", @class = "form-control" } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
-                @Html.ValidationMessageFor(model => model.CNIC, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.loginId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <!-- text input -->
@@ -81,7 +81,7 @@
                     @Html.CheckBoxFor(model => model.Is_Admin, new { htmlAttributes = new { @placeholder = "", @class = "form-control" } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
-                @Html.ValidationMessageFor(model => model.CNIC, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Is_Admin, "", new { @class = "text-danger" })
             </div>
         </div>
     </form>
