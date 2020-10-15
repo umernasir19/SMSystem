@@ -84,7 +84,7 @@
         });
         //show popup
         //show popup
-
+       
         $("#btnaddnewpopup").click(function () {
             //$.post("/Customer/AddCustomer", function (data) {
             //    $("#modal-default").html(data);
@@ -277,7 +277,8 @@
                 milestonedetails.balance = balance;
                 milestonedetails.paymentModeIdx = $("#paymentModeIdx").val();
                 milestonedetails.bankIdx = $("#bankIdx").val();
-
+                milestonedetails.chequeNumber = $("#chequeNumber").val();
+                
 
                 //milestonedetails.tax = $("#tax").val();
                 //milestonedetails.taxAount = $("#taxAount").val();

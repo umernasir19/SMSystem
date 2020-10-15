@@ -3,6 +3,7 @@ using SMSYSTEM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +11,7 @@ namespace SMSYSTEM.Controllers
 {
     public class SaleController : Controller
     {
+        string coaIdx;
         // GET: Purchase
         public ActionResult ViewSale()
         {
@@ -100,6 +102,7 @@ namespace SMSYSTEM.Controllers
 
             try
             {
+
                 decimal unitpricesumcogs = 0.00m;
                 //inventry COGS
                 for (int i = 0; i < timeline.Count(); i++)
@@ -146,6 +149,9 @@ namespace SMSYSTEM.Controllers
                 objPOMaster.createdByUserIdx = Convert.ToInt16(Session["Useridx"].ToString());
                 objPOMaster.status = timeline[0].status;
                 objPOMaster.visible = 1;
+                objPOMaster.paymentModeIdx = timeline[0].paymentModeIdx;
+                objPOMaster.bankIdx = timeline[0].bankIdx;
+                objPOMaster.chequeNumber = timeline[0].chequeNumber;
                 DBClass.db.sales.Add(objPOMaster);
                 DBClass.db.SaveChanges();
 
@@ -265,6 +271,10 @@ namespace SMSYSTEM.Controllers
                 objaccountmaster.isCredit = 1;
                 objaccountmaster.createDate = DateTime.Now;
                 objaccountmaster.visible = 1;
+                objaccountmaster.paymentModeIdx = timeline[0].paymentModeIdx;
+                objaccountmaster.bankIdx = timeline[0].bankIdx;
+                objaccountmaster.chequeNumber = timeline[0].chequeNumber;
+
                 DBClass.db.accountMasterGLs.Add(objaccountmaster);
                 DBClass.db.SaveChanges();
 
@@ -336,7 +346,15 @@ namespace SMSYSTEM.Controllers
                     int glId = acountmsid;
                     var sales = DBClass.db.Database.ExecuteSqlCommand(@"Update sales set Paid=" + objPOMaster.Paid + ",Balance=0,isPaid=1 where idx=" + POMasterID + "");//update Sale
                     var glUpdate = DBClass.db.Database.ExecuteSqlCommand(@"update accountMasterGL set isCredit=0,paidAmount=" + objPOMaster.Paid + ",balance=" + objPOMaster.Balance + " where idxx=" + glId + "");
-                    string coaIdx = "56";//for cash
+
+                    if (objPOMaster.paymentModeIdx == 1)
+                    {
+                        coaIdx = "56";//for cash
+                    }
+                    else if (objPOMaster.paymentModeIdx == 2 || objPOMaster.paymentModeIdx == 3)
+                    {
+                        coaIdx = "64";
+                    }
                     var gjUpdate = DBClass.db.Database.ExecuteSqlCommand(@"update accountGJ set coaIdx=" + coaIdx + " where GLIdx=" + glId + " and coaIdx=1");
                 }
                 #endregion
@@ -360,6 +378,22 @@ namespace SMSYSTEM.Controllers
                         var glUpdate = DBClass.db.Database.ExecuteSqlCommand(@"update accountMasterGL set paidAmount=" + objPOMaster.Paid + ",balance=" + result + " where idxx=" + glId + "");
 
                         var gjUpdate = DBClass.db.Database.ExecuteSqlCommand(@"update accountGJ set debit=" + objPOMaster.Paid + " where GLIdx=" + glId + " and coaIdx=1");
+                        if (objPOMaster.paymentModeIdx == 1)
+                        {
+                            coaIdx = "56";//for cash
+                        }
+                        else if (objPOMaster.paymentModeIdx == 2 || objPOMaster.paymentModeIdx == 3)
+                        {
+                            if (objPOMaster.paymentModeIdx == 2)
+                            {
+                                //cheque ka scenenrio 
+                            }
+                            else
+                            {
+                                coaIdx = "64";
+                            }
+
+                        }
                         objacountgj = new accountGJ();
                         objacountgj.tranTypeIdx = 2;
                         objacountgj.GLIdx = glId;
@@ -368,7 +402,7 @@ namespace SMSYSTEM.Controllers
                         objacountgj.invoiceNo = timeline[0].soNumber;
                         objacountgj.debit = objPOMaster.Paid;//Net Amount To Be Received
                         objacountgj.credit = 0.00m;
-                        objacountgj.coaIdx = 56;//Cash
+                        objacountgj.coaIdx = int.Parse(coaIdx);//Cash OR Bank
                         objacountgj.createDate = DateTime.Now;
                         DBClass.db.accountGJs.Add(objacountgj);
                         DBClass.db.SaveChanges();
@@ -467,5 +501,172 @@ namespace SMSYSTEM.Controllers
                 throw ex;
             }
         }
+
+
+
+        #region Sales Return
+
+        public ActionResult SalesReturn()
+        {
+            if (Session["LoggedIn"] != null)
+            {
+                SalesReturn_Property objprrtrn = new SalesReturn_Property();
+                //List<Sale_Property> saleslist = new List<Sale_Property>();
+                //Sale_Property objSale_Property;
+                //var data = DBClass.db.sales.Where(p => p.visible == 1).ToList();
+                //for(int i = 0; i < data.Count; i++)
+                //{
+                //    objSale_Property = new Sale_Property();
+                //    objSale_Property.soNumber = data[i].soNumber;
+                //    saleslist.Add(objSale_Property);
+                //}
+                //objprrtrn.SaleLiit = saleslist;
+                //    DBClass.db.customers.ToList().Select(p => new Customer_Property
+                //{
+                //    idx = p.idx,
+                //    customerName = p.customerName
+                //}).ToList();
+                objprrtrn.SalesLiSt
+                    = DBClass.db.sales.ToList().Select(p => new Sale_Property
+                    {
+                        idx = p.idx,
+                        soNumber = p.soNumber
+                    }).ToList();
+                //objprrtrn.saledtlid= DBClass.db.salesDetails.ToList().Select(p => new Sale_Details_Property
+                //    {
+                //        idx = p.idx,
+                //        salesIdx =p.salesIdx
+                //    }).ToList();
+                //   DBClass.db.vendors.ToList();
+                return View(objprrtrn);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SearchSales(SalesReturn_Property objprchse)
+        {
+            int salesMasterId = Convert.ToInt16(objprchse.SaleInvoiceNumber.ToString());
+            var salesMaster = DBClass.db.sales.Where(p => p.idx == salesMasterId).FirstOrDefault();
+            var data = (from a in DBClass.db.salesDetails
+                        join B in DBClass.db.inventories on a.serviceIdx equals B.productIdx
+                        join C in DBClass.db.products on B.productIdx equals C.idx
+                        where B.stock > 0 && a.salesIdx == salesMaster.idx
+                        select new
+                        {
+                            productid = C.idx,
+                            productname = C.itemName,
+                            inventorystock = B.stock,
+                            inventoryunitprice = B.unitPrice,
+                            saleQty = a.serviceQty,
+                            salesRate = a.serviceRate,
+                            saleTotalAmount = (a.serviceRate * a.serviceQty),
+                            saleId = a.salesIdx,
+
+                            dtlid = a.idx
+                        }
+                        ).ToList();
+
+
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult CheckInverntoryforProductStock(int id)
+        {
+            //DBClass.db.Dispose();
+       
+            //DBClass.db = new RAJPUT_RICE_DBEntities();
+            using (var txn = new TransactionScope())
+            {
+                var data = (from a in DBClass.db.sales
+                            join b in DBClass.db.salesDetails on a.idx equals b.salesIdx
+                            join c in DBClass.db.accountMasterGLs on a.soNumber equals c.invoiceNoIdx
+                            join d in DBClass.db.accountGJs on c.idxx equals d.GLIdx
+                            join e in DBClass.db.inventories on b.serviceIdx equals e.productIdx
+                            //join c in DBClass.db.sales on a.salesIdx equals c.idx
+                            //join b in DBClass.db.inventories on a.serviceIdx equals b.productIdx
+                            //join d in DBClass.db.accountMasterGLs on a. equals d.
+                            where b.idx == id  && c.invoiceNoIdx == a.soNumber
+                            select new
+                            {
+                                salesmasterid = a.idx,
+                                sonumber = a.soNumber,
+                                saledtlid = b.idx,
+                                saleqty = b.serviceQty,
+                                salerate = b.serviceRate,
+                                balance = c.balance,
+                                paidamount = c.paidAmount
+                            }).ToList();
+                return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            }
+            //var data1 = (from a in DBClass.db.salesDetails
+            //            join c in DBClass.db.sales on a.salesIdx equals c.idx
+            //            join b in DBClass.db.inventories on a.serviceIdx equals b.productIdx
+            //            join d in DBClass.db.accountMasterGLs on a. equals d.
+            //            where c.idx == id && b.stock > 0 && d.invoiceNoIdx == c.poNumber
+            //            select new
+            //            {
+            //                pdid = a.idx,
+            //                availblestock = b.stock,
+            //                balanceamount = c.balanceAmount,
+            //                purchasedstock = a.qty,
+            //                totalamount = a.amount,
+            //                duedate = a.DueDate,
+            //                itembalance = c.balance,
+            //                purchaseunitprice = a.unitPrice
+            //            }).ToList();
+           
+
+        }
+
+
+        [HttpPost]
+        public JsonResult ReturnSale(SalesReturn_Property objsale)
+        {
+            using (var txn = new TransactionScope())
+            {
+                var purshsedtl = DBClass.db.salesDetails.Where(p => p.idx == objsale.SaleDetailsID).FirstOrDefault();
+                var purcahsemster = DBClass.db.sales.Where(p => p.idx == purshsedtl.salesIdx).FirstOrDefault();
+                var acountmaster = DBClass.db.accountMasterGLs.Where(p => p.invoiceNoIdx == purcahsemster.soNumber && p.tranTypeIdx == 2 ).FirstOrDefault();
+                var acountdtl = DBClass.db.accountGJs.Where(p => p.GLIdx == acountmaster.idxx).ToList();
+                var invntrymstr = DBClass.db.inventories.Where(p => p.productIdx == purshsedtl.serviceIdx).FirstOrDefault();
+
+                int newqty = objsale.Saleqty - objsale.returnqty;
+                decimal newamnt = Convert.ToDecimal(newqty * purshsedtl.serviceRate);
+                decimal newntamnt = Convert.ToDecimal(purcahsemster.netAmount - (objsale.returnqty * purshsedtl.serviceRate));
+                decimal acntblnce = Convert.ToDecimal(acountmaster.balance - (objsale.returnqty * purshsedtl.serviceRate));
+                DBClass.db.Database.ExecuteSqlCommand("update salesDetails set serviceQty={0},subAmount={1} where idx={2}", newqty, newamnt, purshsedtl.idx);
+                DBClass.db.Database.ExecuteSqlCommand("update sales set totalAmount={0},netAmount={1} where idx={1}", newamnt, newntamnt, purcahsemster.idx);
+                // DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idx={1}", newamnt, newamnt, acntblnce, acountmaster.idxx);
+                DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idxx={3}", newamnt, newamnt, acntblnce, acountmaster.idxx);
+                for (int i = 0; i < acountdtl.Count(); i++)
+                {
+                    if (acountdtl[i].debit > 0)
+                    {
+                        DBClass.db.Database.ExecuteSqlCommand("update accountGJ set debit={0} where idx={1}", newamnt, acountdtl[i].idx);
+
+                    }
+                    if (acountdtl[i].credit > 0)
+                    {
+                        DBClass.db.Database.ExecuteSqlCommand("update accountGJ set credit={0} where idx={1}", newamnt, acountdtl[i].idx);
+
+                    }
+
+                }
+                //for inventry
+                var newstock = invntrymstr.stock - objsale.returnqty;
+                var purchsedtlunitprcsum = Convert.ToDecimal(DBClass.db.pruchaseDetails.Where(p => p.itemIdx == purshsedtl.serviceIdx).Sum(p => p.unitPrice).Value.ToString());
+                var newunitprice = (invntrymstr.unitPrice + purchsedtlunitprcsum) / 2;
+                DBClass.db.Database.ExecuteSqlCommand("update inventory set stock={0},unitPrice={1},totalAmount={2} where idx={3}", newstock, newunitprice, newstock * newunitprice, invntrymstr.idx);
+
+                txn.Complete();
+            }
+            return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

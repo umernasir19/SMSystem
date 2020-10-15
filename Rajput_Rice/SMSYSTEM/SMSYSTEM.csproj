@@ -896,6 +896,7 @@
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Planner\ViewPlanner.cshtml" />
     <Content Include="Views\Planner\_AddNewPlanner.cshtml" />
+    <Content Include="Views\Sale\SalesReturn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
