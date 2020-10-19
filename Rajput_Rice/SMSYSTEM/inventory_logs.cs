@@ -32,6 +32,10 @@ public partial class inventory_logs
 
     public System.DateTime creationDate { get; set; }
 
+    public Nullable<int> TransactionTypeID { get; set; }
+
+    public Nullable<int> MasterID { get; set; }
+
 }
 
 }

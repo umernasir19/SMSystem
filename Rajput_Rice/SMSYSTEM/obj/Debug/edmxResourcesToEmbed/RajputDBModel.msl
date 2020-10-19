@@ -770,6 +770,8 @@
     <EntitySetMapping Name="inventory_logs">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.inventory_logs">
         <MappingFragment StoreEntitySet="inventory_logs">
+          <ScalarProperty Name="MasterID" ColumnName="MasterID" />
+          <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
           <ScalarProperty Name="creationDate" ColumnName="creationDate" />
           <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
           <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />

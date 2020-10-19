@@ -353,6 +353,8 @@
     <Property Name="unitPrice" Type="decimal" Precision="20" Scale="2" />
     <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
     <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="TransactionTypeID" Type="int" />
+    <Property Name="MasterID" Type="int" />
   </EntityType>
   <EntityType Name="InventoryDetail">
     <Key>

@@ -697,6 +697,7 @@
     <Compile Include="Controllers\PlannerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -907,6 +908,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Receipt\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

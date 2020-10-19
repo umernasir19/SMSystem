@@ -196,6 +196,8 @@ namespace SMSYSTEM.Controllers
                             }
 
                             inventory_logs objinvntrylogs = new inventory_logs();
+                            objinvntrylogs.TransactionTypeID = 1;
+                            objinvntrylogs.MasterID = POMasterID;
                             objinvntrylogs.productIdx = timeline[i].itemIdx;
                             objinvntrylogs.stock = timeline[i].qty;
                             objinvntrylogs.unitPrice = timeline[i].unitPrice;
@@ -529,24 +531,43 @@ namespace SMSYSTEM.Controllers
         {
             int purchasemasterid = Convert.ToInt16(objprchse.PRNumber.ToString());
             var purchasemaster = DBClass.db.purchases.Where(p => p.idx == purchasemasterid).FirstOrDefault();
+            var invloggs= DBClass.db.inventory_logs.Where(p => p.TransactionTypeID == purchasemasterid).FirstOrDefault();
             var data = (from a in DBClass.db.pruchaseDetails
                         join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
                         join C in DBClass.db.products on B.productIdx equals C.idx
-                        where B.stock > 0 && a.purchaseIdx==purchasemaster.idx
-                        select new 
+                        where B.stock > 0 && a.purchaseIdx == purchasemaster.idx
+                        select new
                         {
-                           productid=C.idx,
-                           productname=C.itemName,
-                           inventorystock=B.stock,
-                           inventoryunitprice=B.unitPrice,
-                           purchaseqty=a.qty,
-                           purchaseunitprice=a.unitPrice,
-                           purchasetotalamount=(a.unitPrice*a.qty),
-                           purchaseid=a.purchaseIdx,
-                           duedate=a.DueDate,
-                           dtlid=a.idx
+                            productid = C.idx,
+                            productname = C.itemName,
+                            inventorystock = B.stock,
+                            inventoryunitprice = B.unitPrice,
+                            purchaseqty = a.qty,
+                            purchaseunitprice = a.unitPrice,
+                            purchasetotalamount = (a.unitPrice * a.qty),
+                            purchaseid = a.purchaseIdx,
+                            duedate = a.DueDate,
+                            dtlid = a.idx
                         }
-                        ) .ToList();
+                        ).ToList();
+            //var data = (from a in DBClass.db.pruchaseDetails
+            //            join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
+            //            join C in DBClass.db.products on B.productIdx equals C.idx
+            //            where B.stock > 0 && a.purchaseIdx==purchasemaster.idx
+            //            select new 
+            //            {
+            //               productid=C.idx,
+            //               productname=C.itemName,
+            //               inventorystock=B.stock,
+            //               inventoryunitprice=B.unitPrice,
+            //               purchaseqty=a.qty,
+            //               purchaseunitprice=a.unitPrice,
+            //               purchasetotalamount=(a.unitPrice*a.qty),
+            //               purchaseid=a.purchaseIdx,
+            //               duedate=a.DueDate,
+            //               dtlid=a.idx
+            //            }
+            //            ) .ToList();
 
 
             return Json(new {data=data }, JsonRequestBehavior.AllowGet);
@@ -583,39 +604,201 @@ namespace SMSYSTEM.Controllers
         {
             using (var txn = new TransactionScope())
             {
+                decimal returnamount = objprchse.returnqty * objprchse.unitprice;
                 var purshsedtl = DBClass.db.pruchaseDetails.Where(p => p.idx == objprchse.prchsdtlid).FirstOrDefault();
                 var purcahsemster = DBClass.db.purchases.Where(p => p.idx == purshsedtl.purchaseIdx).FirstOrDefault();
                 var acountmaster = DBClass.db.accountMasterGLs.Where(p => p.invoiceNoIdx == purcahsemster.poNumber && p.tranTypeIdx==1 && p.ItemId==purshsedtl.itemIdx).FirstOrDefault();
                 var acountdtl = DBClass.db.accountGJs.Where(p => p.GLIdx == acountmaster.idxx).ToList();
                 var invntrymstr = DBClass.db.inventories.Where(p => p.productIdx == purshsedtl.itemIdx).FirstOrDefault();
 
-                int newqty = objprchse.Purchaseqty - objprchse.returnqty;
-                decimal newamnt =Convert.ToDecimal(newqty * purshsedtl.unitPrice);
-                decimal newntamnt = Convert.ToDecimal( purcahsemster.netAmount - (objprchse.returnqty* purshsedtl.unitPrice));
-                decimal acntblnce = Convert.ToDecimal(acountmaster.balance - (objprchse.returnqty * purshsedtl.unitPrice));
-                DBClass.db.Database.ExecuteSqlCommand("update pruchaseDetails set qty={0},amount={1} where idx={2}", newqty, newamnt, purshsedtl.idx);
-                DBClass.db.Database.ExecuteSqlCommand("update purchase set totalAmount={0},netAmount={1} where idx={1}", newamnt, newntamnt, purcahsemster.idx);
-               // DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idx={1}", newamnt, newamnt, acntblnce, acountmaster.idxx);
-                DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idxx={3}", newamnt, newamnt, acntblnce, acountmaster.idxx);
-                for(int i = 0; i < acountdtl.Count(); i++)
+                //new logic of purchas ereturn
+
+                #region INVLogs
+                inventory_logs objinvntrylog = new inventory_logs();
+                objinvntrylog.TransactionTypeID = 16;
+                objinvntrylog.MasterID = purcahsemster.idx;
+                objinvntrylog.productIdx = purshsedtl.itemIdx;
+                objinvntrylog.stock = objprchse.returnqty*-1;
+                objinvntrylog.unitPrice = purshsedtl.unitPrice;
+                objinvntrylog.totalAmount = purshsedtl.unitPrice * objinvntrylog.stock;
+                DBClass.db.inventory_logs.Add(objinvntrylog);
+                DBClass.db.SaveChanges();
+                #endregion
+
+                #region Account Entries
+                accountMasterGL objaccounthead = new accountMasterGL();
+                objaccounthead.tranTypeIdx = 16;
+                objaccounthead.userIdx= Convert.ToInt16(Session["Useridx"].ToString());
+                objaccounthead.vendorIdx = acountmaster.vendorIdx;
+                objaccounthead.invoiceNoIdx = acountmaster.invoiceNoIdx;
+                acountmaster.debit = acountmaster.debit;
+                acountmaster.credit = acountmaster.credit;
+                objaccounthead.createDate = DateTime.Now;
+                objaccounthead.paidAmount = purshsedtl.unitPrice * objprchse.returnqty;
+                objaccounthead.balance = acountmaster.balance - objaccounthead.paidAmount;
+                objaccounthead.DueDate = acountmaster.DueDate;
+                objaccounthead.ItemId = acountmaster.ItemId;
+                DBClass.db.accountMasterGLs.Add(objaccounthead);
+                DBClass.db.SaveChanges();
+
+                int acntmsterid = objaccounthead.idxx;
+
+
+                //detail entries
+                //case 1 rtrnamnt>blnce ... Cash will be recieved from vendor
+                if(returnamount> acountmaster.balance)
                 {
-                    if (acountdtl[i].debit > 0)
-                    {
-                        DBClass.db.Database.ExecuteSqlCommand("update accountGJ set debit={0} where idx={1}", newamnt, acountdtl[i].idx);
+                    //liability acoount payable will be debit 
+                    //inventory  debit
+                    // cash credit
+                    accountGJ objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 43;
+                    objgj.credit = 0.00m;
+                    objgj.debit = acountmaster.balance;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
 
-                    }
-                    if (acountdtl[i].credit > 0)
-                    {
-                        DBClass.db.Database.ExecuteSqlCommand("update accountGJ set credit={0} where idx={1}", newamnt, acountdtl[i].idx);
+                    // inventory debit
+                    objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 60;
+                    objgj.debit = returnamount;
+                    objgj.credit = 0.00m;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
+                    //cash crdit
+                    objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 60;
+                    objgj.credit = returnamount- acountmaster.balance;
+                    objgj.debit = 0.00m;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
 
-                    }
 
                 }
-                //for inventry
-                var newstock=invntrymstr.stock-objprchse.returnqty;
-                var purchsedtlunitprcsum =Convert.ToDecimal(DBClass.db.pruchaseDetails.Where(p => p.itemIdx == purshsedtl.itemIdx).Sum(p => p.unitPrice).Value.ToString());
+                else if(returnamount< acountmaster.balance)
+                {
+                    accountGJ objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 43;
+                    objgj.debit = 0.00m;
+                    objgj.credit = acountmaster.balance-returnamount;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
+
+                    // inventory debit
+                    objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 60;
+                    objgj.debit = returnamount;
+                    objgj.credit = 0.00m;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
+                    //cash crdit
+                    //objgj = new accountGJ();
+                    //objgj.GLIdx = acntmsterid;
+                    //objgj.tranTypeIdx = 16;
+                    //objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    //objgj.vendorIdx = acountmaster.vendorIdx;
+                    //objgj.createDate = DateTime.Now;
+                    //objgj.coaIdx = 60;
+                    //objgj.credit = returnamount - acountmaster.balance;
+                    //objgj.debit = 0.00m;
+                    //DBClass.db.accountGJs.Add(objgj);
+                    //DBClass.db.SaveChanges();
+                }
+                else
+                {
+                    accountGJ objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 43;
+                    objgj.debit = 0.00m;
+                    objgj.credit = acountmaster.balance - returnamount;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
+
+                    // inventory debit
+                    objgj = new accountGJ();
+                    objgj.GLIdx = acntmsterid;
+                    objgj.tranTypeIdx = 16;
+                    objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                    objgj.vendorIdx = acountmaster.vendorIdx;
+                    objgj.createDate = DateTime.Now;
+                    objgj.coaIdx = 60;
+                    objgj.debit = returnamount;
+                    objgj.credit = 0.00m;
+                    DBClass.db.accountGJs.Add(objgj);
+                    DBClass.db.SaveChanges();
+                }
+
+
+
+                #endregion
+
+                // //for inventry
+                var newstock = invntrymstr.stock - objprchse.returnqty;
+                var purchsedtlunitprcsum = Convert.ToDecimal(DBClass.db.pruchaseDetails.Where(p => p.itemIdx == purshsedtl.itemIdx).Sum(p => p.unitPrice).Value.ToString());
                 var newunitprice = (invntrymstr.unitPrice + purchsedtlunitprcsum) / 2;
-                DBClass.db.Database.ExecuteSqlCommand("update inventory set stock={0},unitPrice={1},totalAmount={2} where idx={3}", newstock, newunitprice, newstock*newunitprice, invntrymstr.idx);
+                DBClass.db.Database.ExecuteSqlCommand("update inventory set stock={0},unitPrice={1},totalAmount={2} where idx={3}", newstock, newunitprice, newstock * newunitprice, invntrymstr.idx);
+                DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idxx={3}", acountmaster.balance - returnamount, acountmaster.balance - returnamount, acountmaster.balance - returnamount, acountmaster.idxx);
+
+
+
+
+                //code when previous update logic 
+
+                // int newqty = objprchse.Purchaseqty - objprchse.returnqty;
+                // decimal newamnt =Convert.ToDecimal(newqty * purshsedtl.unitPrice);
+                // decimal newntamnt = Convert.ToDecimal( purcahsemster.netAmount - (objprchse.returnqty* purshsedtl.unitPrice));
+                // decimal acntblnce = Convert.ToDecimal(acountmaster.balance - (objprchse.returnqty * purshsedtl.unitPrice));
+                // DBClass.db.Database.ExecuteSqlCommand("update pruchaseDetails set qty={0},amount={1} where idx={2}", newqty, newamnt, purshsedtl.idx);
+                // DBClass.db.Database.ExecuteSqlCommand("update purchase set totalAmount={0},netAmount={1} where idx={1}", newamnt, newntamnt, purcahsemster.idx);
+                //// DBClass.db.Database.ExecuteSqlCommand("update accountMasterGL set debit={0},credit={1},balance={2} where idx={1}", newamnt, newamnt, acntblnce, acountmaster.idxx);
+                // for(int i = 0; i < acountdtl.Count(); i++)
+                // {
+                //     if (acountdtl[i].debit > 0)
+                //     {
+                //         DBClass.db.Database.ExecuteSqlCommand("update accountGJ set debit={0} where idx={1}", newamnt, acountdtl[i].idx);
+
+                //     }
+                //     if (acountdtl[i].credit > 0)
+                //     {
+                //         DBClass.db.Database.ExecuteSqlCommand("update accountGJ set credit={0} where idx={1}", newamnt, acountdtl[i].idx);
+
+                //     }
+
+                // }
+                // //for inventry
+                // var newstock=invntrymstr.stock-objprchse.returnqty;
+                // var purchsedtlunitprcsum =Convert.ToDecimal(DBClass.db.pruchaseDetails.Where(p => p.itemIdx == purshsedtl.itemIdx).Sum(p => p.unitPrice).Value.ToString());
+                // var newunitprice = (invntrymstr.unitPrice + purchsedtlunitprcsum) / 2;
+                // DBClass.db.Database.ExecuteSqlCommand("update inventory set stock={0},unitPrice={1},totalAmount={2} where idx={3}", newstock, newunitprice, newstock*newunitprice, invntrymstr.idx);
 
                 txn.Complete();
             }

@@ -358,6 +358,8 @@
           <Property Name="unitPrice" Type="decimal" Precision="20" Scale="2" />
           <Property Name="totalAmount" Type="decimal" Precision="20" Scale="2" />
           <Property Name="creationDate" Type="datetime" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="int" />
+          <Property Name="MasterID" Type="int" />
         </EntityType>
         <EntityType Name="InventoryDetail">
           <Key>
@@ -1596,6 +1598,8 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionTypeID" Type="Int32" />
+          <Property Name="MasterID" Type="Int32" />
         </EntityType>
         <EntityType Name="planner">
           <Key>
@@ -2383,6 +2387,8 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <EntitySetMapping Name="inventory_logs">
             <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.inventory_logs">
               <MappingFragment StoreEntitySet="inventory_logs">
+                <ScalarProperty Name="MasterID" ColumnName="MasterID" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
                 <ScalarProperty Name="creationDate" ColumnName="creationDate" />
                 <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
                 <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />

@@ -781,6 +781,8 @@
     <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
     <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
     <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionTypeID" Type="Int32" />
+    <Property Name="MasterID" Type="Int32" />
   </EntityType>
   <EntityType Name="planner">
     <Key>
