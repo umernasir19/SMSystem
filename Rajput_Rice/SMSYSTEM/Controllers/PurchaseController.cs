@@ -531,25 +531,38 @@ namespace SMSYSTEM.Controllers
         {
             int purchasemasterid = Convert.ToInt16(objprchse.PRNumber.ToString());
             var purchasemaster = DBClass.db.purchases.Where(p => p.idx == purchasemasterid).FirstOrDefault();
+
+            var invlogsdata = DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16)
+                .GroupBy(o => o.MasterID)
+                   .Select(g => new { membername = g.Key, updatedquantity = g.Sum(i => i.stock) }).ToList();
             var invloggs= DBClass.db.inventory_logs.Where(p => p.TransactionTypeID == purchasemasterid).FirstOrDefault();
             var data = (from a in DBClass.db.pruchaseDetails
                         join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
+                        //join P in DBClass.db.purchases on a.purchaseIdx equals P.idx
+                        //join INVL in DBClass.db.inventory_logs on P.idx equals INVL.MasterID
                         join C in DBClass.db.products on B.productIdx equals C.idx
-                        where B.stock > 0 && a.purchaseIdx == purchasemaster.idx
-                        select new
-                        {
-                            productid = C.idx,
-                            productname = C.itemName,
-                            inventorystock = B.stock,
-                            inventoryunitprice = B.unitPrice,
-                            purchaseqty = a.qty,
-                            purchaseunitprice = a.unitPrice,
-                            purchasetotalamount = (a.unitPrice * a.qty),
-                            purchaseid = a.purchaseIdx,
-                            duedate = a.DueDate,
-                            dtlid = a.idx
-                        }
+                       
+                        where B.stock > 0 && a.purchaseIdx == purchasemaster.idx //&& INVL.TransactionTypeID==16
+
+
+                select new
+                {
+                    productid = C.idx,
+                    productname = C.itemName,
+                    inventorystock = B.stock,
+                    inventoryunitprice = B.unitPrice,
+                    purchaseqty = a.qty-invlogsdata[0].updatedquantity,
+                   // purchaseqty = a.qty,
+                    purchaseunitprice = a.unitPrice,
+                    purchasetotalamount = (a.unitPrice * a.qty),
+                    purchaseid = a.purchaseIdx,
+                    duedate = a.DueDate,
+                    
+                    dtlid = a.idx
+                }
                         ).ToList();
+
+            
             //var data = (from a in DBClass.db.pruchaseDetails
             //            join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
             //            join C in DBClass.db.products on B.productIdx equals C.idx
