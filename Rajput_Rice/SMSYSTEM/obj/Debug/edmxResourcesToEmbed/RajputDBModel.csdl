@@ -620,6 +620,7 @@
     <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="lastModifiedByUserIdx" Type="Int32" />
     <Property Name="visible" Type="Int32" />
+    <Property Name="unitPrice" Type="Decimal" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="service">
     <Key>

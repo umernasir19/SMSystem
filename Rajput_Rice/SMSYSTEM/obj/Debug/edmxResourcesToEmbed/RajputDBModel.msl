@@ -643,6 +643,7 @@
     <EntitySetMapping Name="salesDetails">
       <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.salesDetail">
         <MappingFragment StoreEntitySet="salesDetails">
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
           <ScalarProperty Name="idx" ColumnName="idx" />
           <ScalarProperty Name="salesIdx" ColumnName="salesIdx" />
           <ScalarProperty Name="serviceIdx" ColumnName="serviceIdx" />

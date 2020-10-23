@@ -46,6 +46,8 @@ public partial class salesDetail
 
     public Nullable<int> visible { get; set; }
 
+    public Nullable<decimal> unitPrice { get; set; }
+
 }
 
 }

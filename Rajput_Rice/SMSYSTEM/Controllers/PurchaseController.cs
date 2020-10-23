@@ -194,7 +194,7 @@ namespace SMSYSTEM.Controllers
                                 DBClass.db.SaveChanges();
 
                             }
-
+                            //inventory logs work
                             inventory_logs objinvntrylogs = new inventory_logs();
                             objinvntrylogs.TransactionTypeID = 1;
                             objinvntrylogs.MasterID = POMasterID;
@@ -231,6 +231,8 @@ namespace SMSYSTEM.Controllers
                             //inv logs
                             inventory_logs objinvntrylogs = new inventory_logs();
                             objinvntrylogs.productIdx = timeline[i].itemIdx;
+                            objinvntrylogs.TransactionTypeID = 1;
+                            objinvntrylogs.MasterID = POMasterID;
                             objinvntrylogs.stock = timeline[i].qty;
                             objinvntrylogs.unitPrice = timeline[i].unitPrice;
                             objinvntrylogs.totalAmount = timeline[i].qty * timeline[i].unitPrice;
@@ -531,11 +533,21 @@ namespace SMSYSTEM.Controllers
         {
             int purchasemasterid = Convert.ToInt16(objprchse.PRNumber.ToString());
             var purchasemaster = DBClass.db.purchases.Where(p => p.idx == purchasemasterid).FirstOrDefault();
-
+            int purchaseqty = 0;
             var invlogsdata = DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16)
                 .GroupBy(o => o.MasterID)
                    .Select(g => new { membername = g.Key, updatedquantity = g.Sum(i => i.stock) }).ToList();
-            var invloggs= DBClass.db.inventory_logs.Where(p => p.TransactionTypeID == purchasemasterid).FirstOrDefault();
+            //var invloggs= DBClass.db.inventory_logs.Where(p => p.TransactionTypeID == purchasemasterid).FirstOrDefault();
+            if (invlogsdata == null)
+            {
+                purchaseqty = 0;
+            }
+            else
+            {
+
+
+                 purchaseqty = Convert.ToInt32(invlogsdata[0].updatedquantity);
+            }
             var data = (from a in DBClass.db.pruchaseDetails
                         join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
                         //join P in DBClass.db.purchases on a.purchaseIdx equals P.idx
@@ -551,7 +563,7 @@ namespace SMSYSTEM.Controllers
                     productname = C.itemName,
                     inventorystock = B.stock,
                     inventoryunitprice = B.unitPrice,
-                    purchaseqty = a.qty-invlogsdata[0].updatedquantity,
+                    purchaseqty = a.qty-purchaseqty ,//invlogsdata[0].updatedquantity,
                    // purchaseqty = a.qty,
                     purchaseunitprice = a.unitPrice,
                     purchasetotalamount = (a.unitPrice * a.qty),
@@ -634,6 +646,7 @@ namespace SMSYSTEM.Controllers
                 objinvntrylog.stock = objprchse.returnqty*-1;
                 objinvntrylog.unitPrice = purshsedtl.unitPrice;
                 objinvntrylog.totalAmount = purshsedtl.unitPrice * objinvntrylog.stock;
+                objinvntrylog.creationDate = DateTime.Now;
                 DBClass.db.inventory_logs.Add(objinvntrylog);
                 DBClass.db.SaveChanges();
                 #endregion

@@ -645,6 +645,7 @@
     <Property Name="lastModificationDate" Type="varchar" MaxLength="50" />
     <Property Name="lastModifiedByUserIdx" Type="int" />
     <Property Name="visible" Type="int" />
+    <Property Name="unitPrice" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="services">
     <Key>
