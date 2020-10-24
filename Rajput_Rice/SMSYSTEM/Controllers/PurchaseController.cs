@@ -533,48 +533,84 @@ namespace SMSYSTEM.Controllers
         {
             int purchasemasterid = Convert.ToInt16(objprchse.PRNumber.ToString());
             var purchasemaster = DBClass.db.purchases.Where(p => p.idx == purchasemasterid).FirstOrDefault();
-            int purchaseqty = 0;
-            var invlogsdata = DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16)
-                .GroupBy(o => o.MasterID)
-                   .Select(g => new { membername = g.Key, updatedquantity = g.Sum(i => i.stock) }).ToList();
+            int purchasertrnqty = 0;
+            //var invlogdataofpurchasereturn = DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16)
+            //    .GroupBy(o => o.MasterID)
+            //       .Select(g => new { membername = g.Key,updatedquantity = g.Sum(i => i.stock) }).ToList();
             //var invloggs= DBClass.db.inventory_logs.Where(p => p.TransactionTypeID == purchasemasterid).FirstOrDefault();
-            if (invlogsdata == null)
-            {
-                purchaseqty = 0;
-            }
-            else
-            {
 
-
-                 purchaseqty = Convert.ToInt32(invlogsdata[0].updatedquantity);
-            }
             var data = (from a in DBClass.db.pruchaseDetails
                         join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
                         //join P in DBClass.db.purchases on a.purchaseIdx equals P.idx
                         //join INVL in DBClass.db.inventory_logs on P.idx equals INVL.MasterID
                         join C in DBClass.db.products on B.productIdx equals C.idx
-                       
+
                         where B.stock > 0 && a.purchaseIdx == purchasemaster.idx //&& INVL.TransactionTypeID==16
 
 
-                select new
-                {
-                    productid = C.idx,
-                    productname = C.itemName,
-                    inventorystock = B.stock,
-                    inventoryunitprice = B.unitPrice,
-                    purchaseqty = a.qty-purchaseqty ,//invlogsdata[0].updatedquantity,
-                   // purchaseqty = a.qty,
-                    purchaseunitprice = a.unitPrice,
-                    purchasetotalamount = (a.unitPrice * a.qty),
-                    purchaseid = a.purchaseIdx,
-                    duedate = a.DueDate,
-                    
-                    dtlid = a.idx
-                }
+                        select new
+                        {
+                            productid = C.idx,
+                            productname = C.itemName,
+                            inventorystock = B.stock,
+                            inventoryunitprice = B.unitPrice,
+                            // purchaseqty = a.qty- purchasertrnqty,//invlogsdata[0].updatedquantity,
+                            purchaseqty = (a.qty +
+                            (DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16 && P.productIdx == C.idx)
+                               .GroupBy(o => o.productIdx)
+                                  .Select(
+
+                               g => new { updatedquantity = g.Sum(i => i.stock)}).FirstOrDefault()
+                                ).updatedquantity
+                                  
+                                  ),
+                            purchaseunitprice = a.unitPrice,
+                            purchasetotalamount = (a.unitPrice * a.qty),
+                            purchaseid = a.purchaseIdx,
+                            duedate = a.DueDate,
+
+                            dtlid = a.idx
+                        }
                         ).ToList();
 
-            
+            //for(int j = 0; j < data.Count; j++)
+            //{
+            //    int productidx = data[j].productid;
+            //    decimal productqty =Convert.ToDecimal(data[j].purchaseqty);
+            //    decimal? a =Convert.ToInt16(j);
+            //    var invlogdataofpurchasereturn = DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16 && P.productIdx== productidx)
+            //                   .GroupBy(o => o.productIdx)
+            //                      .Select(g => new { membername = g.Key, updatedquantity = g.Sum(i => i.stock) }).ToList()[0].updatedquantity;
+            //    if (invlogdataofpurchasereturn.Count <= 0)
+            //    {
+            //        purchasertrnqty = 0;
+            //    }
+            //    else
+            //    {
+
+
+            //        purchasertrnqty = Convert.ToInt32(invlogdataofpurchasereturn[0].updatedquantity);
+            //    }
+
+            //    data[a].purchaseqty = 0.00m;
+
+            //   // var a = data[j].purchaseqty;
+            //}
+
+            //var invlogdataofpurchasereturn = DBClass.db.inventory_logs.Where(P => P.MasterID == purchasemaster.idx && P.TransactionTypeID == 16)
+            //    .GroupBy(o => o.productIdx)
+            //       .Select(g => new { membername = g.Key, updatedquantity = g.Sum(i => i.stock) }).ToList();
+            //if (invlogdataofpurchasereturn.Count<=0)
+            //{
+            //    purchasertrnqty = 0;
+            //}
+            //else
+            //{
+
+
+            //    purchasertrnqty = Convert.ToInt32(invlogdataofpurchasereturn[0].updatedquantity);
+            //}
+
             //var data = (from a in DBClass.db.pruchaseDetails
             //            join B in DBClass.db.inventories on a.itemIdx equals B.productIdx
             //            join C in DBClass.db.products on B.productIdx equals C.idx

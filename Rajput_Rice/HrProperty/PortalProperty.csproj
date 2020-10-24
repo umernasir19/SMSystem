@@ -58,6 +58,7 @@
     <Compile Include="Models\PurchaseVM.cs" />
     <Compile Include="Models\Purchase_Property.cs" />
     <Compile Include="Models\Receipt_Property.cs" />
+    <Compile Include="Models\Report_Manager.cs" />
     <Compile Include="Models\SalesReturn_Property.cs" />
     <Compile Include="Models\SalesVm.cs" />
     <Compile Include="Models\Sale_Details_Property.cs" />
