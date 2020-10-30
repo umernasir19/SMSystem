@@ -1,0 +1,35 @@
+C:\AKU_DotNetProjects\ComplainPortal\HrProperty\bin\Debug\HrProperty.dll
+C:\AKU_DotNetProjects\ComplainPortal\HrProperty\bin\Debug\HrProperty.pdb
+C:\AKU_DotNetProjects\ComplainPortal\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+C:\AKU_DotNetProjects\ComplainPortal\HrProperty\obj\Debug\HrProperty.dll
+C:\AKU_DotNetProjects\ComplainPortal\HrProperty\obj\Debug\HrProperty.pdb
+E:\Aku\ComplainPortal\HrProperty\bin\Debug\HrProperty.dll
+E:\Aku\ComplainPortal\HrProperty\bin\Debug\HrProperty.pdb
+E:\Aku\ComplainPortal\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+E:\Aku\ComplainPortal\HrProperty\obj\Debug\HrProperty.dll
+E:\Aku\ComplainPortal\HrProperty\obj\Debug\HrProperty.pdb
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+F:\RajputRiceProject\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\03-08-20\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+D:\Arsalan\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+D:\Arsalan\SMSystem-master\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+D:\Arsalan\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojAssemblyReference.cache
+D:\Arsalan\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csproj.CoreCompileInputs.cache
+D:\Arsalan\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+D:\Arsalan\SMSystem-master\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb

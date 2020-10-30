@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RAJPUT_RICE_DBModelStoreContainer" CdmEntityContainer="RAJPUT_RICE_DBEntities">
+    <EntitySetMapping Name="accountGJs">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.accountGJ">
+        <MappingFragment StoreEntitySet="accountGJ">
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="GLIdx" ColumnName="GLIdx" />
+          <ScalarProperty Name="tranTypeIdx" ColumnName="tranTypeIdx" />
+          <ScalarProperty Name="userIdx" ColumnName="userIdx" />
+          <ScalarProperty Name="vendorIdx" ColumnName="vendorIdx" />
+          <ScalarProperty Name="employeeIdx" ColumnName="employeeIdx" />
+          <ScalarProperty Name="customerIdx" ColumnName="customerIdx" />
+          <ScalarProperty Name="coaIdx" ColumnName="coaIdx" />
+          <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+          <ScalarProperty Name="debit" ColumnName="debit" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountMasterGLs">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.accountMasterGL">
+        <MappingFragment StoreEntitySet="accountMasterGL">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="idxx" ColumnName="idxx" />
+          <ScalarProperty Name="tranTypeIdx" ColumnName="tranTypeIdx" />
+          <ScalarProperty Name="userIdx" ColumnName="userIdx" />
+          <ScalarProperty Name="vendorIdx" ColumnName="vendorIdx" />
+          <ScalarProperty Name="employeeIdx" ColumnName="employeeIdx" />
+          <ScalarProperty Name="customerIdx" ColumnName="customerIdx" />
+          <ScalarProperty Name="invoiceNoIdx" ColumnName="invoiceNoIdx" />
+          <ScalarProperty Name="debit" ColumnName="debit" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="paidAmount" ColumnName="paidAmount" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="isCredit" ColumnName="isCredit" />
+          <ScalarProperty Name="creditDays" ColumnName="creditDays" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="paymentModeIdx" ColumnName="paymentModeIdx" />
+          <ScalarProperty Name="bankIdx" ColumnName="bankIdx" />
+          <ScalarProperty Name="chequeNumber" ColumnName="chequeNumber" />
+          <ScalarProperty Name="memo" ColumnName="memo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="advanceSalaries">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.advanceSalary">
+        <MappingFragment StoreEntitySet="advanceSalary">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="employeeIdx" ColumnName="employeeIdx" />
+          <ScalarProperty Name="netSalary" ColumnName="netSalary" />
+          <ScalarProperty Name="advanceAmount" ColumnName="advanceAmount" />
+          <ScalarProperty Name="deductionMonth" ColumnName="deductionMonth" />
+          <ScalarProperty Name="deductionYear" ColumnName="deductionYear" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="statusBy" ColumnName="statusBy" />
+          <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+          <ScalarProperty Name="isExpire" ColumnName="isExpire" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="banks">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.bank">
+        <MappingFragment StoreEntitySet="bank">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="bankName" ColumnName="bankName" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="branches">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.branch">
+        <MappingFragment StoreEntitySet="branch">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="branchName" ColumnName="branchName" />
+          <ScalarProperty Name="headQuarter" ColumnName="headQuarter" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChartofAccountsChildHeads">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.ChartofAccountsChildHead">
+        <MappingFragment StoreEntitySet="ChartofAccountsChildHead">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="subHeadIdx" ColumnName="subHeadIdx" />
+          <ScalarProperty Name="headIdx" ColumnName="headIdx" />
+          <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
+          <ScalarProperty Name="childHeadCode" ColumnName="childHeadCode" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lasModificationDate" ColumnName="lasModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChartofAccountsHeads">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.ChartofAccountsHead">
+        <MappingFragment StoreEntitySet="ChartofAccountsHead">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
+          <ScalarProperty Name="accountCode" ColumnName="accountCode" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="parentIdx" ColumnName="parentIdx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChartofAccountsSubHeads">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.ChartofAccountsSubHead">
+        <MappingFragment StoreEntitySet="ChartofAccountsSubHead">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="headIdx" ColumnName="headIdx" />
+          <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+          <ScalarProperty Name="subHeadCode" ColumnName="subHeadCode" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lasModificationDate" ColumnName="lasModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COAs">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.COA">
+        <MappingFragment StoreEntitySet="COA">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="parentIdx" ColumnName="parentIdx" />
+          <ScalarProperty Name="headAccount" ColumnName="headAccount" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
+          <ScalarProperty Name="CoaLevel" ColumnName="CoaLevel" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.company">
+        <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="ownerName" ColumnName="ownerName" />
+          <ScalarProperty Name="STRN" ColumnName="STRN" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="companyLogo" ColumnName="companyLogo" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companyBanks">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.companyBank">
+        <MappingFragment StoreEntitySet="companyBank">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="bankIdx" ColumnName="bankIdx" />
+          <ScalarProperty Name="accountTitle" ColumnName="accountTitle" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consumptions">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.consumption">
+        <MappingFragment StoreEntitySet="consumption">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="itemIdx" ColumnName="itemIdx" />
+          <ScalarProperty Name="consumedBy" ColumnName="consumedBy" />
+          <ScalarProperty Name="consumedQuanity" ColumnName="consumedQuanity" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="statusBy" ColumnName="statusBy" />
+          <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="lastModificationByUserIdx" ColumnName="lastModificationByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contracts">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.contract">
+        <MappingFragment StoreEntitySet="contract">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="empCode" ColumnName="empCode" />
+          <ScalarProperty Name="employeeIdx" ColumnName="employeeIdx" />
+          <ScalarProperty Name="departmentIdx" ColumnName="departmentIdx" />
+          <ScalarProperty Name="designationIdx" ColumnName="designationIdx" />
+          <ScalarProperty Name="employeeTypeIdx" ColumnName="employeeTypeIdx" />
+          <ScalarProperty Name="contractTypeIdx" ColumnName="contractTypeIdx" />
+          <ScalarProperty Name="contractStartDate" ColumnName="contractStartDate" />
+          <ScalarProperty Name="contractEndDate" ColumnName="contractEndDate" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractTypes">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.ContractType">
+        <MappingFragment StoreEntitySet="ContractType">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="contractType1" ColumnName="contractType" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.customer">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="customerCode" ColumnName="customerCode" />
+          <ScalarProperty Name="customerAccountType" ColumnName="customerAccountType" />
+          <ScalarProperty Name="cnic" ColumnName="cnic" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+          <ScalarProperty Name="ntn" ColumnName="ntn" />
+          <ScalarProperty Name="strnNo" ColumnName="strnNo" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="openingBalance" ColumnName="openingBalance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departments">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.department">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="designations">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.designation">
+        <MappingFragment StoreEntitySet="designation">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="departmentIdx" ColumnName="departmentIdx" />
+          <ScalarProperty Name="designationName" ColumnName="designationName" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.employee">
+        <MappingFragment StoreEntitySet="employees">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="hrmsNumber" ColumnName="hrmsNumber" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="cnic" ColumnName="cnic" />
+          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="maritalIdx" ColumnName="maritalIdx" />
+          <ScalarProperty Name="genderIdx" ColumnName="genderIdx" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="departmentIdx" ColumnName="departmentIdx" />
+          <ScalarProperty Name="designationIdx" ColumnName="designationIdx" />
+          <ScalarProperty Name="hiringDate" ColumnName="hiringDate" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isTerminated" ColumnName="isTerminated" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employeeTypes">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.employeeType">
+        <MappingFragment StoreEntitySet="employeeType">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="employeeType1" ColumnName="employeeType" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genders">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.gender">
+        <MappingFragment StoreEntitySet="gender">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="Gender1" ColumnName="Gender" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inventories">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.inventory">
+        <MappingFragment StoreEntitySet="inventory">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="productIdx" ColumnName="productIdx" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="productTypeIdx" ColumnName="productTypeIdx" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryDetails">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.InventoryDetail">
+        <MappingFragment StoreEntitySet="InventoryDetail">
+          <ScalarProperty Name="Idx" ColumnName="Idx" />
+          <ScalarProperty Name="InventoryIdx" ColumnName="InventoryIdx" />
+          <ScalarProperty Name="PurchaseDetailidx" ColumnName="PurchaseDetailidx" />
+          <ScalarProperty Name="ConsumptionIdx" ColumnName="ConsumptionIdx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="itemUnits">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.itemUnit">
+        <MappingFragment StoreEntitySet="itemUnits">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loans">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.loan">
+        <MappingFragment StoreEntitySet="loan">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="empIdx" ColumnName="empIdx" />
+          <ScalarProperty Name="loanAmount" ColumnName="loanAmount" />
+          <ScalarProperty Name="numberOfInstallment" ColumnName="numberOfInstallment" />
+          <ScalarProperty Name="installmentAmount" ColumnName="installmentAmount" />
+          <ScalarProperty Name="modeOfPayment" ColumnName="modeOfPayment" />
+          <ScalarProperty Name="loanReqDate" ColumnName="loanReqDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="purposeOfLoan" ColumnName="purposeOfLoan" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="statusBy" ColumnName="statusBy" />
+          <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="isExpire" ColumnName="isExpire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loanInstallments">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.loanInstallment">
+        <MappingFragment StoreEntitySet="loanInstallments">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="loanIdx" ColumnName="loanIdx" />
+          <ScalarProperty Name="loanAmount" ColumnName="loanAmount" />
+          <ScalarProperty Name="numberOfInstallment" ColumnName="numberOfInstallment" />
+          <ScalarProperty Name="installmentAmount" ColumnName="installmentAmount" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maritalStatus">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.maritalStatu">
+        <MappingFragment StoreEntitySet="maritalStatus">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Months">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.Month">
+        <MappingFragment StoreEntitySet="Month">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="month1" ColumnName="month" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paymentModes">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.paymentMode">
+        <MappingFragment StoreEntitySet="paymentMode">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="paymentMode1" ColumnName="paymentMode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payrolls">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.payroll">
+        <MappingFragment StoreEntitySet="payroll">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="departmentIdx" ColumnName="departmentIdx" />
+          <ScalarProperty Name="empIdx" ColumnName="empIdx" />
+          <ScalarProperty Name="netSalary" ColumnName="netSalary" />
+          <ScalarProperty Name="totalLeave" ColumnName="totalLeave" />
+          <ScalarProperty Name="leaveDeductionAmount" ColumnName="leaveDeductionAmount" />
+          <ScalarProperty Name="loanReamainingAmount" ColumnName="loanReamainingAmount" />
+          <ScalarProperty Name="loanDeductionAmount" ColumnName="loanDeductionAmount" />
+          <ScalarProperty Name="advanceRemainingAmount" ColumnName="advanceRemainingAmount" />
+          <ScalarProperty Name="advanceDeductionAmount" ColumnName="advanceDeductionAmount" />
+          <ScalarProperty Name="otherBenefits" ColumnName="otherBenefits" />
+          <ScalarProperty Name="totalSalary" ColumnName="totalSalary" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserrIDx" ColumnName="createdByUserrIDx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="statusBy" ColumnName="statusBy" />
+          <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="productTypeIdx" ColumnName="productTypeIdx" />
+          <ScalarProperty Name="itemName" ColumnName="itemName" />
+          <ScalarProperty Name="itemCode" ColumnName="itemCode" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productTypes">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.productType">
+        <MappingFragment StoreEntitySet="productType">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="productType1" ColumnName="productType" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pruchaseDetails">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.pruchaseDetail">
+        <MappingFragment StoreEntitySet="pruchaseDetails">
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="purchaseIdx" ColumnName="purchaseIdx" />
+          <ScalarProperty Name="productTypeIdx" ColumnName="productTypeIdx" />
+          <ScalarProperty Name="itemIdx" ColumnName="itemIdx" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="purchases">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.purchase">
+        <MappingFragment StoreEntitySet="purchase">
+          <ScalarProperty Name="purchaseduedate" ColumnName="purchaseduedate" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="poNumber" ColumnName="poNumber" />
+          <ScalarProperty Name="vendorIdx" ColumnName="vendorIdx" />
+          <ScalarProperty Name="purchaseTypeIdx" ColumnName="purchaseTypeIdx" />
+          <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="netAmount" ColumnName="netAmount" />
+          <ScalarProperty Name="paidAmount" ColumnName="paidAmount" />
+          <ScalarProperty Name="balanceAmount" ColumnName="balanceAmount" />
+          <ScalarProperty Name="paymentModeIdx" ColumnName="paymentModeIdx" />
+          <ScalarProperty Name="bankIdx" ColumnName="bankIdx" />
+          <ScalarProperty Name="accorChequeNumber" ColumnName="accorChequeNumber" />
+          <ScalarProperty Name="paidDate" ColumnName="paidDate" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+          <ScalarProperty Name="taxAount" ColumnName="taxAount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseTypes">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.PurchaseType">
+        <MappingFragment StoreEntitySet="PurchaseType">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="purchaseType1" ColumnName="purchaseType" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="employeeIdx" ColumnName="employeeIdx" />
+          <ScalarProperty Name="pageUrl" ColumnName="pageUrl" />
+          <ScalarProperty Name="add" ColumnName="add" />
+          <ScalarProperty Name="edit" ColumnName="edit" />
+          <ScalarProperty Name="delete" ColumnName="delete" />
+          <ScalarProperty Name="view" ColumnName="view" />
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="salaries">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.salary">
+        <MappingFragment StoreEntitySet="salary">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="empIdx" ColumnName="empIdx" />
+          <ScalarProperty Name="basicSalary" ColumnName="basicSalary" />
+          <ScalarProperty Name="hraAllowance" ColumnName="hraAllowance" />
+          <ScalarProperty Name="daAllowance" ColumnName="daAllowance" />
+          <ScalarProperty Name="conveyance" ColumnName="conveyance" />
+          <ScalarProperty Name="medicalAllowance" ColumnName="medicalAllowance" />
+          <ScalarProperty Name="others" ColumnName="others" />
+          <ScalarProperty Name="netSalary" ColumnName="netSalary" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sales">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.sale">
+        <MappingFragment StoreEntitySet="sales">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="soNumber" ColumnName="soNumber" />
+          <ScalarProperty Name="customerIdx" ColumnName="customerIdx" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="taxAmount" ColumnName="taxAmount" />
+          <ScalarProperty Name="WithHoldingTax" ColumnName="WithHoldingTax" />
+          <ScalarProperty Name="SindhTax" ColumnName="SindhTax" />
+          <ScalarProperty Name="netAmount" ColumnName="netAmount" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="paidDate" ColumnName="paidDate" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="paymentModeIdx" ColumnName="paymentModeIdx" />
+          <ScalarProperty Name="bankIdx" ColumnName="bankIdx" />
+          <ScalarProperty Name="chequeNumber" ColumnName="chequeNumber" />
+          <ScalarProperty Name="salesDate" ColumnName="salesDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="salesDetails">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.salesDetail">
+        <MappingFragment StoreEntitySet="salesDetails">
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="salesIdx" ColumnName="salesIdx" />
+          <ScalarProperty Name="serviceIdx" ColumnName="serviceIdx" />
+          <ScalarProperty Name="serviceCode" ColumnName="serviceCode" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="serviceRate" ColumnName="serviceRate" />
+          <ScalarProperty Name="serviceDescription" ColumnName="serviceDescription" />
+          <ScalarProperty Name="serviceQty" ColumnName="serviceQty" />
+          <ScalarProperty Name="subAmount" ColumnName="subAmount" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="services">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.service">
+        <MappingFragment StoreEntitySet="services">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+          <ScalarProperty Name="serviceCode" ColumnName="serviceCode" />
+          <ScalarProperty Name="unitIdx" ColumnName="unitIdx" />
+          <ScalarProperty Name="serviceCost" ColumnName="serviceCost" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stations">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.station">
+        <MappingFragment StoreEntitySet="stations">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="stationName" ColumnName="stationName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionTypes">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.transactionType">
+        <MappingFragment StoreEntitySet="transactionType">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="cellNumber" ColumnName="cellNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="designationIdx" ColumnName="designationIdx" />
+          <ScalarProperty Name="departmentIdx" ColumnName="departmentIdx" />
+          <ScalarProperty Name="loginId" ColumnName="loginId" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="passCode" ColumnName="passCode" />
+          <ScalarProperty Name="PascodeYNID" ColumnName="PascodeYNID" />
+          <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vendors">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.vendor">
+        <MappingFragment StoreEntitySet="vendors">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="vendorName" ColumnName="vendorName" />
+          <ScalarProperty Name="vendorCode" ColumnName="vendorCode" />
+          <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
+          <ScalarProperty Name="vendorAccountType" ColumnName="vendorAccountType" />
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+          <ScalarProperty Name="strn" ColumnName="strn" />
+          <ScalarProperty Name="ntn" ColumnName="ntn" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="openingBalance" ColumnName="openingBalance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urls">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.Url">
+        <MappingFragment StoreEntitySet="Url">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="pageUrl" ColumnName="pageUrl" />
+          <ScalarProperty Name="pageName" ColumnName="pageName" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inventory_logs">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.inventory_logs">
+        <MappingFragment StoreEntitySet="inventory_logs">
+          <ScalarProperty Name="MasterID" ColumnName="MasterID" />
+          <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="productTypeIdx" ColumnName="productTypeIdx" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="productIdx" ColumnName="productIdx" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="planners">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.planner">
+        <MappingFragment StoreEntitySet="planner">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="TO_DO_Date" ColumnName="TO_DO_Date" />
+          <ScalarProperty Name="TO_DO" ColumnName="TO_DO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_Daily_PurchaseReport" FunctionName="RAJPUT_RICE_DBModel.Store.Sp_Daily_PurchaseReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.Sp_Daily_PurchaseReport_Result">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="poNumber" ColumnName="poNumber" />
+          <ScalarProperty Name="vendorIdx" ColumnName="vendorIdx" />
+          <ScalarProperty Name="purchaseTypeIdx" ColumnName="purchaseTypeIdx" />
+          <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="netAmount" ColumnName="netAmount" />
+          <ScalarProperty Name="paidAmount" ColumnName="paidAmount" />
+          <ScalarProperty Name="balanceAmount" ColumnName="balanceAmount" />
+          <ScalarProperty Name="paymentModeIdx" ColumnName="paymentModeIdx" />
+          <ScalarProperty Name="bankIdx" ColumnName="bankIdx" />
+          <ScalarProperty Name="accorChequeNumber" ColumnName="accorChequeNumber" />
+          <ScalarProperty Name="paidDate" ColumnName="paidDate" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+          <ScalarProperty Name="taxAount" ColumnName="taxAount" />
+          <ScalarProperty Name="purchaseduedate" ColumnName="purchaseduedate" />
+          <ScalarProperty Name="vendorName" ColumnName="vendorName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_Daily_SaleReport" FunctionName="RAJPUT_RICE_DBModel.Store.Sp_Daily_SaleReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.Sp_Daily_SaleReport_Result">
+          <ScalarProperty Name="idx" ColumnName="idx" />
+          <ScalarProperty Name="soNumber" ColumnName="soNumber" />
+          <ScalarProperty Name="customerIdx" ColumnName="customerIdx" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="taxAmount" ColumnName="taxAmount" />
+          <ScalarProperty Name="WithHoldingTax" ColumnName="WithHoldingTax" />
+          <ScalarProperty Name="SindhTax" ColumnName="SindhTax" />
+          <ScalarProperty Name="netAmount" ColumnName="netAmount" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="paidDate" ColumnName="paidDate" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="createdByUserIdx" ColumnName="createdByUserIdx" />
+          <ScalarProperty Name="lastModificationDate" ColumnName="lastModificationDate" />
+          <ScalarProperty Name="lastModifiedByUserIdx" ColumnName="lastModifiedByUserIdx" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="paymentModeIdx" ColumnName="paymentModeIdx" />
+          <ScalarProperty Name="bankIdx" ColumnName="bankIdx" />
+          <ScalarProperty Name="chequeNumber" ColumnName="chequeNumber" />
+          <ScalarProperty Name="salesDate" ColumnName="salesDate" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
