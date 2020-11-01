@@ -750,6 +750,10 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
     <Property Name="visible" Type="int" />
     <Property Name="openingBalance" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
+  <Function Name="Sp_Customer_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="from" Type="nvarchar" Mode="In" />
+    <Parameter Name="TO" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="Sp_Daily_PurchaseReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="reportID" Type="int" Mode="In" />
     <Parameter Name="from" Type="nvarchar" Mode="In" />

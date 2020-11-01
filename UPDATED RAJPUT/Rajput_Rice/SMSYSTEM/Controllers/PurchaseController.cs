@@ -85,11 +85,23 @@ namespace SMSYSTEM.Controllers
                     idx = p.idx,
                     paymentMode = p.paymentMode1
                 }).ToList();
-                objPrchseVM.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
-                {
-                    idx = p.idx,
-                    bankName = p.bankName
-                }).ToList();
+                //objPrchseVM.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
+                //{
+                //    idx = p.idx,
+                //    bankName = p.bankName
+                //}).ToList();
+
+                objPrchseVM.BankList=(from e in DBClass.db.companyBanks
+                 join d in DBClass.db.banks on e.bankIdx equals d.idx
+                 select new Bank_Property
+                 {
+                     idx = e.idx,
+                     bankName = d.bankName
+
+
+                 }).ToList();
+
+
                 int lastPOid = Convert.ToInt16(DBClass.db.purchases.OrderByDescending(x => x.idx).Select(x => x.idx).FirstOrDefault().ToString()) + 1;
                 objPrchseVM.poNumber = "PR-00" + lastPOid;
                 //objPrchseVM.purchaseDate =DateTime.Now.ToString("YYYY-DD-MM");

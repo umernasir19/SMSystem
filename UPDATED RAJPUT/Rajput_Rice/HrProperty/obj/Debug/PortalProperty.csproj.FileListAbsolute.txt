@@ -33,3 +33,8 @@ E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrPropert
 E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
 E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
 E:\Visual Studio Projects\MangoTechProjects\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\UPDATED RAJPUT\Rajput_Rice\HrProperty\bin\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\UPDATED RAJPUT\Rajput_Rice\HrProperty\bin\Debug\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\PortalProperty.csprojResolveAssemblyReference.cache
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\RAJPUT RICE\Project\UPDATED RAJPUT\Rajput_Rice\HrProperty\obj\Debug\HrProperty.pdb

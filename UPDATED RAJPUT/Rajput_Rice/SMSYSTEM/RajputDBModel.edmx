@@ -755,6 +755,10 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
           <Property Name="visible" Type="int" />
           <Property Name="openingBalance" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
+        <Function Name="Sp_Customer_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from" Type="nvarchar" Mode="In" />
+          <Parameter Name="TO" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Sp_Daily_PurchaseReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="reportID" Type="int" Mode="In" />
           <Parameter Name="from" Type="nvarchar" Mode="In" />
@@ -1608,6 +1612,10 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
             <Parameter Name="from" Mode="In" Type="String" />
             <Parameter Name="TO" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Sp_Customer_Report" ReturnType="Collection(RAJPUT_RICE_DBModel.Sp_Customer_Report_Result)">
+            <Parameter Name="from" Mode="In" Type="String" />
+            <Parameter Name="TO" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="inventory_logs">
           <Key>
@@ -1690,6 +1698,14 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <Property Type="String" Name="chequeNumber" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="salesDate" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="customerName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_Customer_Report_Result">
+          <Property Type="String" Name="customerName" Nullable="true" />
+          <Property Type="String" Name="Transaction_Type" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="createDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="paidAmount" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="balance" Nullable="true" Precision="10" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2553,6 +2569,18 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
                 <ScalarProperty Name="chequeNumber" ColumnName="chequeNumber" />
                 <ScalarProperty Name="salesDate" ColumnName="salesDate" />
                 <ScalarProperty Name="customerName" ColumnName="customerName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Customer_Report" FunctionName="RAJPUT_RICE_DBModel.Store.Sp_Customer_Report">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.Sp_Customer_Report_Result">
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="Transaction_Type" ColumnName="Transaction Type" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="paidAmount" ColumnName="paidAmount" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

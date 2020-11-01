@@ -23,6 +23,27 @@ namespace SMSYSTEM.Controllers
                     idx = p.idx,
                     customerName = p.customerName
                 }).ToList();
+
+                objpayment.Paymentmodelist = DBClass.db.paymentModes.ToList().Select(p => new PaymentMode_Property
+                {
+                    idx = p.idx,
+                    paymentMode = p.paymentMode1
+                }).ToList();
+                //objPrchseVM.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
+                //{
+                //    idx = p.idx,
+                //    bankName = p.bankName
+                //}).ToList();
+
+                objpayment.BankList = (from e in DBClass.db.companyBanks
+                                        join d in DBClass.db.banks on e.bankIdx equals d.idx
+                                        select new Bank_Property
+                                        {
+                                            idx = e.idx,
+                                            bankName = d.bankName
+
+
+                                        }).ToList();
                 //   DBClass.db.vendors.ToList();
                 return View(objpayment);
             }
@@ -151,6 +172,9 @@ namespace SMSYSTEM.Controllers
                         {
                             objaccountmaster.isCredit = 0;
                         }
+                        objaccountmaster.paymentModeIdx = objpayment.paymentModeIdx;
+                        objaccountmaster.bankIdx = objpayment.bankIdx;
+                        objaccountmaster.chequeNumber = objpayment.accorChequeNumber;
                         objaccountmaster.createDate = DateTime.Now;
                         DBClass.db.accountMasterGLs.Add(objaccountmaster);
                         DBClass.db.SaveChanges();

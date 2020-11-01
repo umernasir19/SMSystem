@@ -116,6 +116,51 @@
                            
                         </div>
 
+                        <div class="row" id="pymntmodeslction" style="display:none;">
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Payment Mode*:</label>
+                                    @Html.DropDownListFor(model => model.paymentModeIdx, new SelectList(Model.Paymentmodelist, "idx", "paymentMode"), "Select payment Mode", new { @Class = "form-control font-weight-bold" })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.paymentModeIdx, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row" id="pymnmode" style="display:none">
+                            <div class="col-sm-4 bnkchqpaymnt">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Bank Name*:</label>
+                                    @Html.DropDownListFor(model => model.bankIdx, new SelectList(Model.BankList, "idx", "bankName"), "Select Bank", new { @Class = "form-control font-weight-bold" })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.bankIdx, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-4 bnkchqpaymnt">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Account/Cheque Number*:</label>
+                                    @Html.EditorFor(model => model.accorChequeNumber, new { htmlAttributes = new { @placeholder = "Cheque/Account Number", @class = "form-control" } })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.accorChequeNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-4 bnkpddt">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Paid Date*:</label>
+                                    @Html.EditorFor(model => model.paidDate, new { htmlAttributes = new { @placeholder = "Cheque Number", @class = "form-control" } })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.paidDate, "", new { @class = "text-danger" })
+                            </div>
+
+
+
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -525,8 +570,60 @@
 
         });
 
+        //paid amount text box event
+        $("#PaidAmount").keyup(function () {
+            var paidAmount = $(this).val();
 
+            //var totalamount = $("#totalAmount").val();
+            //var blnceamnt = parseFloat(totalamount) - parseFloat(paidAmount);
 
+            //$("#balanceAmount").val(blnceamnt);
+
+            if (paidAmount <= 0) {
+                // alert("hello");
+                $('#pymntmodeslction').hide();
+                $('#paymentModeIdx').val('');
+                $('#pymnmode').hide();
+                $('#bankIdx').val('');
+                $('#accorChequeNumber').val('');
+                $('#paidDate').val('');
+            }
+            if (paidAmount > 0) {
+                // alert("hello");
+                $('#pymntmodeslction').show();
+            }
+        });
+        $("#paymentModeIdx").on('change', function () {
+            var paymentModeIdx = $('#paymentModeIdx').val();
+            if (paymentModeIdx == "1") {
+                //$('#chequemode').css('display', 'none');
+                //$('#BankMode').css('display', 'none');
+
+                $('#pymnmode').hide();
+                $('#bankIdx').val('');
+                $('#accorChequeNumber').val('');
+                $('#paidDate').val('');
+            }
+            if (paymentModeIdx == "2") {
+                //cheque
+                $('#pymnmode').show();//('display', 'block');
+
+                $('.bnkpddt').show();
+
+                $('#bankIdx').val('');
+                $('#accorChequeNumber').val('');
+                $('#paidDate').val('');
+            }
+            if (paymentModeIdx == "3") {
+                //bank
+                $('#pymnmode').show();
+                $('.bnkpddt').css('display', 'none');
+                $('#bankIdx').val('');
+                $('#accorChequeNumber').val('');
+                $('#paidDate').val('');
+            }
+
+        });
 
     </script>
 }

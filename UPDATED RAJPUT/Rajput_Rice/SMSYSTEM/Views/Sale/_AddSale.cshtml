@@ -63,6 +63,12 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
+                                            <label for="inputProjectLeader">Stock in Inventory Qty</label>
+                                            <input type="text" class="form-control" readonly="readonly" id="invntrystock" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
                                             <label for="inputProjectLeader">Qty</label>
                                             @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @placeholder = "Qty", @class = "form-control" } })
                                         </div>
@@ -322,6 +328,13 @@
         $("#totalAmount").val(netamount);
     });
     $("#btnaddtogrid").click(function (e) {
+        if (!(gridValidation($("#itemIdx option:selected").val()))) {
+            // alert("Product Alreaty Exist")
+            displayerror();
+            return;
+        }
+
+
        // alert("hello");
         $('#milestones').show();
         var closebutton = '<button type="button" class="close" style="float:left" id="deleterow" aria-label="Close">' +
@@ -349,4 +362,100 @@
         // }
         //$("#example1").dataTable();
     });
+
+
+
+    function SomeDeleteRowFunction(o) {
+        //alert(id);
+        var p = o.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+        $(this).closest('tr').remove();
+
+    };
+
+    function gridValidation(Id) {
+        errmsg = [];
+        var myTab = $("#example2 tbody");
+        var rtrn = true;
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        myTab.find('tr').each(function (i) {
+            var $tds = $(this).find('td'),
+                productid = $tds.eq(0).text();
+
+            if (Id == productid) {
+                rtrn = false;
+                errmsg.push("Product Already exist");
+            }
+        })
+        if ($('#itemIdx option:selected').val() == '') {
+            rtrn = false;
+            errmsg.push("Select Product");
+        }
+        if ($('#qty').val() <= 0) {
+            rtrn = false;
+            errmsg.push("Qty value is zero");
+        }
+        if ($('#unitPrice').val() <= 0) {
+            rtrn = false;
+            errmsg.push("unit value is zero");
+        }
+        if ($('#DueDate').val() < 0) {
+            rtrn = false;
+            errmsg.push("unit value is zero");
+        }
+        if ($('#qty').val() <$('#invntrystock').val()) {
+            rtrn = false;
+            errmsg.push("Qty value is greater than availble stock");
+        }
+        //if ($('#DueDate').val() < 0) {
+        //    rtrn = false;
+        //    errmsg.push("unit value is zero");
+        //}
+        return rtrn;
+    }
+
+    function displayerror() {
+        for (var i = 0; i < errmsg.length; i++) {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["error"](errmsg[i], "")
+        }
+    }
+
+   
+    $("#itemIdx").on('change', function () {
+        //alert("gg");
+        var itemIdx = $('#itemIdx').val();
+        checkstockininventoty(itemIdx);
+        //if (checkstockininventoty(itemIdx)) {
+
+        //}
+        //else {
+        //    alert("Product Quantity Is zero innventory Stock");
+        //    $('#itemIdx').val('');
+        //}
+
+    });
+    function checkstockininventoty(id) {
+        $.post("/Sale/CheckInvStock?id=" + id, function (data) {
+            console.log(data.data.stock);
+            $('#invntrystock').val(data.data.stock);
+        });
+    }
 </script>

@@ -96,6 +96,7 @@ namespace SMSYSTEM.Controllers
                     idx = p.idx,
                     paymentMode = p.paymentMode1
                 }).ToList();
+
                 var bnklist = (from e in DBClass.db.companyBanks
                                join d in DBClass.db.banks on e.bankIdx equals d.idx
                                select new
@@ -538,7 +539,13 @@ namespace SMSYSTEM.Controllers
                 throw ex;
             }
         }
-
+        #region Check Inventory Stock of Product
+        public JsonResult CheckInvStock(int id)
+        {
+            var data = DBClass.db.inventories.Where(p => p.productIdx == id).FirstOrDefault();
+            return Json(new {data=data }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
 
 
         #region Sales Return

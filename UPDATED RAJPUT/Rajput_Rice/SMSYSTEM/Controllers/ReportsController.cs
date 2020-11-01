@@ -42,6 +42,12 @@ namespace SMSYSTEM.Controllers
 
                         return Json(new { data = data }, JsonRequestBehavior.AllowGet);
                     }
+                    else if(objrprt.ReportID == 3)
+                    {
+                        var data = db.Sp_Customer_Report( from, TO).ToList();
+
+                        return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+                    }
                     else
                     {
                         var data = db.Sp_Daily_SaleReport(objrprt.ReportID, from, TO).ToList();

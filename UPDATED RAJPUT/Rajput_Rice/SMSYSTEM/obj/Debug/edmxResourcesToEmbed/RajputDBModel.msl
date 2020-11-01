@@ -860,5 +860,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_Customer_Report" FunctionName="RAJPUT_RICE_DBModel.Store.Sp_Customer_Report">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.Sp_Customer_Report_Result">
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="Transaction_Type" ColumnName="Transaction Type" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="paidAmount" ColumnName="paidAmount" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

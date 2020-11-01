@@ -172,6 +172,23 @@ public partial class RAJPUT_RICE_DBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_Daily_SaleReport_Result>("Sp_Daily_SaleReport", reportIDParameter, fromParameter, tOParameter);
     }
 
+
+    public virtual ObjectResult<Sp_Customer_Report_Result> Sp_Customer_Report(string from, string tO)
+    {
+
+        var fromParameter = from != null ?
+            new ObjectParameter("from", from) :
+            new ObjectParameter("from", typeof(string));
+
+
+        var tOParameter = tO != null ?
+            new ObjectParameter("TO", tO) :
+            new ObjectParameter("TO", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_Customer_Report_Result>("Sp_Customer_Report", fromParameter, tOParameter);
+    }
+
 }
 
 }

@@ -805,6 +805,9 @@
     <Compile Include="service.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sp_Customer_Report_Result.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sp_Daily_PurchaseReport_Result.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
@@ -907,6 +910,7 @@
     <Content Include="Views\Sale\SalesReturn.cshtml" />
     <Content Include="Views\Reports\DailyReports.cshtml" />
     <Content Include="Views\Purchase\PrintInvoice.cshtml" />
+    <Content Include="Views\Receipt\ViewReceipts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -917,7 +921,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Receipt\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
