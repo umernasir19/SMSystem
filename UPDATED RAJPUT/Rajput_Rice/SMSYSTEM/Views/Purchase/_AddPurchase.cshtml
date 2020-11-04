@@ -12,7 +12,7 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>Product Type*:</label>
-                    @Html.DropDownListFor(model => model.vendorIdx, new SelectList(Model.VendorLST, "idx", "vendorName"), "Select VEndor", new { @Class = "form-control font-weight-bold" })
+                    @Html.DropDownListFor(model => model.vendorIdx, new SelectList(Model.VendorLST, "idx", "vendorName"), "Select Vendor", new { @Class = "form-control font-weight-bold" })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
                 @Html.ValidationMessageFor(model => model.vendorIdx, "", new { @class = "text-danger" })

@@ -3,7 +3,6 @@
 @{
     Layout = null;
 }
-
 <div class="card-body">
     <form role="form" id="formadddemptype">
         @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
@@ -21,7 +20,7 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>Invoice Number*:</label>
-                    @Html.EditorFor(model => model.soNumber, new { htmlAttributes = new { @placeholder = "SI Number*:", @class = "form-control " , @readonly = true } })
+                    @Html.EditorFor(model => model.soNumber, new { htmlAttributes = new { @placeholder = "SI Number*:", @class = "form-control ", @readonly = true } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
                 @Html.ValidationMessageFor(model => model.soNumber, "", new { @class = "text-danger," })
@@ -35,7 +34,6 @@
                 </div>
                 @Html.ValidationMessageFor(model => model.salesDate, "", new { @class = "text-danger" })
             </div>
-
 
         </div>
         <hr />
@@ -58,7 +56,6 @@
                                         <div class="form-group">
                                             <label for="inputName">Item Name</label>
                                             @Html.DropDownListFor(model => model.itemIdx, new SelectList(Model.ProductList, "idx", "itemName"), "Select Product", new { @Class = "form-control font-weight-bold" })
-
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -86,11 +83,11 @@
                                         </div>
                                     </div>
                                     @*<div class="col-sm-2">
-                                        <div class="form-group">
-                                            <label for="inputProjectLeader">Due Date</label>
-                                            @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @placeholder = "Unit Price", @class = "form-control" } })
-                                        </div>
-                                    </div>*@
+                                            <div class="form-group">
+                                                <label for="inputProjectLeader">Due Date</label>
+                                                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @placeholder = "Unit Price", @class = "form-control" } })
+                                            </div>
+                                        </div>*@
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label for="inputProjectLeader">.</label>
@@ -119,24 +116,18 @@
                                                     <th>Qty</th>
                                                     <th>Sale Price</th>
                                                     <th>Total Amount</th>
-
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
                                         </table>
-
                                     </div>
-
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
                             </div>
-
                         </div>
-
                     </div>
-
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -150,7 +141,6 @@
                                 @Html.EditorFor(model => model.description, new { htmlAttributes = new { @placeholder = "Description", @class = "form-control" } })
                             </div>
                         </div>
-
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="inputProjectLeader">Total Price</label>
@@ -170,7 +160,6 @@
                             </div>
                         </div>
 
-
                     </div>
                     <div class="row" id="pymntmodeslction" style="display:none;">
                         <div class="col-sm-3">
@@ -185,11 +174,7 @@
                     </div>
                 </div>
             </div>
-            
-           
 
-
-            
 
 
 
@@ -197,39 +182,36 @@
 
             @*mmmm*@
             <div class="row" id="pymode" style="display:none;">
-                
-                
-                    <div class="col-sm-3 bnkddl">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Bank*:</label>
-                            @Html.DropDownListFor(model => model.bankIdx, new SelectList(ViewBag.bnklst, "bankIdx", "bankName"), "Select Bank", new { @Class = "form-control font-weight-bold" })
-                            @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                        </div>
-                        @Html.ValidationMessageFor(model => model.bankIdx, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-3 acctxtbox">
-                        <div class="form-group">
-                            <label for="inputProjectLeader">ACC/Cheque#</label>
-                            @Html.EditorFor(model => model.chequeNumber, new { htmlAttributes = new { @placeholder = "Enter Cheque Number", @class = "form-control" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.chequeNumber, "", new { @class = "text-danger" })
-                    </div>
 
 
-                    <div class="col-sm-3 bnkpaiddate">
-                        <!-- text input -->
-                        <div class="form-group">
-                            <label>Cheque Date*:</label>
-                            @Html.EditorFor(model => model.paidDate, new { htmlAttributes = new { @placeholder = "Enter Cheque Number", @class = "form-control" } })
-                            @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                        </div>
-                        @Html.ValidationMessageFor(model => model.paidDate, "", new { @class = "text-danger" })
-                  
+                <div class="col-sm-3 bnkddl">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Bank*:</label>
+                        @Html.DropDownListFor(model => model.bankIdx, new SelectList(ViewBag.bnklst, "bankIdx", "bankName"), "Select Bank", new { @Class = "form-control font-weight-bold" })
+                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.bankIdx, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 acctxtbox">
+                    <div class="form-group">
+                        <label for="inputProjectLeader">ACC/Cheque#</label>
+                        @Html.EditorFor(model => model.chequeNumber, new { htmlAttributes = new { @placeholder = "Enter Cheque Number", @class = "form-control" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.chequeNumber, "", new { @class = "text-danger" })
                 </div>
 
-            </div>
+                <div class="col-sm-3 bnkpaiddate">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Cheque Date*:</label>
+                        @Html.EditorFor(model => model.paidDate, new { htmlAttributes = new { @placeholder = "Enter Cheque Number", @class = "form-control" } })
+                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.paidDate, "", new { @class = "text-danger" })
 
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -295,7 +277,7 @@
         if (balanceAmount == null || balanceAmount == "") {
             balanceAmount = 0.00;
         }
-        balanceAmount = parseFloat(totalAmount) - parseFloat(PaidAmount) 
+        balanceAmount = parseFloat(totalAmount) - parseFloat(PaidAmount)
         $("#Balance").val(balanceAmount);
 
         if (PaidAmount <= 0) {
@@ -345,7 +327,7 @@
         var Qty = $("#qty").val();
         var unitprice = $("#unitPrice").val();
         var totalamount = $("#amount").val();
-       
+
         var markup = "<tr><td style='display:none;'>" + ProductID + "</td><td>" + productname + "</td><td>" + Qty + "</td><td>" + unitprice + "</td><td>" + totalamount + "</td><td>" + closebutton + "</td></tr>";
         //if (milestone == "") {
         //    alert("Enter milestone");
@@ -404,7 +386,7 @@
             rtrn = false;
             errmsg.push("unit value is zero");
         }
-        if ($('#qty').val() <$('#invntrystock').val()) {
+        if ($('#qty').val() > $('#invntrystock').val()) {
             rtrn = false;
             errmsg.push("Qty value is greater than availble stock");
         }
@@ -438,7 +420,7 @@
         }
     }
 
-   
+
     $("#itemIdx").on('change', function () {
         //alert("gg");
         var itemIdx = $('#itemIdx').val();

@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "ViewReceipts";
 }
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -38,10 +37,8 @@
                             </div>
 
 
-                      
                         </div>
                     </form>
-
                     <h3 class="card-title"><button class="btn btn-primary" id="searchpayments">Search Payemnts</button></h3>
                 </div>
                 <!-- /.card-header -->
@@ -49,7 +46,6 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-
                                 <th>Customer Name</th>
                                 <th>Total Amount</th>
                                 <th>Paid Amount</th>
@@ -94,7 +90,6 @@
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
                             </div>
-
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
@@ -102,7 +97,6 @@
                                     @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control" } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
-
                             </div>
                             <div class="col-sm-3">
                                 <!-- text input -->
@@ -111,11 +105,9 @@
                                     @Html.EditorFor(model => model.balanceamount, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
-
                             </div>
-                           
-                        </div>
 
+                        </div>
                         <div class="row" id="pymntmodeslction" style="display:none;">
                             <div class="col-sm-3">
                                 <!-- text input -->
@@ -127,7 +119,6 @@
                                 @Html.ValidationMessageFor(model => model.paymentModeIdx, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="row" id="pymnmode" style="display:none">
                             <div class="col-sm-4 bnkchqpaymnt">
                                 <!-- text input -->
@@ -157,10 +148,7 @@
                                 @Html.ValidationMessageFor(model => model.paidDate, "", new { @class = "text-danger" })
                             </div>
 
-
-
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -239,7 +227,7 @@
                     { data: 'debit' },
                     { data: 'paidAmount' },
                     { data: 'balance' },
-                    
+
                     {
                         "data": "idxx",
                         "render": function (ID, type, full, meta) {

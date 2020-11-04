@@ -784,6 +784,7 @@
       <Parameter Name="from" Mode="In" Type="String" />
       <Parameter Name="TO" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="TblGatePasses" EntityType="RAJPUT_RICE_DBModel.TblGatePass" />
   </EntityContainer>
   <EntityType Name="inventory_logs">
     <Key>
@@ -875,4 +876,16 @@
     <Property Type="Decimal" Name="paidAmount" Nullable="true" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="balance" Nullable="true" Precision="10" Scale="2" />
   </ComplexType>
+  <EntityType Name="TblGatePass">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="saleID" Type="Int32" Nullable="false" />
+    <Property Name="drivername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="numberplate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="createddate" Type="DateTime" Precision="3" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
 </Schema>

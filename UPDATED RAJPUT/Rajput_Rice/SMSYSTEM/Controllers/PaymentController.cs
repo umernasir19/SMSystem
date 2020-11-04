@@ -27,11 +27,21 @@ namespace SMSYSTEM.Controllers
                     idx = p.idx,
                     paymentMode = p.paymentMode1
                 }).ToList();
-                objpayment.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
-                {
-                    idx = p.idx,
-                    bankName = p.bankName
-                }).ToList();
+                //objpayment.BankList = DBClass.db.banks.ToList().Select(p => new Bank_Property
+                //{
+                //    idx = p.idx,
+                //    bankName = p.bankName
+                //}).ToList();
+
+                objpayment.BankList = (from e in DBClass.db.companyBanks
+                 join d in DBClass.db.banks on e.bankIdx equals d.idx
+                 select new Bank_Property
+                 {
+                     idx = e.idx,
+                     bankName = d.bankName
+
+
+                 }).ToList();
                 //   DBClass.db.vendors.ToList();
                 return View(objpayment);
             }

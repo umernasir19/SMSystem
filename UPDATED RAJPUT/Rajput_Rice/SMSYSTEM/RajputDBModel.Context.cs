@@ -128,6 +128,8 @@ public partial class RAJPUT_RICE_DBEntities : DbContext
 
     public DbSet<planner> planners { get; set; }
 
+    public DbSet<TblGatePass> TblGatePasses { get; set; }
+
 
     public virtual ObjectResult<Sp_Daily_PurchaseReport_Result> Sp_Daily_PurchaseReport(Nullable<int> reportID, string from, string tO)
     {

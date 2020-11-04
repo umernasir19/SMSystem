@@ -1,0 +1,40 @@
+﻿@model HrProperty.Models.GatePass_VM
+@{
+    Layout = null;
+}
+
+<div class="card-body">
+    <form role="form" id="gatepassform">
+        @Html.HiddenFor(model => model.idx)
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Driver Name*:</label>
+                    @Html.EditorFor(model => model.drivername, new { htmlAttributes = new { @placeholder = "", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.drivername, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-3">
+
+
+                <div class="form-group">
+                    <label>Number plate:</label>
+                    @Html.EditorFor(model => model.numberplate, new { htmlAttributes = new { @placeholder = "", @class = "form-control"} })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.numberplate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Sales ID:</label>
+                    @Html.DropDownListFor(model => model.saleID, new SelectList(Model.SalesList, "idx", "soNumber"), "Select Sales", new { @Class = "form-control font-weight-bold" })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.saleID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </form>
+</div>

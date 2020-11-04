@@ -872,5 +872,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="TblGatePasses">
+      <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.TblGatePass">
+        <MappingFragment StoreEntitySet="TblGatePass">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="numberplate" ColumnName="numberplate" />
+          <ScalarProperty Name="drivername" ColumnName="drivername" />
+          <ScalarProperty Name="saleID" ColumnName="saleID" />
+          <ScalarProperty Name="idx" ColumnName="idx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

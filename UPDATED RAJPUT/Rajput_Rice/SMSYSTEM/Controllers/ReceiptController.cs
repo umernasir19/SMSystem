@@ -36,14 +36,14 @@ namespace SMSYSTEM.Controllers
                 //}).ToList();
 
                 objpayment.BankList = (from e in DBClass.db.companyBanks
-                                        join d in DBClass.db.banks on e.bankIdx equals d.idx
-                                        select new Bank_Property
-                                        {
-                                            idx = e.idx,
-                                            bankName = d.bankName
+                                       join d in DBClass.db.banks on e.bankIdx equals d.idx
+                                       select new Bank_Property
+                                       {
+                                           idx = e.idx,
+                                           bankName = d.bankName
 
 
-                                        }).ToList();
+                                       }).ToList();
                 //   DBClass.db.vendors.ToList();
                 return View(objpayment);
             }
@@ -121,94 +121,98 @@ namespace SMSYSTEM.Controllers
 
                 if (Convert.ToDecimal(objpayment.PaidAmount) > 0)
                 {
-                    using (var txn = new TransactionScope())
+                    using (var db = new RAJPUT_RICE_DBEntities())
                     {
-                        //  string pinvoice = timeline[0].poNumber;
-
-
-                        var previousam = DBClass.db.accountMasterGLs.Where(p => p.idxx == objpayment.AccountId).ToList();
-                        string invoiceNum = previousam.FirstOrDefault().invoiceNoIdx.ToString();
-                        int customerIdx = int.Parse(previousam[0].customerIdx.ToString());
-                        var invoiceSplit = invoiceNum.Split('-').ToArray();
-                        int saleId;
-                        var parseId = int.TryParse(invoiceSplit[1], out saleId);
-                        decimal? previousPaidAmount = previousam.Sum(x => x.paidAmount);
-                        decimal? totalamount = previousam.Sum(x => x.balance);
-                        totalamount = totalamount - Convert.ToDecimal(objpayment.PaidAmount);
-
-                        previousPaidAmount += Convert.ToDecimal(objpayment.PaidAmount);
-
-
-
-                        if (totalamount > 0)
+                        using (var txn = new TransactionScope())
                         {
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} ,balance={1},paidAmount={2} WHERE idxx = {3} ", 1, totalamount, previousPaidAmount, objpayment.AccountId);
+                            //  string pinvoice = timeline[0].poNumber;
 
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE sales SET isPaid = {0} ,balance={1},paid={2} WHERE idx = {3} ", 0, totalamount, previousPaidAmount, saleId);
+
+                            var previousam = db.accountMasterGLs.Where(p => p.idxx == objpayment.AccountId).ToList();
+                            string invoiceNum = previousam.FirstOrDefault().invoiceNoIdx.ToString();
+                            int customerIdx = int.Parse(previousam[0].customerIdx.ToString());
+                            var invoiceSplit = invoiceNum.Split('-').ToArray();
+                            int saleId;
+                            var parseId = int.TryParse(invoiceSplit[1], out saleId);
+                            decimal? previousPaidAmount = previousam.Sum(x => x.paidAmount);
+                            decimal? totalamount = previousam.Sum(x => x.balance);
+
+                            totalamount = totalamount - Convert.ToDecimal(objpayment.PaidAmount);
+
+                            previousPaidAmount += Convert.ToDecimal(objpayment.PaidAmount);
+
+
+
+                            if (totalamount > 0)
+                            {
+                                db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} ,balance={1},paidAmount={2} WHERE idxx = {3} ", 1, totalamount, previousPaidAmount, objpayment.AccountId);
+
+                                db.Database.ExecuteSqlCommand("UPDATE sales SET isPaid = {0} ,balance={1},paid={2} WHERE idx = {3} ", 0, totalamount, previousPaidAmount, saleId);
+                            }
+                            else
+                            {
+                                db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0},balance={1},paidAmount{2} WHERE idxx = {3}", 0, 0, previousPaidAmount, objpayment.AccountId);
+
+                                db.Database.ExecuteSqlCommand("UPDATE sales SET isPaid = {0} ,balance={1},paid={2} WHERE idx = {3} ", 1, totalamount, previousPaidAmount, saleId);
+                            }
+
+
+                            accountMasterGL objaccountmaster = new accountMasterGL();
+                            objaccountmaster.tranTypeIdx = 5;
+                            objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                            objaccountmaster.customerIdx = customerIdx;
+                            objaccountmaster.invoiceNoIdx = "RPT-00" + previousam[0].idxx;
+                            objaccountmaster.debit = Convert.ToDecimal(objpayment.PaidAmount);
+                            objaccountmaster.credit = Convert.ToDecimal(objpayment.PaidAmount);
+                            objaccountmaster.balance = Convert.ToDecimal(objpayment.balanceamount);
+                            //objaccountmaster.DueDate = objpayment.NextDueDate;
+                            objaccountmaster.paidAmount = Convert.ToDecimal(objpayment.PaidAmount);
+                            if (objaccountmaster.balance > 0)
+                            {
+                                objaccountmaster.isCredit = 1;
+                            }
+                            else
+                            {
+                                objaccountmaster.isCredit = 0;
+                            }
+                            objaccountmaster.paymentModeIdx = objpayment.paymentModeIdx;
+                            objaccountmaster.bankIdx = objpayment.bankIdx;
+                            objaccountmaster.chequeNumber = objpayment.accorChequeNumber;
+                            objaccountmaster.createDate = DateTime.Now;
+                            db.accountMasterGLs.Add(objaccountmaster);
+                            db.SaveChanges();
+
+                            int acountmsid = objaccountmaster.idxx;
+
+                            accountGJ objacountgj = new accountGJ();
+                            objacountgj.tranTypeIdx = 5;
+                            objacountgj.GLIdx = acountmsid;
+                            objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                            objacountgj.customerIdx = customerIdx;
+                            objacountgj.invoiceNo = objaccountmaster.invoiceNoIdx;
+                            objacountgj.debit = objpayment.PaidAmount;
+                            objacountgj.credit = 0.00m;
+                            objacountgj.coaIdx = 56; // cash or Bank
+                            objacountgj.createDate = DateTime.Now;
+                            db.accountGJs.Add(objacountgj);
+                            db.SaveChanges();
+
+
+                            objacountgj = new accountGJ();
+                            objacountgj.tranTypeIdx = 5;
+                            objacountgj.GLIdx = acountmsid;
+                            objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
+                            objacountgj.customerIdx = customerIdx;
+                            objacountgj.invoiceNo = objaccountmaster.invoiceNoIdx;
+                            objacountgj.debit = 0.00m;
+                            objacountgj.credit = objpayment.PaidAmount;
+                            objacountgj.coaIdx = 1;
+                            objacountgj.createDate = DateTime.Now;
+                            db.accountGJs.Add(objacountgj);
+                            db.SaveChanges();
+
+                            txn.Complete();
                         }
-                        else
-                        {
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0},balance={1} WHERE idxx = {2}", 0, 0, objpayment.AccountId);
-
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE sales SET isPaid = {0} ,balance={1},paid={2} WHERE idx = {3} ", 1, totalamount, previousPaidAmount, saleId);
-                        }
-
-
-                        accountMasterGL objaccountmaster = new accountMasterGL();
-                        objaccountmaster.tranTypeIdx = 5;
-                        objaccountmaster.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                        objaccountmaster.customerIdx = customerIdx;
-                        objaccountmaster.invoiceNoIdx = "RPT-00" + previousam[0].idxx;
-                        objaccountmaster.debit = Convert.ToDecimal(objpayment.PaidAmount);
-                        objaccountmaster.credit = Convert.ToDecimal(objpayment.PaidAmount);
-                        objaccountmaster.balance = Convert.ToDecimal(objpayment.balanceamount);
-                        //objaccountmaster.DueDate = objpayment.NextDueDate;
-                        objaccountmaster.paidAmount = Convert.ToDecimal(objpayment.PaidAmount);
-                        if (objaccountmaster.balance > 0)
-                        {
-                            objaccountmaster.isCredit = 1;
-                        }
-                        else
-                        {
-                            objaccountmaster.isCredit = 0;
-                        }
-                        objaccountmaster.paymentModeIdx = objpayment.paymentModeIdx;
-                        objaccountmaster.bankIdx = objpayment.bankIdx;
-                        objaccountmaster.chequeNumber = objpayment.accorChequeNumber;
-                        objaccountmaster.createDate = DateTime.Now;
-                        DBClass.db.accountMasterGLs.Add(objaccountmaster);
-                        DBClass.db.SaveChanges();
-
-                        int acountmsid = objaccountmaster.idxx;
-
-                        accountGJ objacountgj = new accountGJ();
-                        objacountgj.tranTypeIdx = 5;
-                        objacountgj.GLIdx = acountmsid;
-                        objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                        objacountgj.customerIdx = customerIdx;
-                        objacountgj.invoiceNo = objaccountmaster.invoiceNoIdx;
-                        objacountgj.debit = objpayment.PaidAmount;
-                        objacountgj.credit = 0.00m;
-                        objacountgj.coaIdx = 56; // cash or Bank
-                        objacountgj.createDate = DateTime.Now;
-                        DBClass.db.accountGJs.Add(objacountgj);
-                        DBClass.db.SaveChanges();
-
-
-                        objacountgj = new accountGJ();
-                        objacountgj.tranTypeIdx = 5;
-                        objacountgj.GLIdx = acountmsid;
-                        objacountgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
-                        objacountgj.customerIdx = customerIdx;
-                        objacountgj.invoiceNo = objaccountmaster.invoiceNoIdx;
-                        objacountgj.debit = 0.00m;
-                        objacountgj.credit = objpayment.PaidAmount;
-                        objacountgj.coaIdx = 1;
-                        objacountgj.createDate = DateTime.Now;
-                        DBClass.db.accountGJs.Add(objacountgj);
-                        DBClass.db.SaveChanges();
-
-                        txn.Complete();
                     }
                 }
                 return Json(new { data = "ok", success = true, statuscode = 400, url = "/Receipt/ViewReceipts" }, JsonRequestBehavior.AllowGet);

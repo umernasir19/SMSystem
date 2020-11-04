@@ -694,6 +694,7 @@
     <Compile Include="Controllers\CompanyBankController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GatePassController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PlannerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -817,6 +818,9 @@
     <Compile Include="station.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TblGatePass.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="transactionType.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
@@ -911,6 +915,9 @@
     <Content Include="Views\Reports\DailyReports.cshtml" />
     <Content Include="Views\Purchase\PrintInvoice.cshtml" />
     <Content Include="Views\Receipt\ViewReceipts.cshtml" />
+    <Content Include="Views\GatePass\ViewGatePass.cshtml" />
+    <Content Include="Views\GatePass\_AddGatePass.cshtml" />
+    <Content Include="Views\GatePass\GatePass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

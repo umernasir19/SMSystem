@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "PurchaseReturn";
 }
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -28,20 +27,17 @@
                     <form role="form" id="formadddemptype">
                         <div class="row">
                             <div class="col-sm-4">
-                                   
-                                    <div class="form-group">
-                                        <label>Vendor*:</label>
-                                        @Html.DropDownListFor(model => model.SaleInvoiceNumber, new SelectList(Model.SalesLiSt, "idx", "soNumber"), "Select Invoice", new { @Class = "form-control font-weight-bold" })
 
-                                    </div>
-                                @Html.ValidationMessageFor(model => model.SaleInvoiceNumber, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label>Vendor*:</label>
+                                    @Html.DropDownListFor(model => model.SaleInvoiceNumber, new SelectList(Model.SalesLiSt, "idx", "soNumber"), "Select Invoice", new { @Class = "form-control font-weight-bold" })
                                 </div>
+                                @Html.ValidationMessageFor(model => model.SaleInvoiceNumber, "", new { @class = "text-danger" })
+                            </div>
 
 
-                            
                         </div>
                     </form>
-
                     <h3 class="card-title"><button class="btn btn-primary" id="searchpayments">Search Sales</button></h3>
                 </div>
                 <!-- /.card-header -->
@@ -49,7 +45,6 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-
                                 <th>Product Name</th>
                                 <th>Product Quantity</th>
                                 <th>Product selling Amount</th>
@@ -101,43 +96,35 @@
                                 @Html.EditorFor(model => model.Salerate, new { htmlAttributes = new { @placeholder = "", @class = "form-control", @readonly = true } })
                                 @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                             </div>
-
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Paid Amount</label>
                                     @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
-                                   
+
                                 </div>
-
                             </div>
-
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Invoice Balance Amount*:</label>
                                     @Html.EditorFor(model => model.BalanceRemaining, new { htmlAttributes = new { @placeholder = "Paid Amount*:", @class = "form-control", @readonly = true } })
-                                   
-                                </div>
 
+                                </div>
                             </div>
-                           
+
                             <div class="col-sm-3">
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Qty To Return*:</label>
                                     @Html.EditorFor(model => model.returnqty, new { htmlAttributes = new { @placeholder = "Return Qty*:", @class = "form-control" } })
-                                   
+
                                 </div>
-
                             </div>
-
                         </div>
-
                     </form>
                 </div>
             </div>
-
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" id="paytovendor" class="btn btn-primary">Save changes</button>
@@ -590,4 +577,3 @@
 
     </script>
 }
-

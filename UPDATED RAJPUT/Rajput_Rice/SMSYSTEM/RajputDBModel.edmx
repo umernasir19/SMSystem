@@ -684,6 +684,18 @@
           <Property Name="isActive" Type="int" />
           <Property Name="visible" Type="int" />
         </EntityType>
+        <EntityType Name="TblGatePass">
+          <Key>
+            <PropertyRef Name="idx" />
+          </Key>
+          <Property Name="idx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="saleID" Type="int" Nullable="false" />
+          <Property Name="drivername" Type="nvarchar" MaxLength="50" />
+          <Property Name="numberplate" Type="nvarchar" MaxLength="10" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="userid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
         <EntityType Name="transactionType">
           <Key>
             <PropertyRef Name="idx" />
@@ -812,6 +824,7 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
           <EntitySet Name="salesDetails" EntityType="Self.salesDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stations" EntityType="Self.stations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGatePass" EntityType="Self.TblGatePass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transactionType" EntityType="Self.transactionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vendors" EntityType="Self.vendors" Schema="dbo" store:Type="Tables" />
@@ -1616,6 +1629,7 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
             <Parameter Name="from" Mode="In" Type="String" />
             <Parameter Name="TO" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="TblGatePasses" EntityType="RAJPUT_RICE_DBModel.TblGatePass" />
         </EntityContainer>
         <EntityType Name="inventory_logs">
           <Key>
@@ -1707,6 +1721,18 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <Property Type="Decimal" Name="paidAmount" Nullable="true" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="balance" Nullable="true" Precision="10" Scale="2" />
         </ComplexType>
+        <EntityType Name="TblGatePass">
+          <Key>
+            <PropertyRef Name="idx" />
+          </Key>
+          <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="saleID" Type="Int32" Nullable="false" />
+          <Property Name="drivername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numberplate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2584,6 +2610,19 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TblGatePasses">
+            <EntityTypeMapping TypeName="RAJPUT_RICE_DBModel.TblGatePass">
+              <MappingFragment StoreEntitySet="TblGatePass">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="numberplate" ColumnName="numberplate" />
+                <ScalarProperty Name="drivername" ColumnName="drivername" />
+                <ScalarProperty Name="saleID" ColumnName="saleID" />
+                <ScalarProperty Name="idx" ColumnName="idx" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

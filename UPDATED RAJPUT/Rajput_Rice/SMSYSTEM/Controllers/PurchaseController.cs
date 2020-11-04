@@ -318,14 +318,16 @@ namespace SMSYSTEM.Controllers
                                 objaccountmaster.balance = 0.00m;
                                 objaccountmaster.isCredit = 0;
                                 objaccountmaster.paidAmount = Convert.ToDecimal(timeline[i].qty * timeline[i].unitPrice);
+
                             }
                             else
                             {
                                 objaccountmaster.balance = (timeline[i].qty * timeline[i].unitPrice);
                                 objaccountmaster.isCredit = 1;
-                                objaccountmaster.paidAmount = Convert.ToDecimal(timeline[i].qty * timeline[i].unitPrice);
+                                objaccountmaster.paidAmount = Convert.ToDecimal(timeline[0].paidAmount);
+                                //objaccountmaster.paidAmount = Convert.ToDecimal(timeline[i].qty * timeline[i].unitPrice);
                             }
-
+                            
 
 
                             objaccountmaster.DueDate = timeline[i].DueDate;
@@ -780,8 +782,8 @@ namespace SMSYSTEM.Controllers
                     objaccounthead.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
                     objaccounthead.vendorIdx = acountmaster.vendorIdx;
                     objaccounthead.invoiceNoIdx = acountmaster.invoiceNoIdx;
-                    acountmaster.debit = acountmaster.debit;
-                    acountmaster.credit = acountmaster.credit;
+                    acountmaster.debit = returnamount;
+                    acountmaster.credit = returnamount;
                     objaccounthead.createDate = DateTime.Now;
                     objaccounthead.paidAmount = purshsedtl.unitPrice * objprchse.returnqty;
                     objaccounthead.balance = acountmaster.balance - objaccounthead.paidAmount;

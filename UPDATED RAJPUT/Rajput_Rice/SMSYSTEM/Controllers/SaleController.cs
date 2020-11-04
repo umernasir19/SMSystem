@@ -542,8 +542,14 @@ namespace SMSYSTEM.Controllers
         #region Check Inventory Stock of Product
         public JsonResult CheckInvStock(int id)
         {
-            var data = DBClass.db.inventories.Where(p => p.productIdx == id).FirstOrDefault();
-            return Json(new {data=data }, JsonRequestBehavior.AllowGet);
+            using (var db = new RAJPUT_RICE_DBEntities())
+
+            {
+                var data = db.inventories.Where(p => p.productIdx == id).FirstOrDefault();
+                return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            }
+
+
         }
         #endregion
 
@@ -608,7 +614,7 @@ inner join products pr on pr.idx = inv.productIdx
 where inv.stock>0 and sd.salesIdx=" + salesMasterId + "").ToList();
 
 
-                
+
                 var data = tempResults.Select(t => new
                 {
                     productid = t.productid,
@@ -692,12 +698,14 @@ where inv.stock>0 and sd.salesIdx=" + salesMasterId + "").ToList();
                 //                paidamount = c.paidAmount
                 //            }).ToList();
 
-                var tempResults = DBClass.db.Database.SqlQuery<ModaltempResult>(@"select gl.paidAmount as paidamount,gl.balance ,sl.soNumber as sonumber,sd.idx as saledtlid,inv.stock as inventorystock,pr.idx as productid,pr.itemName as productname,sd.unitPrice as inventoryunitprice,sd.serviceRate as saleRate,sd.salesIdx as salesmasterid,(sd.serviceRate * (select ABS(SUM(stock)) from inventory_logs where MasterID=sd.salesIdx and (TransactionTypeID=2 or TransactionTypeID=17) and productIdx=pr.idx )) as saleTotalAmount,(select ABS(SUM(stock)) from inventory_logs where MasterID=sd.salesIdx and (TransactionTypeID=2 or TransactionTypeID=17) and productIdx=pr.idx ) as saleqty from sales sl
+                var tempResults = DBClass.db.Database.SqlQuery<ModaltempResult>(@"select top 1 gl.paidAmount as paidamount,gl.balance ,sl.soNumber as sonumber,sd.idx as saledtlid,inv.stock as inventorystock,pr.idx as productid,pr.itemName as productname,sd.unitPrice as inventoryunitprice,sd.serviceRate as saleRate,sd.salesIdx as salesmasterid,(sd.serviceRate * (select ABS(SUM(stock)) from inventory_logs where MasterID=sd.salesIdx and (TransactionTypeID=2 or TransactionTypeID=17) and productIdx=pr.idx )) as saleTotalAmount,(select ABS(SUM(stock)) from inventory_logs where MasterID=sd.salesIdx and (TransactionTypeID=2 or TransactionTypeID=17) and productIdx=pr.idx ) as saleqty from sales sl
 inner join salesDetails sd on sl.idx=sd.salesIdx
 inner join inventory inv on sd.serviceIdx=inv.productIdx
 inner join products pr on pr.idx = inv.productIdx
 inner join accountMasterGL gl  on sl.soNumber=gl.invoiceNoIdx
-where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
+where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber
+order by gl.createDate asc
+", id).ToList();
 
 
 
@@ -730,11 +738,11 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                 {
 
                     decimal returnamount = objsale.returnqty * objsale.Salerate;
-                    var saleDtl =  db.salesDetails.Where(p => p.idx == objsale.SaleDetailsID).FirstOrDefault();
-                    var salesMaster =  db.sales.Where(p => p.idx == saleDtl.salesIdx).FirstOrDefault();
-                    var acountmaster =  db.accountMasterGLs.Where(p => p.invoiceNoIdx == salesMaster.soNumber && p.tranTypeIdx == 2 && p.visible == 1).FirstOrDefault();
-                    var acountdtl =  db.accountGJs.Where(p => p.GLIdx == acountmaster.idxx).ToList();
-                    var invntrymstr =  db.inventories.Where(p => p.productIdx == saleDtl.serviceIdx).FirstOrDefault();
+                    var saleDtl = db.salesDetails.Where(p => p.idx == objsale.SaleDetailsID).FirstOrDefault();
+                    var salesMaster = db.sales.Where(p => p.idx == saleDtl.salesIdx).FirstOrDefault();
+                    var acountmaster = db.accountMasterGLs.Where(p => p.invoiceNoIdx == salesMaster.soNumber && p.tranTypeIdx == 2 && p.visible == 1).FirstOrDefault();
+                    var acountdtl = db.accountGJs.Where(p => p.GLIdx == acountmaster.idxx).ToList();
+                    var invntrymstr = db.inventories.Where(p => p.productIdx == saleDtl.serviceIdx).FirstOrDefault();
 
                     //new logic of Sales ereturn
                     if (acountmaster.paidAmount == 0 && acountmaster.balance == 0)
@@ -752,8 +760,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                         objinvntrylog.unitPrice = saleDtl.unitPrice;
                         objinvntrylog.totalAmount = saleDtl.unitPrice * objinvntrylog.stock;
                         objinvntrylog.creationDate = DateTime.Now;
-                         db.inventory_logs.Add(objinvntrylog);
-                         db.SaveChanges();
+                        db.inventory_logs.Add(objinvntrylog);
+                        db.SaveChanges();
                         #endregion
 
                         #region Account Entries
@@ -767,8 +775,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                         objaccounthead.createDate = DateTime.Now;
                         objaccounthead.paidAmount = saleDtl.serviceRate * objsale.returnqty;
                         objaccounthead.balance = acountmaster.balance - objaccounthead.paidAmount;
-                         db.accountMasterGLs.Add(objaccounthead);
-                         db.SaveChanges();
+                        db.accountMasterGLs.Add(objaccounthead);
+                        db.SaveChanges();
                         int acntmsterid = objaccounthead.idxx;
                         //saleReturn Entry
                         accountGJ objgj = new accountGJ();
@@ -780,8 +788,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                         objgj.coaIdx = 79;//SALES RETURN
                         objgj.credit = 0.00m;
                         objgj.debit = objaccounthead.debit;
-                         db.accountGJs.Add(objgj);
-                         db.SaveChanges();
+                        db.accountGJs.Add(objgj);
+                        db.SaveChanges();
                         //Inventory Increase
 
                         objgj = new accountGJ();
@@ -793,8 +801,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                         objgj.coaIdx = 60;//INV
                         objgj.credit = 0.00m;
                         objgj.debit = saleDtl.unitPrice * objsale.returnqty;
-                         db.accountGJs.Add(objgj);
-                         db.SaveChanges();
+                        db.accountGJs.Add(objgj);
+                        db.SaveChanges();
                         //COGS
                         objgj = new accountGJ();
                         objgj.GLIdx = acntmsterid;
@@ -805,8 +813,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                         objgj.coaIdx = 78;//COGS
                         objgj.debit = 0.00m;
                         objgj.credit = saleDtl.unitPrice * objsale.returnqty;
-                         db.accountGJs.Add(objgj);
-                         db.SaveChanges();
+                        db.accountGJs.Add(objgj);
+                        db.SaveChanges();
 
 
 
@@ -828,8 +836,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             objgj.coaIdx = 1;
                             objgj.credit = decimal.Parse(acountmaster.balance.ToString());
                             objgj.debit = 0.00m;
-                             db.accountGJs.Add(objgj);
-                             db.SaveChanges();
+                            db.accountGJs.Add(objgj);
+                            db.SaveChanges();
                             objgj = new accountGJ();
                             objgj.GLIdx = acntmsterid;
                             objgj.tranTypeIdx = 17;
@@ -839,11 +847,11 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             objgj.coaIdx = 56; //cash bank cheque
                             objgj.credit = returnDue;
                             objgj.debit = 0.00m;
-                             db.accountGJs.Add(objgj);
-                             db.SaveChanges();
+                            db.accountGJs.Add(objgj);
+                            db.SaveChanges();
 
-                             db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},balance={1},isCredit={2} where idxx={3}", acountmaster.paidAmount - returnDue, 0.00m, 0, acountmaster.idxx);
-                             db.Database.ExecuteSqlCommand("update sales set paid={0},balance={1},isPaid={2} where idx={3}", acountmaster.paidAmount - returnDue, 0.00m, 1, salesMaster.idx);
+                            db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},balance={1},isCredit={2} where idxx={3}", acountmaster.paidAmount - returnDue, 0.00m, 0, acountmaster.idxx);
+                            db.Database.ExecuteSqlCommand("update sales set paid={0},balance={1},isPaid={2} where idx={3}", acountmaster.paidAmount - returnDue, 0.00m, 1, salesMaster.idx);
 
                         }
                         else if (returnamount <= acountmaster.balance && acountmaster.balance != 0)
@@ -858,8 +866,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             objgj.coaIdx = 1;
                             objgj.credit = decimal.Parse(returnamount.ToString());
                             objgj.debit = 0.00m;
-                             db.accountGJs.Add(objgj);
-                             db.SaveChanges();
+                            db.accountGJs.Add(objgj);
+                            db.SaveChanges();
                             //objgj = new accountGJ();
                             //objgj.GLIdx = acntmsterid;
                             //objgj.tranTypeIdx = 17;
@@ -873,13 +881,13 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             // db.SaveChanges();
                             if (returnDue > 0)
                             {
-                                 db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},isCredit={1} where idxx={2}", returnDue, 1, acountmaster.idxx);
-                                 db.Database.ExecuteSqlCommand("update sales set balance={0},isPaid={1} where idx={2}", returnDue, 0, salesMaster.idx);
+                                db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},isCredit={1} where idxx={2}", returnDue, 1, acountmaster.idxx);
+                                db.Database.ExecuteSqlCommand("update sales set balance={0},isPaid={1} where idx={2}", returnDue, 0, salesMaster.idx);
                             }
                             else
                             {
-                                 db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},isCredit={1} where idxx={2}", returnDue, 0, acountmaster.idxx);
-                                 db.Database.ExecuteSqlCommand("update sales set balance={0},isPaid={1} where idx={2}", 0.00m, 1, salesMaster.idx);
+                                db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},isCredit={1} where idxx={2}", returnDue, 0, acountmaster.idxx);
+                                db.Database.ExecuteSqlCommand("update sales set balance={0},isPaid={1} where idx={2}", 0.00m, 1, salesMaster.idx);
                             }
 
                         }
@@ -897,8 +905,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             objgj.coaIdx = 56; //cash or bank or cheque
                             objgj.credit = decimal.Parse(returnamount.ToString());
                             objgj.debit = 0.00m;
-                             db.accountGJs.Add(objgj);
-                             db.SaveChanges();
+                            db.accountGJs.Add(objgj);
+                            db.SaveChanges();
                             //objgj = new accountGJ();
                             //objgj.GLIdx = acntmsterid;
                             //objgj.tranTypeIdx = 17;
@@ -912,13 +920,13 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             // db.SaveChanges();
                             if (returnDue > 0)
                             {
-                                 db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},isCredit={1} where idxx={2}", returnDue, 0, acountmaster.idxx);
-                                 db.Database.ExecuteSqlCommand("update sales set Paid={0},isPaid={1} where idx={2}", returnDue, 1, salesMaster.idx);
+                                db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},isCredit={1} where idxx={2}", returnDue, 0, acountmaster.idxx);
+                                db.Database.ExecuteSqlCommand("update sales set Paid={0},isPaid={1} where idx={2}", returnDue, 1, salesMaster.idx);
                             }
                             else
                             {
-                                 db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},isCredit={1} where idxx={2}", returnDue, 0, acountmaster.idxx);
-                                 db.Database.ExecuteSqlCommand("update sales set Paid={0},isPaid={1} where idx={2}", returnDue, 1, salesMaster.idx);
+                                db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},isCredit={1} where idxx={2}", returnDue, 0, acountmaster.idxx);
+                                db.Database.ExecuteSqlCommand("update sales set Paid={0},isPaid={1} where idx={2}", returnDue, 1, salesMaster.idx);
                             }
 
                         }
@@ -933,8 +941,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             objgj.coaIdx = 43;
                             objgj.debit = 0.00m;
                             objgj.credit = acountmaster.balance - returnamount;
-                             db.accountGJs.Add(objgj);
-                             db.SaveChanges();
+                            db.accountGJs.Add(objgj);
+                            db.SaveChanges();
 
                             // inventory debit
                             objgj = new accountGJ();
@@ -946,8 +954,8 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
                             objgj.coaIdx = 60;
                             objgj.debit = returnamount;
                             objgj.credit = 0.00m;
-                             db.accountGJs.Add(objgj);
-                             db.SaveChanges();
+                            db.accountGJs.Add(objgj);
+                            db.SaveChanges();
                         }
 
 
@@ -956,9 +964,9 @@ where  sd.idx={0} and gl.invoiceNoIdx=sl.soNumber", id).ToList();
 
                         // //for inventry
                         var newstock = invntrymstr.stock + objsale.returnqty;
-                        var purchsedtlunitprcsum = Convert.ToDecimal( db.inventories.Where(p => p.productIdx == saleDtl.serviceIdx).Sum(p => p.unitPrice).Value.ToString());
+                        var purchsedtlunitprcsum = Convert.ToDecimal(db.inventories.Where(p => p.productIdx == saleDtl.serviceIdx).Sum(p => p.unitPrice).Value.ToString());
                         //var newunitprice = (saleDtl.unitPrice + purchsedtlunitprcsum) / 2;
-                         db.Database.ExecuteSqlCommand("update inventory set stock={0},totalAmount={1} where idx={2}", newstock, newstock * purchsedtlunitprcsum, invntrymstr.idx);
+                        db.Database.ExecuteSqlCommand("update inventory set stock={0},totalAmount={1} where idx={2}", newstock, newstock * purchsedtlunitprcsum, invntrymstr.idx);
 
 
 

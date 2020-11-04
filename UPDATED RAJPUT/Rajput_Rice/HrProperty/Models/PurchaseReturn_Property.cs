@@ -11,6 +11,7 @@ namespace HrProperty.Models
     {
         public int vendor_Id { get; set; }
 
+        [Required(ErrorMessage ="Please Select PR NUMBER")]
         public string PRNumber { get; set; }
 
         public int AccountId { get; set; }
