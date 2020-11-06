@@ -1,0 +1,891 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RAJPUT_RICE_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="accountGJ">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GLIdx" Type="Int32" />
+    <Property Name="tranTypeIdx" Type="Int32" />
+    <Property Name="userIdx" Type="Int32" />
+    <Property Name="vendorIdx" Type="Int32" />
+    <Property Name="employeeIdx" Type="Int32" />
+    <Property Name="customerIdx" Type="Int32" />
+    <Property Name="coaIdx" Type="Int32" />
+    <Property Name="invoiceNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="debit" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="credit" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="accountMasterGL">
+    <Key>
+      <PropertyRef Name="idxx" />
+    </Key>
+    <Property Name="idxx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tranTypeIdx" Type="Int32" />
+    <Property Name="userIdx" Type="Int32" />
+    <Property Name="vendorIdx" Type="Int32" />
+    <Property Name="employeeIdx" Type="Int32" />
+    <Property Name="customerIdx" Type="Int32" />
+    <Property Name="invoiceNoIdx" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="debit" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="credit" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="paidAmount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="balance" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="isCredit" Type="Int32" />
+    <Property Name="creditDays" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="paymentModeIdx" Type="Int32" />
+    <Property Name="bankIdx" Type="Int32" />
+    <Property Name="chequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="ItemId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="advanceSalary">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeIdx" Type="Int32" />
+    <Property Name="netSalary" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="advanceAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="deductionMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deductionYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="statusBy" Type="Int32" />
+    <Property Name="statusDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isExpire" Type="Int32" />
+    <Property Name="isPaid" Type="Int32" />
+    <Property Name="Paid" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Balance" Type="Decimal" Precision="20" Scale="2" />
+  </EntityType>
+  <EntityType Name="bank">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="branch">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="branchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="headQuarter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ChartofAccountsChildHead">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subHeadIdx" Type="Int32" Nullable="false" />
+    <Property Name="headIdx" Type="Int32" Nullable="false" />
+    <Property Name="childHeadName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="childHeadCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" Nullable="false" />
+    <Property Name="lasModificationDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChartofAccountsHead">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="accountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="accountCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" Nullable="false" />
+    <Property Name="parentIdx" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ChartofAccountsSubHead">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="headIdx" Type="Int32" Nullable="false" />
+    <Property Name="subHeadName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="subHeadCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" Nullable="false" />
+    <Property Name="lasModificationDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" Nullable="false" />
+    <Property Name="visible" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COA">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="parentIdx" Type="Int32" />
+    <Property Name="headAccount" Type="Int32" />
+    <Property Name="accountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoaLevel" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ownerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STRN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="companyLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="companyBank">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bankIdx" Type="Int32" />
+    <Property Name="accountTitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="accountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" Nullable="false" />
+    <Property Name="visible" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+  </EntityType>
+  <EntityType Name="consumption">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemIdx" Type="Int32" />
+    <Property Name="consumedBy" Type="Int32" />
+    <Property Name="consumedQuanity" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="statusBy" Type="Int32" />
+    <Property Name="statusDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lastModificationByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="stock" Type="Decimal" Precision="20" Scale="2" />
+  </EntityType>
+  <EntityType Name="contract">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empCode" Type="Int32" />
+    <Property Name="employeeIdx" Type="Int32" />
+    <Property Name="departmentIdx" Type="Int32" />
+    <Property Name="designationIdx" Type="Int32" />
+    <Property Name="employeeTypeIdx" Type="Int32" />
+    <Property Name="contractTypeIdx" Type="Int32" />
+    <Property Name="contractStartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contractEndDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ContractType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contractType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contactPersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="customerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerAccountType" Type="Int32" />
+    <Property Name="cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="emailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="accountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ntn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="strnNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="openingBalance" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="designation">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentIdx" Type="Int32" />
+    <Property Name="designationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hrmsNumber" Type="Int32" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="maritalIdx" Type="Int32" />
+    <Property Name="genderIdx" Type="Int32" />
+    <Property Name="emailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="departmentIdx" Type="Int32" />
+    <Property Name="designationIdx" Type="Int32" />
+    <Property Name="hiringDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="isTerminated" Type="Int32" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="employeeType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="gender">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="inventory">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productIdx" Type="Int32" />
+    <Property Name="stock" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="productTypeIdx" Type="Int32" />
+    <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="InventoryDetail">
+    <Key>
+      <PropertyRef Name="Idx" />
+    </Key>
+    <Property Name="Idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InventoryIdx" Type="Int32" />
+    <Property Name="PurchaseDetailidx" Type="Int32" />
+    <Property Name="ConsumptionIdx" Type="Int32" />
+  </EntityType>
+  <EntityType Name="itemUnit">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="loan">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empIdx" Type="Int32" />
+    <Property Name="loanAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="numberOfInstallment" Type="Int32" />
+    <Property Name="installmentAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="modeOfPayment" Type="Int32" />
+    <Property Name="loanReqDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="endDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="purposeOfLoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="statusBy" Type="Int32" />
+    <Property Name="statusDate" Type="DateTime" Precision="3" />
+    <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="balance" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="paid" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="isPaid" Type="Int32" />
+    <Property Name="isExpire" Type="Int32" />
+  </EntityType>
+  <EntityType Name="loanInstallment">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="loanIdx" Type="Int32" />
+    <Property Name="loanAmount" Type="Int32" />
+    <Property Name="numberOfInstallment" Type="Int32" />
+    <Property Name="installmentAmount" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="maritalStatu">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Month">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="month1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="paymentMode">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="paymentMode1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="payroll">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentIdx" Type="Int32" />
+    <Property Name="empIdx" Type="Int32" />
+    <Property Name="netSalary" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="totalLeave" Type="Int32" />
+    <Property Name="leaveDeductionAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="loanReamainingAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="loanDeductionAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="advanceRemainingAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="advanceDeductionAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="otherBenefits" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="totalSalary" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserrIDx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="statusBy" Type="Int32" />
+    <Property Name="statusDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productTypeIdx" Type="Int32" />
+    <Property Name="itemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="itemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="productType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productType1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="pruchaseDetail">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="purchaseIdx" Type="Int32" />
+    <Property Name="productTypeIdx" Type="Int32" Nullable="false" />
+    <Property Name="itemIdx" Type="Int32" />
+    <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="qty" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="amount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="purchase">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="poNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vendorIdx" Type="Int32" />
+    <Property Name="purchaseTypeIdx" Type="Int32" />
+    <Property Name="purchaseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="netAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="paidAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="balanceAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="paymentModeIdx" Type="Int32" />
+    <Property Name="bankIdx" Type="Int32" />
+    <Property Name="accorChequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="paidDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="paymentStatus" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isPaid" Type="Int32" Nullable="false" />
+    <Property Name="discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="tax" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="taxAount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="purchaseduedate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PurchaseType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="purchaseType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeIdx" Type="Int32" />
+    <Property Name="pageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="add" Type="Boolean" />
+    <Property Name="edit" Type="Boolean" />
+    <Property Name="delete" Type="Boolean" />
+    <Property Name="view" Type="Boolean" />
+    <Property Name="approved" Type="Boolean" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="salary">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empIdx" Type="Int32" />
+    <Property Name="basicSalary" Type="Int32" />
+    <Property Name="hraAllowance" Type="Int32" />
+    <Property Name="daAllowance" Type="Int32" />
+    <Property Name="conveyance" Type="Int32" />
+    <Property Name="medicalAllowance" Type="Int32" />
+    <Property Name="others" Type="Int32" />
+    <Property Name="netSalary" Type="Int32" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sale">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="soNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="customerIdx" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="taxAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="WithHoldingTax" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="SindhTax" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="netAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Paid" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="Balance" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="isPaid" Type="Int32" Nullable="false" />
+    <Property Name="discount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="paidDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="paymentStatus" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="paymentModeIdx" Type="Int32" />
+    <Property Name="bankIdx" Type="Int32" />
+    <Property Name="chequeNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="salesDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="salesDetail">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="salesIdx" Type="Int32" />
+    <Property Name="serviceIdx" Type="Int32" />
+    <Property Name="serviceCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="serviceRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="serviceDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="serviceQty" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="subAmount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="unitPrice" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="serviceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="serviceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="unitIdx" Type="Int32" />
+    <Property Name="serviceCost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="station">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="isActive" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityType Name="transactionType">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Int32" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cellNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="designationIdx" Type="Int32" />
+    <Property Name="departmentIdx" Type="Int32" />
+    <Property Name="loginId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Int32" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="isActive" Type="Int32" Nullable="false" />
+    <Property Name="visible" Type="Int32" Nullable="false" />
+    <Property Name="passCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PascodeYNID" Type="Int32" />
+    <Property Name="Is_Admin" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="vendor">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vendorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="vendorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contactPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vendorAccountType" Type="Int32" />
+    <Property Name="accountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="emailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="strn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ntn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+    <Property Name="openingBalance" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Url">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="creationDate" Type="DateTime" Precision="3" />
+    <Property Name="createdByUserIdx" Type="Int32" />
+    <Property Name="lastModificationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastModifiedByUserIdx" Type="Int32" />
+    <Property Name="visible" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="RAJPUT_RICE_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="accountGJs" EntityType="Self.accountGJ" />
+    <EntitySet Name="accountMasterGLs" EntityType="Self.accountMasterGL" />
+    <EntitySet Name="advanceSalaries" EntityType="Self.advanceSalary" />
+    <EntitySet Name="banks" EntityType="Self.bank" />
+    <EntitySet Name="branches" EntityType="Self.branch" />
+    <EntitySet Name="ChartofAccountsChildHeads" EntityType="Self.ChartofAccountsChildHead" />
+    <EntitySet Name="ChartofAccountsHeads" EntityType="Self.ChartofAccountsHead" />
+    <EntitySet Name="ChartofAccountsSubHeads" EntityType="Self.ChartofAccountsSubHead" />
+    <EntitySet Name="COAs" EntityType="Self.COA" />
+    <EntitySet Name="companies" EntityType="Self.company" />
+    <EntitySet Name="companyBanks" EntityType="Self.companyBank" />
+    <EntitySet Name="consumptions" EntityType="Self.consumption" />
+    <EntitySet Name="contracts" EntityType="Self.contract" />
+    <EntitySet Name="ContractTypes" EntityType="Self.ContractType" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="departments" EntityType="Self.department" />
+    <EntitySet Name="designations" EntityType="Self.designation" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="employeeTypes" EntityType="Self.employeeType" />
+    <EntitySet Name="genders" EntityType="Self.gender" />
+    <EntitySet Name="inventories" EntityType="Self.inventory" />
+    <EntitySet Name="InventoryDetails" EntityType="Self.InventoryDetail" />
+    <EntitySet Name="itemUnits" EntityType="Self.itemUnit" />
+    <EntitySet Name="loans" EntityType="Self.loan" />
+    <EntitySet Name="loanInstallments" EntityType="Self.loanInstallment" />
+    <EntitySet Name="maritalStatus" EntityType="Self.maritalStatu" />
+    <EntitySet Name="Months" EntityType="Self.Month" />
+    <EntitySet Name="paymentModes" EntityType="Self.paymentMode" />
+    <EntitySet Name="payrolls" EntityType="Self.payroll" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="productTypes" EntityType="Self.productType" />
+    <EntitySet Name="pruchaseDetails" EntityType="Self.pruchaseDetail" />
+    <EntitySet Name="purchases" EntityType="Self.purchase" />
+    <EntitySet Name="PurchaseTypes" EntityType="Self.PurchaseType" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="salaries" EntityType="Self.salary" />
+    <EntitySet Name="sales" EntityType="Self.sale" />
+    <EntitySet Name="salesDetails" EntityType="Self.salesDetail" />
+    <EntitySet Name="services" EntityType="Self.service" />
+    <EntitySet Name="stations" EntityType="Self.station" />
+    <EntitySet Name="transactionTypes" EntityType="Self.transactionType" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="vendors" EntityType="Self.vendor" />
+    <EntitySet Name="Urls" EntityType="Self.Url" />
+    <EntitySet Name="inventory_logs" EntityType="RAJPUT_RICE_DBModel.inventory_logs" />
+    <EntitySet Name="planners" EntityType="RAJPUT_RICE_DBModel.planner" />
+    <FunctionImport Name="Sp_Daily_PurchaseReport" ReturnType="Collection(RAJPUT_RICE_DBModel.Sp_Daily_PurchaseReport_Result)">
+      <Parameter Name="reportID" Mode="In" Type="Int32" />
+      <Parameter Name="from" Mode="In" Type="String" />
+      <Parameter Name="TO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_Daily_SaleReport" ReturnType="Collection(RAJPUT_RICE_DBModel.Sp_Daily_SaleReport_Result)">
+      <Parameter Name="reportID" Mode="In" Type="Int32" />
+      <Parameter Name="from" Mode="In" Type="String" />
+      <Parameter Name="TO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_Customer_Report" ReturnType="Collection(RAJPUT_RICE_DBModel.Sp_Customer_Report_Result)">
+      <Parameter Name="from" Mode="In" Type="String" />
+      <Parameter Name="TO" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="TblGatePasses" EntityType="RAJPUT_RICE_DBModel.TblGatePass" />
+  </EntityContainer>
+  <EntityType Name="inventory_logs">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productIdx" Type="Int32" />
+    <Property Name="stock" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="productTypeIdx" Type="Int32" />
+    <Property Name="unitPrice" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="totalAmount" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionTypeID" Type="Int32" />
+    <Property Name="MasterID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="planner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TO_DO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TO_DO_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="Sp_Daily_PurchaseReport_Result">
+    <Property Type="Int32" Name="idx" Nullable="false" />
+    <Property Type="String" Name="poNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="vendorIdx" Nullable="true" />
+    <Property Type="Int32" Name="purchaseTypeIdx" Nullable="true" />
+    <Property Type="String" Name="purchaseDate" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" />
+    <Property Type="Decimal" Name="totalAmount" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="netAmount" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="String" Name="paidAmount" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="balanceAmount" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="paymentModeIdx" Nullable="true" />
+    <Property Type="Int32" Name="bankIdx" Nullable="true" />
+    <Property Type="String" Name="accorChequeNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="paidDate" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="creationDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="createdByUserIdx" Nullable="true" />
+    <Property Type="String" Name="lastModificationDate" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="lastModifiedByUserIdx" Nullable="true" />
+    <Property Type="Int32" Name="visible" Nullable="true" />
+    <Property Type="Int32" Name="paymentStatus" Nullable="true" />
+    <Property Type="String" Name="status" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="isPaid" Nullable="false" />
+    <Property Type="Decimal" Name="discount" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="tax" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="taxAount" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="purchaseduedate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="vendorName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_Daily_SaleReport_Result">
+    <Property Type="Int32" Name="idx" Nullable="false" />
+    <Property Type="String" Name="soNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="customerIdx" Nullable="true" />
+    <Property Type="String" Name="description" Nullable="true" />
+    <Property Type="Decimal" Name="totalAmount" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="taxAmount" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="WithHoldingTax" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="SindhTax" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="netAmount" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Decimal" Name="Paid" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="String" Name="Balance" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="isPaid" Nullable="false" />
+    <Property Type="Decimal" Name="discount" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="String" Name="paidDate" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="creationDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="createdByUserIdx" Nullable="true" />
+    <Property Type="String" Name="lastModificationDate" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="lastModifiedByUserIdx" Nullable="true" />
+    <Property Type="Int32" Name="visible" Nullable="true" />
+    <Property Type="Int32" Name="paymentStatus" Nullable="true" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="paymentModeIdx" Nullable="true" />
+    <Property Type="Int32" Name="bankIdx" Nullable="true" />
+    <Property Type="String" Name="chequeNumber" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="salesDate" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="customerName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_Customer_Report_Result">
+    <Property Type="String" Name="customerName" Nullable="true" />
+    <Property Type="String" Name="Transaction_Type" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="User" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="createDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="paidAmount" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="balance" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <EntityType Name="TblGatePass">
+    <Key>
+      <PropertyRef Name="idx" />
+    </Key>
+    <Property Name="idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="saleID" Type="Int32" Nullable="false" />
+    <Property Name="drivername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="numberplate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="createddate" Type="DateTime" Precision="3" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+</Schema>

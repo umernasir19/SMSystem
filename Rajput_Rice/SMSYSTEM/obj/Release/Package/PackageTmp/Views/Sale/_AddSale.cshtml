@@ -1,0 +1,443 @@
+﻿
+@model HrProperty.Models.SalesVm
+@{
+    Layout = null;
+}
+<div class="card-body">
+    <form role="form" id="formadddemptype">
+        @Html.HiddenFor(model => model.idx, new { id = "natureOfVisitField", value = 0 })
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Customer*:</label>
+                    @Html.DropDownListFor(model => model.customerIdx, new SelectList(Model.CustomerLST, "idx", "customerName"), "Select Customer", new { @Class = "form-control font-weight-bold" })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.customerIdx, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Invoice Number*:</label>
+                    @Html.EditorFor(model => model.soNumber, new { htmlAttributes = new { @placeholder = "SI Number*:", @class = "form-control ", @readonly = true } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.soNumber, "", new { @class = "text-danger," })
+            </div>
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Sales Date*:</label>
+                    @Html.EditorFor(model => model.salesDate, new { htmlAttributes = new { @placeholder = "Sales Date*:", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.salesDate, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <hr />
+        <div class="row" id="PurchaseDetails">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Sales Details</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label for="inputName">Item Name</label>
+                                            @Html.DropDownListFor(model => model.itemIdx, new SelectList(Model.ProductList, "idx", "itemName"), "Select Product", new { @Class = "form-control font-weight-bold" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">Stock in Inventory Qty</label>
+                                            <input type="text" class="form-control" readonly="readonly" id="invntrystock" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">Qty</label>
+                                            @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @placeholder = "Qty", @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">Unit Price</label>
+                                            @Html.EditorFor(model => model.unitPrice, new { htmlAttributes = new { @placeholder = "Unit Price", @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">Total Price</label>
+                                            @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @placeholder = "Total Price", @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+                                    @*<div class="col-sm-2">
+                                            <div class="form-group">
+                                                <label for="inputProjectLeader">Due Date</label>
+                                                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @placeholder = "Unit Price", @class = "form-control" } })
+                                            </div>
+                                        </div>*@
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label for="inputProjectLeader">.</label>
+                                            <input type="button" class="btn btn-primary form-control" value="Add Item" id="btnaddtogrid" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="display:none; overflow:scroll" id="milestones">
+                            <div class="col-md-12">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Product List</h3>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="example2" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product Name</th>
+                                                    <th>Qty</th>
+                                                    <th>Sale Price</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="inputName">Description</label>
+                                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @placeholder = "Description", @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="inputProjectLeader">Total Price</label>
+                                @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @placeholder = "Total Price", @class = "form-control", @readonly = true } })
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="inputProjectLeader">Paid Amount</label>
+                                @Html.EditorFor(model => model.Paid, new { htmlAttributes = new { @placeholder = "Paid Amount", @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="inputProjectLeader">Balance Amount</label>
+                                @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @placeholder = "Balance Amount", @class = "form-control", @readonly = true } })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" id="pymntmodeslction" style="display:none;">
+                        <div class="col-sm-3">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Payment Mode*:</label>
+                                @Html.DropDownListFor(model => model.paymentModeIdx, new SelectList(Model.paymentModesLST, "idx", "paymentMode"), "Select Payment Mode", new { @Class = "form-control font-weight-bold" })
+                                @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                            </div>
+                            @Html.ValidationMessageFor(model => model.paymentModeIdx, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            @*mmmm*@
+            <div class="row" id="pymode" style="display:none;">
+
+
+                <div class="col-sm-3 bnkddl">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Bank*:</label>
+                        @Html.DropDownListFor(model => model.bankIdx, new SelectList(ViewBag.bnklst, "bankIdx", "bankName"), "Select Bank", new { @Class = "form-control font-weight-bold" })
+                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.bankIdx, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 acctxtbox">
+                    <div class="form-group">
+                        <label for="inputProjectLeader">ACC/Cheque#</label>
+                        @Html.EditorFor(model => model.chequeNumber, new { htmlAttributes = new { @placeholder = "Enter Cheque Number", @class = "form-control" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.chequeNumber, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-3 bnkpaiddate">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Cheque Date*:</label>
+                        @Html.EditorFor(model => model.paidDate, new { htmlAttributes = new { @placeholder = "Enter Cheque Number", @class = "form-control" } })
+                        @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                    </div>
+                    @Html.ValidationMessageFor(model => model.paidDate, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    // Add To grid
+    $("#paymentModeIdx").on('change', function () {
+        var paymentModeIdx = $('#paymentModeIdx').val();
+        if (paymentModeIdx == "1") {
+            //$('#chequemode').css('display', 'none');
+            //$('#BankMode').css('display', 'none');
+            //cash
+            $("#pymode").show();
+            $('.bnkddl').hide();
+            $('.acctxtbox').hide();
+            $('.bnkpaiddate').hide();
+
+        }
+        if (paymentModeIdx == "2") {
+            //cheque
+            $("#pymode").show();
+            $('.bnkddl').show();
+            $('.acctxtbox').show();
+            $('.bnkpaiddate').show();
+        }
+        if (paymentModeIdx == "3") {
+            //bank
+            $("#pymode").show();
+            $('.bnkddl').show();
+            $('.acctxtbox').show();
+            $('.bnkpaiddate').hide();
+        }
+        if (paymentModeIdx == '') {
+            $("#pymode").hide();
+            $('.bnkddl').hide();
+            $('.acctxtbox').hide();
+            $('.bnkpaiddate').hide();
+        }
+
+    });
+    //Add Project Button Event start
+    $("#qty").keyup(function () {
+        var qtyval = $(this).val();
+        var unitpriceval = $("#unitPrice").val();
+        var totalamount = qtyval * unitpriceval;
+
+        $("#amount").val(totalamount);
+    });
+    $("#unitPrice").keyup(function () {
+        var unitpriceval = $(this).val();
+        var qtyval = $("#qty").val();
+        var totalamount = qtyval * unitpriceval;
+        $("#amount").val(totalamount);
+    });
+
+    $("#Paid").keyup(function () {
+        var PaidAmount = $(this).val();
+        if (PaidAmount == null || PaidAmount == "") {
+            PaidAmount = 0.00;
+            balanceAmount = 0.00;
+        }
+        var totalAmount = $("#totalAmount").val();
+        var balanceAmount = $("#Balance").val();
+        if (balanceAmount == null || balanceAmount == "") {
+            balanceAmount = 0.00;
+        }
+        balanceAmount = parseFloat(totalAmount) - parseFloat(PaidAmount)
+        $("#Balance").val(balanceAmount);
+
+        if (PaidAmount <= 0) {
+            // alert("hello");
+            $('#pymntmodeslction').hide();
+            $('#pymode').hide();
+            $('#paymentModeIdx').val('');
+            //$('#pymnmode').hide();
+            // $('#bnkpddt').hide();
+        }
+        if (PaidAmount > 0) {
+            // alert("hello");
+            $('#pymntmodeslction').show();
+        }
+    });
+    $("#tax").keyup(function () {
+        var labourcost = $(this).val();
+        var transportcost = $("#taxAount").val();
+        var totalamount = $("#totalAmount").val();
+        var netamount = parseFloat(labourcost) + parseFloat(totalamount) + parseFloat(transportcost);
+
+        $("#totalAmount").val(netamount);
+    });
+    $("#taxAount").keyup(function () {
+        var transportcost = $(this).val();
+        var labourcost = $("#tax").val();
+        var totalamount = $("#totalAmount").val();
+        var netamount = parseFloat(transportcost) + parseFloat(totalamount) + parseFloat(labourcost);
+
+        $("#totalAmount").val(netamount);
+    });
+    $("#btnaddtogrid").click(function (e) {
+        if (!(gridValidation($("#itemIdx option:selected").val()))) {
+            // alert("Product Alreaty Exist")
+            displayerror();
+            return;
+        }
+
+
+       // alert("hello");
+        $('#milestones').show();
+        var closebutton = '<button type="button" class="close" style="float:left" id="deleterow" aria-label="Close">' +
+                         '<span aria-hidden="true" styel="color:red">&times;</span>' +
+                          '</button>'
+        var productname = $("#itemIdx option:selected").text();
+        var ProductID = $("#itemIdx option:selected").val();
+        var Qty = $("#qty").val();
+        var unitprice = $("#unitPrice").val();
+        var totalamount = $("#amount").val();
+
+        var markup = "<tr><td style='display:none;'>" + ProductID + "</td><td>" + productname + "</td><td>" + Qty + "</td><td>" + unitprice + "</td><td>" + totalamount + "</td><td>" + closebutton + "</td></tr>";
+        //if (milestone == "") {
+        //    alert("Enter milestone");
+        //    return;
+        //} else {
+
+        $("#example2 tbody").append(markup);
+        var tamount = 0;
+        //var labourcost = $("#tax").val();
+        //var transportcost = $("#taxAount").val();
+        var tamount =parseFloat( $("#totalAmount").val());
+        tamount = parseFloat(tamount) + parseFloat(totalamount);//+ parseFloat(labourcost) + parseFloat(transportcost);
+        $("#totalAmount").val(tamount);
+        // }
+        //$("#example1").dataTable();
+    });
+
+
+
+    function SomeDeleteRowFunction(o) {
+        //alert(id);
+        var p = o.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+        $(this).closest('tr').remove();
+
+    };
+
+    function gridValidation(Id) {
+        errmsg = [];
+        var myTab = $("#example2 tbody");
+        var rtrn = true;
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        myTab.find('tr').each(function (i) {
+            var $tds = $(this).find('td'),
+                productid = $tds.eq(0).text();
+
+            if (Id == productid) {
+                rtrn = false;
+                errmsg.push("Product Already exist");
+            }
+        })
+        if ($('#itemIdx option:selected').val() == '') {
+            rtrn = false;
+            errmsg.push("Select Product");
+        }
+        if ($('#qty').val() <= 0) {
+            rtrn = false;
+            errmsg.push("Qty value is zero");
+        }
+        if ($('#unitPrice').val() <= 0) {
+            rtrn = false;
+            errmsg.push("unit value is zero");
+        }
+        if ($('#DueDate').val() < 0) {
+            rtrn = false;
+            errmsg.push("unit value is zero");
+        }
+        if ($('#qty').val() > $('#invntrystock').val()) {
+            rtrn = false;
+            errmsg.push("Qty value is greater than availble stock");
+        }
+        //if ($('#DueDate').val() < 0) {
+        //    rtrn = false;
+        //    errmsg.push("unit value is zero");
+        //}
+        return rtrn;
+    }
+
+    function displayerror() {
+        for (var i = 0; i < errmsg.length; i++) {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["error"](errmsg[i], "")
+        }
+    }
+
+
+    $("#itemIdx").on('change', function () {
+        //alert("gg");
+        var itemIdx = $('#itemIdx').val();
+        checkstockininventoty(itemIdx);
+        //if (checkstockininventoty(itemIdx)) {
+
+        //}
+        //else {
+        //    alert("Product Quantity Is zero innventory Stock");
+        //    $('#itemIdx').val('');
+        //}
+
+    });
+    function checkstockininventoty(id) {
+        $.post("/Sale/CheckInvStock?id=" + id, function (data) {
+            console.log(data.data.stock);
+            $('#invntrystock').val(data.data.stock);
+        });
+    }
+</script>

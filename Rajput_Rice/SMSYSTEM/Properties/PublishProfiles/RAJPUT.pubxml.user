@@ -1,0 +1,1855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\Visual Studio Projects\MangoTechProjects\UpdatedProjectByArsalan\PUBLISHED</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/HrProperty.dll">
+      <publishTime>11/07/2020 03:46:55</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/SMSYSTEM.dll">
+      <publishTime>11/07/2020 03:46:59</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/css/adminlte.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/css/adminlte.css.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/css/adminlte.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/css/adminlte.min.css.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/874ed823-7074-4d1f-a3ad-6a8167d1e199.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/AdminLTELogo.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/avatar.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/avatar04.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/avatar2.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/avatar3.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/avatar5.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/boxed-bg.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/boxed-bg.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/admin-module.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/american-express.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/attendance.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/cirrus.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/hr-module.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/mastercard.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/mestro.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/paypal.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/paypal2.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/payroll-module.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/project-module.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/credit/visa.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/default-150x150.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/edgehr.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/HrLOGO.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/icons.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/photo1.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/photo2.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/photo3.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/photo4.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/prod-1.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/prod-2.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/prod-3.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/prod-4.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/prod-5.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user1-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user2-160x160.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user3-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user4-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user5-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user6-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user7-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/img/user8-128x128.jpg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/adminlte.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/adminlte.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/adminlte.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/adminlte.min.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/demo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/jquery.validate.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/jquery.validate.unobtrusive.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/pages/dashboard.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/pages/dashboard2.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="dist/js/pages/dashboard3.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.bundle.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.bundle.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.bundle.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.bundle.min.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/bootstrap/js/bootstrap.min.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/chart.js/Chart.bundle.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/chart.js/Chart.bundle.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/chart.js/Chart.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/chart.js/Chart.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/chart.js/Chart.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/chart.js/Chart.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/datatables-bs4/js/dataTables.bootstrap4.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/datatables/jquery.dataTables.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/datatables/jquery.dataTables.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/bower.json">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/daterangepicker.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/daterangepicker.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/demo.html">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/drp.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/amd/index.html">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/amd/main.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/amd/require.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/browserify/bundle.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/browserify/index.html">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/browserify/main.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/example/browserify/README.md">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/index.html">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/moment.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/package.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/package.json">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/README.md">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/website.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/website.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/website/index.html">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/website/website.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/daterangepicker/website/website.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/DTFilesForExcel/buttons.html5.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/DTFilesForExcel/datatablebuttons.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/DTFilesForExcel/dataTables.buttons.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/DTFilesForExcel/jszip.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/DTFilesForExcel/pdfmake.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/DTFilesForExcel/vfs_fonts.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/all.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/all.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/brands.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/brands.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/fontawesome.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/fontawesome.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/regular.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/regular.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/solid.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/solid.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/svg-with-js.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/svg-with-js.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/v4-shims.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/css/v4-shims.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-brands-400.eot">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-brands-400.svg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-brands-400.ttf">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-brands-400.woff">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-brands-400.woff2">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-regular-400.eot">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-regular-400.svg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-regular-400.ttf">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-regular-400.woff">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-regular-400.woff2">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-solid-900.eot">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-solid-900.svg">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-solid-900.ttf">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-solid-900.woff">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/fontawesome-free/webfonts/fa-solid-900.woff2">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/icheck-bootstrap/icheck-bootstrap.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/icheck-bootstrap/LICENSE">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/icheck-bootstrap/package.json">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/icheck-bootstrap/README.md">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-knob/jquery.knob.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/AUTHORS.txt">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/external/jquery/jquery.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/images/ui-icons_444444_256x240.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/images/ui-icons_555555_256x240.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/images/ui-icons_777620_256x240.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/images/ui-icons_777777_256x240.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/images/ui-icons_cc0000_256x240.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/images/ui-icons_ffffff_256x240.png">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/index.html">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.structure.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.structure.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.theme.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/jquery-ui.theme.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/LICENSE.txt">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/package.json">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery-ui/README.md">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/core.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/jquery.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/jquery.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/jquery.min.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/jquery.slim.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/jquery.slim.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jquery/jquery.slim.min.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/jquery.vmap.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/jquery.vmap.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/jqvmap.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/jqvmap.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/continents/jquery.vmap.africa.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/continents/jquery.vmap.asia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/continents/jquery.vmap.australia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/continents/jquery.vmap.europe.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/continents/jquery.vmap.north-america.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/continents/jquery.vmap.south-america.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.algeria.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.argentina.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.brazil.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.canada.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.croatia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.europe.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.france.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.germany.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.greece.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.indonesia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.iran.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.iraq.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.new_regions_france.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.russia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.serbia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.tunisia.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.turkey.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.ukraine.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.usa.counties.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.usa.districts.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.usa.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/jqvmap/maps/jquery.vmap.world.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/af.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar-dz.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar-kw.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar-ly.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar-ma.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar-sa.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar-tn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ar.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/az.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/be.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/bg.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/bm.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/bn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/bo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/br.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/bs.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ca.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/cs.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/cv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/cy.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/da.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/de-at.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/de-ch.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/de.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/dv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/el.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-au.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-ca.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-gb.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-ie.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-il.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-nz.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/en-SG.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/eo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/es-do.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/es-us.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/es.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/et.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/eu.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fa.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fr-ca.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fr-ch.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/fy.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ga.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/gd.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/gl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/gom-latn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/gu.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/he.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/hi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/hr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/hu.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/hy-am.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/id.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/is.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/it-ch.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/it.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ja.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/jv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ka.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/kk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/km.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/kn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ko.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ku.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ky.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/lb.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/lo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/lt.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/lv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/me.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/mi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/mk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ml.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/mn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/mr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ms-my.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ms.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/mt.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/my.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/nb.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ne.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/nl-be.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/nl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/nn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/pa-in.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/pl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/pt-br.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/pt.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ro.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ru.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sd.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/se.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/si.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sq.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sr-cyrl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ss.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/sw.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ta.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/te.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tet.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tg.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/th.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tl-ph.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tlh.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tzl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tzm-latn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/tzm.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ug-cn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/uk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/ur.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/uz-latn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/uz.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/vi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/x-pseudo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/yo.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/zh-cn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/zh-hk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locale/zh-tw.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locales.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/locales.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/moment-with-locales.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/moment-with-locales.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/moment/moment.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/overlayScrollbars/css/OverlayScrollbars.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/overlayScrollbars/js/jquery.overlayScrollbars.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/overlayScrollbars/js/OverlayScrollbars.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/overlayScrollbars/js/OverlayScrollbars.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2-bootstrap4-theme/select2-bootstrap4.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/css/select2.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/css/select2.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/af.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ar.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/az.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/bg.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/bn.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/bs.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/build.txt">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ca.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/cs.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/da.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/de.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/dsb.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/el.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/en.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/es.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/et.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/eu.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/fa.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/fi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/fr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/gl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/he.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/hi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/hr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/hsb.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/hu.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/hy.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/id.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/is.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/it.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ja.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ka.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/km.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ko.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/lt.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/lv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/mk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ms.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/nb.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ne.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/nl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/pl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ps.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/pt-BR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/pt.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ro.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/ru.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/sk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/sl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/sq.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/sr-Cyrl.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/sr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/sv.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/th.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/tk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/tr.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/uk.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/vi.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/zh-CN.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/i18n/zh-TW.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/select2.full.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/select2.full.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/select2.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/select2/js/select2.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sparklines/sparkline.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/font/summernote.eot">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/font/summernote.ttf">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/font/summernote.woff">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ar-AR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ar-AR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-bg-BG.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-bg-BG.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ca-ES.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ca-ES.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-cs-CZ.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-cs-CZ.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-da-DK.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-da-DK.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-de-DE.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-de-DE.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-el-GR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-el-GR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-es-ES.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-es-ES.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-es-EU.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-es-EU.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-fa-IR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-fa-IR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-fi-FI.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-fi-FI.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-fr-FR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-fr-FR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-gl-ES.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-gl-ES.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-he-IL.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-he-IL.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-hr-HR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-hr-HR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-hu-HU.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-hu-HU.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-id-ID.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-id-ID.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-it-IT.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-it-IT.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ja-JP.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ja-JP.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ko-KR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ko-KR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-lt-LT.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-lt-LT.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-lt-LV.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-lt-LV.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-mn-MN.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-mn-MN.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-nb-NO.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-nb-NO.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-nl-NL.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-nl-NL.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-pl-PL.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-pl-PL.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-pt-BR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-pt-BR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-pt-PT.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-pt-PT.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ro-RO.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ro-RO.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ru-RU.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ru-RU.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sk-SK.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sk-SK.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sl-SI.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sl-SI.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sr-RS-Latin.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sr-RS-Latin.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sr-RS.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sr-RS.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sv-SE.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-sv-SE.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ta-IN.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-ta-IN.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-th-TH.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-th-TH.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-tr-TR.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-tr-TR.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-uk-UA.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-uk-UA.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-uz-UZ.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-uz-UZ.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-vi-VN.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-vi-VN.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-zh-CN.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-zh-CN.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-zh-TW.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/lang/summernote-zh-TW.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-bs4.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-bs4.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-bs4.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-bs4.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-lite.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-lite.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-lite.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote-lite.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/summernote/summernote.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.scss">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2-theme-bootstrap-4/package.json">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2-theme-bootstrap-4/README.md">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2/sweetalert2.all.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2/sweetalert2.all.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2/sweetalert2.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2/sweetalert2.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2/sweetalert2.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/sweetalert2/sweetalert2.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/toastr/toastr.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/toastr/toastr.js.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/toastr/toastr.min.css">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="plugins/toastr/toastr.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="RajputDBModel.edmx.diagram">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/bootstrap.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.10.2.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.10.2.min.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.10.2.min.map">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="scripts/modernizr-2.6.2.js">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>11/05/2020 17:22:45</publishTime>
+    </File>
+    <File Include="Views/Account/NotAuthorized.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/CompanyBank/ViewCompanyBanks.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/CompanyBank/_AddNewCompanyBank.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Customer/ViewAllCustomers.cshtml">
+      <publishTime>11/05/2020 17:36:39</publishTime>
+    </File>
+    <File Include="Views/Customer/_AddNewCustomer.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Dashboard.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Finance/ExpenseVouchers.cshtml">
+      <publishTime>11/07/2020 03:43:51</publishTime>
+    </File>
+    <File Include="Views/Finance/ViewAllVouchers.cshtml">
+      <publishTime>11/07/2020 03:42:05</publishTime>
+    </File>
+    <File Include="Views/GatePass/GatePass.cshtml">
+      <publishTime>11/07/2020 01:34:04</publishTime>
+    </File>
+    <File Include="Views/GatePass/ViewGatePass.cshtml">
+      <publishTime>11/06/2020 23:27:51</publishTime>
+    </File>
+    <File Include="Views/GatePass/_AddGatePass.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Payment/ViewPayments.cshtml">
+      <publishTime>11/05/2020 17:39:01</publishTime>
+    </File>
+    <File Include="Views/Planner/ViewPlanner.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Planner/_AddNewPlanner.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Product/ViewProducts.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Product/ViewProductType.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Product/_AddNewProduct.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Product/_AddNewProductType.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Purchase/PrintInvoice.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Purchase/PurchaseReturn.cshtml">
+      <publishTime>11/05/2020 17:40:01</publishTime>
+    </File>
+    <File Include="Views/Purchase/ViewPurchase.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Purchase/_AddPurchase.cshtml">
+      <publishTime>11/07/2020 02:46:25</publishTime>
+    </File>
+    <File Include="Views/Receipt/ViewReceipts.cshtml">
+      <publishTime>11/05/2020 17:43:08</publishTime>
+    </File>
+    <File Include="Views/Reports/DailyReports.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Reports/Index.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Sale/SalesReturn.cshtml">
+      <publishTime>11/05/2020 17:41:55</publishTime>
+    </File>
+    <File Include="Views/Sale/ViewSale.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Sale/_AddSale.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_Header.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>11/05/2020 17:21:39</publishTime>
+    </File>
+    <File Include="Views/Shared/_SideBar.cshtml">
+      <publishTime>11/07/2020 03:44:50</publishTime>
+    </File>
+    <File Include="Views/User/SystemUsers.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/User/_AddSystemUsers.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/Vendor/ViewVendors.cshtml">
+      <publishTime>11/05/2020 17:38:01</publishTime>
+    </File>
+    <File Include="Views/Vendor/_AddNewVendor.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>11/04/2020 14:18:00</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/07/2020 03:47:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

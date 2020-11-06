@@ -1,0 +1,4 @@
+E:\Visual Studio Projects\MangoTechProjects\UpdatedProjectByArsalan\Rajput_Rice\HrProperty\bin\Release\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\UpdatedProjectByArsalan\Rajput_Rice\HrProperty\bin\Release\HrProperty.pdb
+E:\Visual Studio Projects\MangoTechProjects\UpdatedProjectByArsalan\Rajput_Rice\HrProperty\obj\Release\HrProperty.dll
+E:\Visual Studio Projects\MangoTechProjects\UpdatedProjectByArsalan\Rajput_Rice\HrProperty\obj\Release\HrProperty.pdb
