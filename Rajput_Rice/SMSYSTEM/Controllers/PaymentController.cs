@@ -134,14 +134,14 @@ namespace SMSYSTEM.Controllers
                         //decimal purchasetotalamt = Convert.ToDecimal(Convert.ToDecimal(purchasemstr.totalAmount) - totalamount);
                         if (totalamount > 0)
                         {
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} ,balance={1},DueDate={2} WHERE idxx = {3} ", 1, totalamount, objpayment.NextDueDate, objpayment.AccountId);
-                           DBClass.db.Database.ExecuteSqlCommand("UPDATE purchase SET balanceAmount={0} WHERE poNumber = {1} ", purchaseblnceamt, previousam[0].invoiceNoIdx);
+                            DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0} ,balance={1},DueDate={2},paidAmount={3} WHERE idxx = {4} ", 1, totalamount, objpayment.NextDueDate, (objpayment.PaidAmount + previousam[0].paidAmount), objpayment.AccountId);
+                           DBClass.db.Database.ExecuteSqlCommand("UPDATE purchase SET balanceAmount={0} ,paidAmount={1} WHERE poNumber = {2} ", purchaseblnceamt, (Convert.ToDecimal(objpayment.PaidAmount) + Convert.ToDecimal(purchasemstr.paidAmount)), previousam[0].invoiceNoIdx);
 
                         }
                         else
                         {
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0},balance={1} WHERE idxx = {2}", 0, 0,objpayment.AccountId);
-                            DBClass.db.Database.ExecuteSqlCommand("UPDATE purchase SET balanceAmount={0} WHERE poNumber = {1} ", purchaseblnceamt, previousam[0].invoiceNoIdx);
+                            DBClass.db.Database.ExecuteSqlCommand("UPDATE accountMasterGL SET isCredit = {0},balance={1},,paidAmount={2} WHERE idxx = {3}", 0, 0, (objpayment.PaidAmount + previousam[0].paidAmount), objpayment.AccountId);
+                            DBClass.db.Database.ExecuteSqlCommand("UPDATE purchase SET balanceAmount={0},paidAmount={1} WHERE poNumber = {2} ", purchaseblnceamt, (Convert.ToDecimal(objpayment.PaidAmount) + Convert.ToDecimal(purchasemstr.paidAmount)), previousam[0].invoiceNoIdx);
                         }
 
 

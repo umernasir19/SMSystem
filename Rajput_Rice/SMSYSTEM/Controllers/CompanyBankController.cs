@@ -56,6 +56,20 @@ namespace SMSYSTEM.Controllers
                 if (id != null && id > 0)
                 {
                     ViewBag.bklist = DBClass.db.banks.ToList();
+                    objBankvm = DBClass.db.companyBanks.Where(p => p.idx == id).Select(p=> new CompanyBankVM {
+                        idx=p.idx,
+                        bankIdx=p.bankIdx,
+                        accountNumber=p.accountNumber,
+                        Branch=p.Branch,
+                        accountTitle=p.accountTitle
+
+                    }).FirstOrDefault();
+
+                    objBankvm.Banklst = DBClass.db.banks.ToList().Select(p => new Bank_Property
+                    {
+                        bankName = p.bankName,
+                        idx = p.idx
+                    }).ToList();
                 }
                 else
                 {
