@@ -47,7 +47,7 @@ new { @Class = "form-control font-weight-bold" })
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Date From*:</label>
-                                    @Html.EditorFor(model => model.From, new { htmlAttributes = new { @placeholder = "Last Institue Name", @class = "form-control"} })
+                                    @Html.EditorFor(model => model.From, new { htmlAttributes = new { @placeholder = "Date From", @class = "form-control"} })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
                                 @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
@@ -56,7 +56,7 @@ new { @Class = "form-control font-weight-bold" })
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Date To*:</label>
-                                    @Html.EditorFor(model => model.To, new { htmlAttributes = new { @placeholder = "Last Institue Name", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.To, new { htmlAttributes = new { @placeholder = "Date To", @class = "form-control" } })
                                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                                 </div>
                                 @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })

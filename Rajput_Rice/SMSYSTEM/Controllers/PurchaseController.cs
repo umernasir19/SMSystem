@@ -91,15 +91,15 @@ namespace SMSYSTEM.Controllers
                 //    bankName = p.bankName
                 //}).ToList();
 
-                objPrchseVM.BankList=(from e in DBClass.db.companyBanks
-                 join d in DBClass.db.banks on e.bankIdx equals d.idx
-                 select new Bank_Property
-                 {
-                     idx = e.idx,
-                     bankName = d.bankName
+                objPrchseVM.BankList = (from e in DBClass.db.companyBanks
+                                        join d in DBClass.db.banks on e.bankIdx equals d.idx
+                                        select new Bank_Property
+                                        {
+                                            idx = e.idx,
+                                            bankName = d.bankName
 
 
-                 }).ToList();
+                                        }).ToList();
 
 
                 int lastPOid = Convert.ToInt16(DBClass.db.purchases.OrderByDescending(x => x.idx).Select(x => x.idx).FirstOrDefault().ToString()) + 1;
@@ -307,7 +307,7 @@ namespace SMSYSTEM.Controllers
                             objaccountmaster.debit = timeline[i].qty * timeline[i].unitPrice;//Should be total Amount
                             objaccountmaster.credit = timeline[i].qty * timeline[i].unitPrice;
                             objaccountmaster.ItemId = timeline[i].itemIdx;
-                            
+
                             objaccountmaster.paymentModeIdx = timeline[i].paymentModeIdx;
                             objaccountmaster.bankIdx = timeline[i].bankIdx;
                             objaccountmaster.chequeNumber = timeline[i].accorChequeNumber;
@@ -327,7 +327,7 @@ namespace SMSYSTEM.Controllers
                                 objaccountmaster.paidAmount = Convert.ToDecimal(timeline[0].paidAmount);
                                 //objaccountmaster.paidAmount = Convert.ToDecimal(timeline[i].qty * timeline[i].unitPrice);
                             }
-                            
+
 
 
                             objaccountmaster.DueDate = timeline[i].DueDate;
@@ -405,7 +405,7 @@ namespace SMSYSTEM.Controllers
                             #endregion
 
 
-                            
+
 
 
 
@@ -432,7 +432,7 @@ namespace SMSYSTEM.Controllers
                             db.accountMasterGLs.Add(objaccountmaster);
                             db.SaveChanges();
                             //account master entries done
-                           int acountmsid = objaccountmaster.idxx;
+                            int acountmsid = objaccountmaster.idxx;
 
                             accountGJ objacountgj = new accountGJ();
                             objacountgj.tranTypeIdx = 4;
@@ -488,7 +488,7 @@ namespace SMSYSTEM.Controllers
                             db.accountMasterGLs.Add(objaccountmaster);
                             db.SaveChanges();
                             //account master entries done
-                           int acountmsid = objaccountmaster.idxx;
+                            int acountmsid = objaccountmaster.idxx;
 
                             accountGJ objacountgj = new accountGJ();
                             objacountgj.tranTypeIdx = 4;
@@ -1051,45 +1051,118 @@ namespace SMSYSTEM.Controllers
                         db.Database.ExecuteSqlCommand("update inventory set stock={0},unitPrice={1},totalAmount={2} where idx={3}", newstock, newunitprice, newstock * newunitprice, invntrymstr.idx);
                         if (returnamount == acountmaster.balance)
                         {
-                            db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},isCredit={1},debit={2},credit={3} where idxx={4}", 0, 0,acountmaster.debit,acountmaster.credit,acountmaster.idxx);
-                            db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", (Convert.ToDecimal(purcahsemster.paidAmount) + returnamount), (Convert.ToDecimal(purcahsemster.balanceAmount) - returnamount),1 ,purcahsemster.idx);
+                            db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},isCredit={1},debit={2},credit={3} where idxx={4}", 0, 0, acountmaster.debit, acountmaster.credit, acountmaster.idxx);
+
+                            decimal dueAmount = Convert.ToDecimal(returnamount - acountmaster.balance);
+                            decimal purchasepreviousblnce = Convert.ToDecimal(purcahsemster.balanceAmount);
+                            decimal purchasepreviousPaidAmount = decimal.Parse(purcahsemster.paidAmount);
+                            decimal pBalanceAmount, purpaidamnt = 0;
+                            decimal returnDue;
+                            int isPaid = 0;
+                            if (returnamount < purchasepreviousblnce)
+                            {
+
+                                returnDue = purchasepreviousblnce - returnamount;
+                               // purpaidamnt = purchasepreviousPaidAmount - returnDue;//paid Amount To be Updated
+                                pBalanceAmount = returnDue; //balance to be updated in purchase
+                                isPaid = 0;
+                                db.Database.ExecuteSqlCommand("update purchase set balanceAmount={0},isPaid={1} where idx={2}",  pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
+                            if (purchasepreviousblnce == returnamount)
+                            {
+                                returnDue = purchasepreviousblnce - returnamount;
+                                //purpaidamnt = returnDue;
+                                pBalanceAmount = 0;
+                                isPaid = 1;
+                                db.Database.ExecuteSqlCommand("update purchase set balanceAmount={0},isPaid={1} where idx={2}", pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
+                            if (returnamount > purchasepreviousblnce)
+                            {
+                                returnDue = returnamount - purchasepreviousblnce;
+                                pBalanceAmount = 0.00m;//balance amount to be updated
+                                purpaidamnt = purchasepreviousPaidAmount - returnDue;//decrese paid amount as the return is much getter than balance
+                                isPaid = 1;
+                                db.Database.ExecuteSqlCommand("update purchase set paidAmount{0},balanceAmount={1},isPaid={2} where idx={3}", purpaidamnt,pBalanceAmount, isPaid, 1, purcahsemster.idx);
+                            }
+                            //db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", (Convert.ToDecimal(purcahsemster.paidAmount) + returnamount), (Convert.ToDecimal(purcahsemster.balanceAmount) - returnamount), 1, purcahsemster.idx);
 
 
                         }
                         else if (returnamount < acountmaster.balance)
                         {
-
-
-                            db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},paidAmount={1},credit={2},debit={3} where idxx={4}", ( acountmaster.balance - returnamount), (acountmaster.paidAmount + returnamount), acountmaster.debit, acountmaster.credit, acountmaster.idxx);
+                            decimal dueAmount = Convert.ToDecimal(returnamount - acountmaster.balance);
+                            decimal purchasepreviousblnce = Convert.ToDecimal(purcahsemster.balanceAmount);
+                            decimal purchasepreviousPaidAmount = decimal.Parse(purcahsemster.paidAmount);
+                            decimal pBalanceAmount, purpaidamnt = 0;
+                            decimal returnDue;
+                            int isPaid = 0;
+                            if (purchasepreviousblnce > returnamount)
+                            {
+                                db.Database.ExecuteSqlCommand("update accountMasterGL set balance={0},paidAmount={1},credit={2},debit={3} where idxx={4}", (acountmaster.balance - returnamount), (acountmaster.paidAmount + returnamount), acountmaster.debit, acountmaster.credit, acountmaster.idxx);
+                                returnDue = returnamount - purchasepreviousblnce;
+                                purpaidamnt = purchasepreviousPaidAmount - returnDue;//paid Amount To be Updated
+                                pBalanceAmount = 0.00m; //balance to be updated in purchase
+                                isPaid = 1;
+                                db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", purpaidamnt, pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
+                            if (purchasepreviousblnce == returnamount)
+                            {
+                                returnDue = purchasepreviousblnce - returnamount;
+                                purpaidamnt = returnDue;
+                                pBalanceAmount = 0;
+                                isPaid = 1;
+                                db.Database.ExecuteSqlCommand("update purchase set balanceAmount={0},isPaid={1} where idx={2}", pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
+                            if (purchasepreviousblnce < returnamount)
+                            {
+                                returnDue = purchasepreviousblnce - returnamount;
+                                pBalanceAmount = returnDue;//balance amount to be updated
+                                isPaid = 0;
+                                db.Database.ExecuteSqlCommand("update purchase set balanceAmount={0},isPaid={1} where idx={2}", pBalanceAmount, isPaid, 1, purcahsemster.idx);
+                            }
+                            
                             // db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1} where idx={2}", (acountmaster.paidAmount + returnamount), (acountmaster.balance - returnamount), purcahsemster.idx);
-                            db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", (Convert.ToDecimal(purcahsemster.paidAmount) + returnamount), (Convert.ToDecimal(purcahsemster.balanceAmount) - returnamount), 1, purcahsemster.idx);
+                            //db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", (Convert.ToDecimal(purcahsemster.paidAmount) + returnamount), (Convert.ToDecimal(purcahsemster.balanceAmount) - returnamount), 1, purcahsemster.idx);
 
                         }
                         else if (returnamount > acountmaster.balance)
                         {
-                            decimal dueAmount =Convert.ToDecimal( returnamount - acountmaster.balance);
-                            decimal purchasepreviousblnce =Convert.ToDecimal( purcahsemster.balanceAmount);
-                            decimal pbalance = 0.00m;
-                            decimal pdueamnt,purpaidamnt= 0;
+                           
+                            decimal dueAmount = Convert.ToDecimal(returnamount - acountmaster.balance);
+                            decimal purchasepreviousblnce = Convert.ToDecimal(purcahsemster.balanceAmount);
+                            decimal purchasepreviousPaidAmount = decimal.Parse(purcahsemster.paidAmount);
+                            decimal pBalanceAmount, purpaidamnt = 0;
+                            decimal returnDue;
+                            int isPaid = 0;
 
-                            if (purchasepreviousblnce > returnamount)
-                            {
-                                pbalance = 0.00m;
-                                pdueamnt = purchasepreviousblnce - returnamount;
-                            }
-                            if (purchasepreviousblnce == returnamount) {
-                                pbalance = 0.00m;
-                                pdueamnt = 0.00m;
-                            }
-                            if (purchasepreviousblnce < returnamount) {
-                                pdueamnt =   returnamount- purchasepreviousblnce;
-                                pbalance = 0;
-                                purpaidamnt = Convert.ToDecimal(purcahsemster.paidAmount) - pdueamnt;
-                            }
                             //db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={4}, debit={0},credit={1},balance={2} where idxx={3}", (acountmaster.balance - returnamount), (acountmaster.idxx), (returnamount - acountmaster.balance));
                             db.Database.ExecuteSqlCommand("update accountMasterGL set paidAmount={0},balance={1},credit={2},debit={3} where idxx={4}", (acountmaster.paidAmount - dueAmount), 0, acountmaster.debit, acountmaster.credit, (acountmaster.idxx));
 
-                            db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", purpaidamnt, pbalance, 1, purcahsemster.idx);
+                            if (purchasepreviousblnce > returnamount)
+                            {
+
+                                returnDue = returnamount - purchasepreviousblnce;
+                                //purpaidamnt = purchasepreviousPaidAmount - returnDue;//paid Amount To be Updated
+                                pBalanceAmount = returnDue; //balance to be updated in purchase
+                                isPaid = 0;
+                                db.Database.ExecuteSqlCommand("update purchase set balanceAmount={0},isPaid={1} where idx={2}",  pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
+                            if (purchasepreviousblnce == returnamount)
+                            {
+                                returnDue = purchasepreviousblnce - returnamount;
+                                purpaidamnt = returnDue;
+                                pBalanceAmount = 0;
+                                isPaid = 1;
+                                db.Database.ExecuteSqlCommand("update purchase set balanceAmount={0},isPaid={1} where idx={2}", pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
+                            if (purchasepreviousblnce < returnamount)
+                            {
+                                returnDue = returnamount-purchasepreviousblnce;
+                                pBalanceAmount = 0;//balance amount to be updated
+                                purpaidamnt = purchasepreviousPaidAmount - returnDue;
+                                isPaid = 1;
+                                db.Database.ExecuteSqlCommand("update purchase set paidAmount={0},balanceAmount={1},isPaid={2} where idx={3}", purpaidamnt,pBalanceAmount, isPaid, purcahsemster.idx);
+                            }
 
 
                         }
@@ -1127,11 +1200,11 @@ namespace SMSYSTEM.Controllers
                         txn.Complete();
                     }
                 }
-                return Json(new { success = true, statuscode = 200,msg="Updated", url = "/Purchase/PurchaseReturn" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, statuscode = 200, msg = "Updated", url = "/Purchase/PurchaseReturn" }, JsonRequestBehavior.AllowGet);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return Json(new { success = false, statuscode = 400,msg=ex.Message, url = "/Purchase/PurchaseReturn" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, statuscode = 400, msg = ex.Message, url = "/Purchase/PurchaseReturn" }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion
@@ -1154,11 +1227,11 @@ namespace SMSYSTEM.Controllers
                                       Prodctname = D.itemName,
                                       Qty = B.qty,
                                       rate = B.unitPrice,
-                                      subtotal=B.qty*B.unitPrice
+                                      subtotal = B.qty * B.unitPrice
 
 
                                   }).ToList();
-                                  
+
 
             return View();
         }

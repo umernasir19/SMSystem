@@ -785,6 +785,14 @@
       <Parameter Name="TO" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="TblGatePasses" EntityType="RAJPUT_RICE_DBModel.TblGatePass" />
+    <FunctionImport Name="getRevenuesForIncomeStatementReport" ReturnType="Collection(RAJPUT_RICE_DBModel.getRevenuesForIncomeStatementReport_Result)">
+      <Parameter Name="dtStart" Mode="In" Type="String" />
+      <Parameter Name="dtEnd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getSalesDiscountForIncomeStatementReport" ReturnType="Collection(RAJPUT_RICE_DBModel.getSalesDiscountForIncomeStatementReport_Result)">
+      <Parameter Name="dtStart" Mode="In" Type="String" />
+      <Parameter Name="dtEnd" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="inventory_logs">
     <Key>
@@ -888,4 +896,18 @@
     <Property Name="userid" Type="Int32" />
     <Property Name="status" Type="Boolean" />
   </EntityType>
+  <ComplexType Name="getRevenuesForIncomeStatementReport_Result">
+    <Property Type="String" Name="TYPED" Nullable="false" MaxLength="7" />
+    <Property Type="Decimal" Name="REVAMOUNT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="EXPAMOUNT" Nullable="false" />
+    <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getSalesDiscountForIncomeStatementReport_Result">
+    <Property Type="String" Name="TYPED" Nullable="false" MaxLength="7" />
+    <Property Type="Int32" Name="Revenue" Nullable="false" />
+    <Property Type="Decimal" Name="SALESDISCOUNTEXPENSE" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+  </ComplexType>
 </Schema>

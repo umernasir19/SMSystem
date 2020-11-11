@@ -767,6 +767,14 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
           <Property Name="visible" Type="int" />
           <Property Name="openingBalance" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
+        <Function Name="getRevenuesForIncomeStatementReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dtStart" Type="varchar" Mode="In" />
+          <Parameter Name="dtEnd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getSalesDiscountForIncomeStatementReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dtStart" Type="varchar" Mode="In" />
+          <Parameter Name="dtEnd" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Sp_Customer_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="from" Type="nvarchar" Mode="In" />
           <Parameter Name="TO" Type="nvarchar" Mode="In" />
@@ -1630,6 +1638,14 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
             <Parameter Name="TO" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="TblGatePasses" EntityType="RAJPUT_RICE_DBModel.TblGatePass" />
+          <FunctionImport Name="getRevenuesForIncomeStatementReport" ReturnType="Collection(RAJPUT_RICE_DBModel.getRevenuesForIncomeStatementReport_Result)">
+            <Parameter Name="dtStart" Mode="In" Type="String" />
+            <Parameter Name="dtEnd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getSalesDiscountForIncomeStatementReport" ReturnType="Collection(RAJPUT_RICE_DBModel.getSalesDiscountForIncomeStatementReport_Result)">
+            <Parameter Name="dtStart" Mode="In" Type="String" />
+            <Parameter Name="dtEnd" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="inventory_logs">
           <Key>
@@ -1733,6 +1749,20 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <Property Name="userid" Type="Int32" />
           <Property Name="status" Type="Boolean" />
         </EntityType>
+        <ComplexType Name="getRevenuesForIncomeStatementReport_Result">
+          <Property Type="String" Name="TYPED" Nullable="false" MaxLength="7" />
+          <Property Type="Decimal" Name="REVAMOUNT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="EXPAMOUNT" Nullable="false" />
+          <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getSalesDiscountForIncomeStatementReport_Result">
+          <Property Type="String" Name="TYPED" Nullable="false" MaxLength="7" />
+          <Property Type="Int32" Name="Revenue" Nullable="false" />
+          <Property Type="Decimal" Name="SALESDISCOUNTEXPENSE" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2623,6 +2653,28 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getRevenuesForIncomeStatementReport" FunctionName="RAJPUT_RICE_DBModel.Store.getRevenuesForIncomeStatementReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getRevenuesForIncomeStatementReport_Result">
+                <ScalarProperty Name="TYPED" ColumnName="TYPED" />
+                <ScalarProperty Name="REVAMOUNT" ColumnName="REVAMOUNT" />
+                <ScalarProperty Name="EXPAMOUNT" ColumnName="EXPAMOUNT" />
+                <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
+                <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getSalesDiscountForIncomeStatementReport" FunctionName="RAJPUT_RICE_DBModel.Store.getSalesDiscountForIncomeStatementReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getSalesDiscountForIncomeStatementReport_Result">
+                <ScalarProperty Name="TYPED" ColumnName="TYPED" />
+                <ScalarProperty Name="Revenue" ColumnName="Revenue" />
+                <ScalarProperty Name="SALESDISCOUNTEXPENSE" ColumnName="SALESDISCOUNTEXPENSE" />
+                <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
+                <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

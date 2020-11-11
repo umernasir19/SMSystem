@@ -138,7 +138,7 @@
                     { data: 'accountNumber' },
                     { data: 'branch' },
                     {
-                        "data": "idx",
+                        "data": "ID",
                         "render": function (ID, type, full, meta) {
 
                             return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a> <a href="#" class="btn btn-danger" onclick="ConfirmDelete(' + ID + ')"><i class="fa fa-trash"></i></a>'
@@ -155,8 +155,15 @@
         }
         function ShowEmployee(CustomerID) {
 
-            var url = "/Employee/ShowEmployee?Id=" + CustomerID;
-            window.location.href = url;
+            var url = "/CompanyBank/AddNewCompanyBank?Id=" + CustomerID;
+            //window.location.href = url;
+
+            $("#modelbody").load(url, function (e) {
+
+
+
+            });
+            $("#modal-default").modal("show");
             //$("#modelbody").load(url, function (e) {
             //    var id = $('#Customer_Id').val();
             //    if (id > 0) {

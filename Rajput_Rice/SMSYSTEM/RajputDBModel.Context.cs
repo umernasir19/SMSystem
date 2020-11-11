@@ -191,6 +191,40 @@ public partial class RAJPUT_RICE_DBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_Customer_Report_Result>("Sp_Customer_Report", fromParameter, tOParameter);
     }
 
+
+    public virtual ObjectResult<getRevenuesForIncomeStatementReport_Result> getRevenuesForIncomeStatementReport(string dtStart, string dtEnd)
+    {
+
+        var dtStartParameter = dtStart != null ?
+            new ObjectParameter("dtStart", dtStart) :
+            new ObjectParameter("dtStart", typeof(string));
+
+
+        var dtEndParameter = dtEnd != null ?
+            new ObjectParameter("dtEnd", dtEnd) :
+            new ObjectParameter("dtEnd", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRevenuesForIncomeStatementReport_Result>("getRevenuesForIncomeStatementReport", dtStartParameter, dtEndParameter);
+    }
+
+
+    public virtual ObjectResult<getSalesDiscountForIncomeStatementReport_Result> getSalesDiscountForIncomeStatementReport(string dtStart, string dtEnd)
+    {
+
+        var dtStartParameter = dtStart != null ?
+            new ObjectParameter("dtStart", dtStart) :
+            new ObjectParameter("dtStart", typeof(string));
+
+
+        var dtEndParameter = dtEnd != null ?
+            new ObjectParameter("dtEnd", dtEnd) :
+            new ObjectParameter("dtEnd", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSalesDiscountForIncomeStatementReport_Result>("getSalesDiscountForIncomeStatementReport", dtStartParameter, dtEndParameter);
+    }
+
 }
 
 }

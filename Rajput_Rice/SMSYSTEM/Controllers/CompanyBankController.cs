@@ -32,7 +32,12 @@ namespace SMSYSTEM.Controllers
                     var companybank = from s in DBClass.db.companyBanks
                                       join sa in DBClass.db.banks on s.bankIdx equals sa.idx
                                       where s.visible == "1"
-                                      select new { bankName = sa.bankName, accountTitle = s.accountTitle, accountNumber = s.accountNumber, branch = s.Branch };
+                                      select new {
+                                          ID=s.idx,
+                                          bankName = sa.bankName,
+                                          accountTitle = s.accountTitle,
+                                          accountNumber = s.accountNumber,
+                                          branch = s.Branch };
                     var companyBanks = DBClass.db.Database.ExecuteSqlCommand(@"select cb.*,bk.bankName from companyBank cb inner join bank bk on bk.idx=cb.bankIdx where cb.visible=1");
                     return Json(new { data = companybank, success = true, statuscode = 200 }, JsonRequestBehavior.AllowGet);
                 }
@@ -113,18 +118,39 @@ namespace SMSYSTEM.Controllers
                         //}
                         //else
                         //{
-                        companyBank objCompanyBank = new companyBank()
+                        companyBank objCompanyBank;
+                        if (objCompanyBankVM.idx > 0)
                         {
-                            bankIdx = objCompanyBankVM.bankIdx,
-                            accountTitle = objCompanyBankVM.accountTitle,
-                            Branch = objCompanyBankVM.Branch,
-                            accountNumber = objCompanyBankVM.accountNumber,
-                            creationDate = DateTime.Now,
-                            createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString()),
-                            visible = "1"
-                        };
-                        DBClass.db.companyBanks.Add(objCompanyBank);
-                        DBClass.db.SaveChanges();
+                            objCompanyBank = new companyBank()
+                            {
+                                idx = objCompanyBankVM.idx,
+                                bankIdx = objCompanyBankVM.bankIdx,
+                                accountTitle = objCompanyBankVM.accountTitle,
+                                Branch = objCompanyBankVM.Branch,
+                                accountNumber = objCompanyBankVM.accountNumber,
+                                creationDate = DateTime.Now,
+                                createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString()),
+                                visible = "1"
+                            };
+                        }
+                        else
+                        {
+                             objCompanyBank = new companyBank()
+                            {
+                                bankIdx = objCompanyBankVM.bankIdx,
+                                accountTitle = objCompanyBankVM.accountTitle,
+                                Branch = objCompanyBankVM.Branch,
+                                accountNumber = objCompanyBankVM.accountNumber,
+                                creationDate = DateTime.Now,
+                                createdByUserIdx = Convert.ToInt32(Session["Useridx"].ToString()),
+                                visible = "1"
+                            };
+                        }
+                        using (var db = new RAJPUT_RICE_DBEntities())
+                        {
+                            db.companyBanks.Add(objCompanyBank);
+                           db.SaveChanges();
+                        }
                         return Json(new { success = true, statuscode = 200, msg = "Added Successfully", url = "/CompanyBank/ViewCompanyBanks" }, JsonRequestBehavior.AllowGet);
 
                         //                        }
