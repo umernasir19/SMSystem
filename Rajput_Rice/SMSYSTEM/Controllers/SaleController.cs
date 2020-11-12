@@ -611,7 +611,7 @@ namespace SMSYSTEM.Controllers
                 var tempResults =  db.Database.SqlQuery<tempResult>(@"select sd.idx as dtlid,inv.stock as inventorystock,pr.idx as productid,pr.itemName as productname,sd.unitPrice as inventoryunitprice,sd.serviceRate as salesRate,sd.salesIdx as saleId,(sd.serviceRate * (select ABS(SUM(stock)) from inventory_logs where MasterID=sd.salesIdx and (TransactionTypeID=2 or TransactionTypeID=17) and productIdx=pr.idx )) as saleTotalAmount,(select ABS(SUM(stock)) from inventory_logs where MasterID=sd.salesIdx and (TransactionTypeID=2 or TransactionTypeID=17) and productIdx=pr.idx ) as saleQty from salesDetails sd
 inner join inventory inv on sd.serviceIdx=inv.productIdx
 inner join products pr on pr.idx = inv.productIdx
-where inv.stock>0 and sd.salesIdx=" + salesMasterId + "").ToList();
+where sd.salesIdx=" + salesMasterId + "").ToList();
 
 
 

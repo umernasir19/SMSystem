@@ -1751,15 +1751,15 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
         </EntityType>
         <ComplexType Name="getRevenuesForIncomeStatementReport_Result">
           <Property Type="String" Name="TYPED" Nullable="false" MaxLength="7" />
-          <Property Type="Decimal" Name="REVAMOUNT" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Int32" Name="EXPAMOUNT" Nullable="false" />
+          <Property Type="Decimal" Name="REVAMOUNT" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="ContraRevenue" Nullable="true" Precision="38" Scale="2" />
           <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="getSalesDiscountForIncomeStatementReport_Result">
           <Property Type="String" Name="TYPED" Nullable="false" MaxLength="7" />
-          <Property Type="Int32" Name="Revenue" Nullable="false" />
-          <Property Type="Decimal" Name="SALESDISCOUNTEXPENSE" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="REVAMOUNT" Nullable="false" />
+          <Property Type="Decimal" Name="EXPENSEAMOUNT" Nullable="false" Precision="38" Scale="2" />
           <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
         </ComplexType>
@@ -2658,7 +2658,7 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
               <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getRevenuesForIncomeStatementReport_Result">
                 <ScalarProperty Name="TYPED" ColumnName="TYPED" />
                 <ScalarProperty Name="REVAMOUNT" ColumnName="REVAMOUNT" />
-                <ScalarProperty Name="EXPAMOUNT" ColumnName="EXPAMOUNT" />
+                <ScalarProperty Name="ContraRevenue" ColumnName="ContraRevenue" />
                 <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
                 <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
               </ComplexTypeMapping>
@@ -2668,8 +2668,8 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
             <ResultMapping>
               <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getSalesDiscountForIncomeStatementReport_Result">
                 <ScalarProperty Name="TYPED" ColumnName="TYPED" />
-                <ScalarProperty Name="Revenue" ColumnName="Revenue" />
-                <ScalarProperty Name="SALESDISCOUNTEXPENSE" ColumnName="SALESDISCOUNTEXPENSE" />
+                <ScalarProperty Name="REVAMOUNT" ColumnName="REVAMOUNT" />
+                <ScalarProperty Name="EXPENSEAMOUNT" ColumnName="EXPENSEAMOUNT" />
                 <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
                 <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
               </ComplexTypeMapping>

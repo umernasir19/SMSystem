@@ -19,9 +19,9 @@ public partial class getSalesDiscountForIncomeStatementReport_Result
 
     public string TYPED { get; set; }
 
-    public int Revenue { get; set; }
+    public int REVAMOUNT { get; set; }
 
-    public decimal SALESDISCOUNTEXPENSE { get; set; }
+    public decimal EXPENSEAMOUNT { get; set; }
 
     public string childHeadName { get; set; }
 

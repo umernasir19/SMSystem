@@ -110,10 +110,10 @@ namespace SMSYSTEM.Controllers
                     try
                     {
                         //Checking Database 
-                        //var producttype = DBClass.db.productTypes.Where(p => p.productType1 == objCompanyBanktype.productType).FirstOrDefault();
+                        //var producttype = dbclass.db.producttypes.where(p => p.producttype1 == objcompanybanktype.producttype).firstordefault();
                         //if (producttype != null)
                         //{
-                        //    return Json(new { success = true, statuscode = 409, msg = "ProductType Already Exist", url = "#" }, JsonRequestBehavior.AllowGet);
+                        //    return json(new { success = true, statuscode = 409, msg = "producttype already exist", url = "#" }, jsonrequestbehavior.allowget);
 
                         //}
                         //else

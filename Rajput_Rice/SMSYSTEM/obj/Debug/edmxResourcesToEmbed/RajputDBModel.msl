@@ -890,7 +890,7 @@
         <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getRevenuesForIncomeStatementReport_Result">
           <ScalarProperty Name="TYPED" ColumnName="TYPED" />
           <ScalarProperty Name="REVAMOUNT" ColumnName="REVAMOUNT" />
-          <ScalarProperty Name="EXPAMOUNT" ColumnName="EXPAMOUNT" />
+          <ScalarProperty Name="ContraRevenue" ColumnName="ContraRevenue" />
           <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
           <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
         </ComplexTypeMapping>
@@ -900,8 +900,8 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getSalesDiscountForIncomeStatementReport_Result">
           <ScalarProperty Name="TYPED" ColumnName="TYPED" />
-          <ScalarProperty Name="Revenue" ColumnName="Revenue" />
-          <ScalarProperty Name="SALESDISCOUNTEXPENSE" ColumnName="SALESDISCOUNTEXPENSE" />
+          <ScalarProperty Name="REVAMOUNT" ColumnName="REVAMOUNT" />
+          <ScalarProperty Name="EXPENSEAMOUNT" ColumnName="EXPENSEAMOUNT" />
           <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
           <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
         </ComplexTypeMapping>

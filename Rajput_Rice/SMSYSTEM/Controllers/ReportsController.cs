@@ -89,7 +89,7 @@ namespace SMSYSTEM.Controllers
                     var RevenueData = db.getRevenuesForIncomeStatementReport(from, TO).ToList();
 
                     var SalesDis = db.getSalesDiscountForIncomeStatementReport(from, TO).ToList();
-                    return Json(new { RevenueData = RevenueData, SalesDis= SalesDis, TotalEx = SalesDis.Sum(g => g.Revenue), TotalRv=RevenueData.Sum(g=>g.REVAMOUNT) }, JsonRequestBehavior.AllowGet);
+                    return Json(new { RevenueData = RevenueData, SalesDis= SalesDis, TotalEx = SalesDis.Sum(g => g.EXPENSEAMOUNT), TotalRv=RevenueData.Sum(g=>g.REVAMOUNT) }, JsonRequestBehavior.AllowGet);
                     
 
                 }

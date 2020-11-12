@@ -19,9 +19,9 @@ public partial class getRevenuesForIncomeStatementReport_Result
 
     public string TYPED { get; set; }
 
-    public Nullable<decimal> REVAMOUNT { get; set; }
+    public decimal REVAMOUNT { get; set; }
 
-    public int EXPAMOUNT { get; set; }
+    public Nullable<decimal> ContraRevenue { get; set; }
 
     public string childHeadName { get; set; }
 

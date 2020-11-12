@@ -67,7 +67,7 @@
 
                                     <th>Revenue</th>
                                     <th>Expense</th>
-                                    <th>Profit</th>                                    
+                                    <th>Net Profit/Net Loss</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -203,7 +203,7 @@
                         };
 
                         var total = api
-                 .column(1)
+                 .column(2)
                  .data()
                  .reduce(function (a, b) {
                      return intVal(a) + intVal(b);
@@ -214,7 +214,7 @@
                             var column = this;
                             $(footer).append('<th>Total</th>');
                         });
-                        this.api().columns(1).every(function () {
+                        this.api().columns(2).every(function () {
                             var column = this;
                             $(footer).append('<th>' + total + '</th>');
                         });
@@ -319,7 +319,7 @@
         function bindDatatableIS(res) {
             $('#tr').text(res.TotalRv)
             $('#te').text(res.TotalEx)
-            $('#trr').text(res.TotalEx-res.TotalRv)
+            $('#trr').text(res.TotalRv - res.TotalEx)
         }
 
         function capitalizeFirstLetter(string) {
