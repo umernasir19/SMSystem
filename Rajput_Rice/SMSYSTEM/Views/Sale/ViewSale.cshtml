@@ -145,8 +145,8 @@
                     {
                         "data": "idx",
                         "render": function (ID, type, full, meta) {
-
-                            return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a> <a href="#" class="btn btn-danger" onclick="ConfirmDelete(' + ID + ')"><i class="fa fa-trash"></i></a>'
+                            return '<a href="#" class="btn btn-info" onclick="PrintInvoice('+"'" + ID +"'"+ ')"><i class="fas fa-file-invoice"></i></a>'
+        //                    return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a> <a href="#" class="btn btn-danger" onclick="ConfirmDelete(' + ID + ')"><i class="fa fa-trash"></i></a>'
 
                         },
                         "orderable": true,
@@ -234,7 +234,18 @@
             })
 
         }
+        function PrintInvoice(CustomerID) {
 
+            var url = "/sale/PrintInvoice?Id=" + CustomerID;
+            window.location.href = url;
+            //$("#modelbody").load(url, function (e) {
+            //    var id = $('#Customer_Id').val();
+            //    if (id > 0) {
+            //        $('#btnaddnewcustomer').html("update ");
+            //    }
+            //    $("#modal-default").modal("show");
+            //});
+        }
 
 
 

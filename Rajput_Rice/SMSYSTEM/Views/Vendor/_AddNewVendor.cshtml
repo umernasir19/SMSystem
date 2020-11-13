@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <label>contact PersonName*:</label>
                     @Html.EditorFor(model => model.contactPersonName, new { htmlAttributes = new { @placeholder = "contact Person Name", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                   
                 </div>
                 @Html.ValidationMessageFor(model => model.contactPersonName, "", new { @class = "text-danger" })
             </div>
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label>openingBalance:</label>
                     @Html.EditorFor(model => model.openingBalance, new { htmlAttributes = new { @placeholder = "openingBalance", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+               
                 </div>
                 @Html.ValidationMessageFor(model => model.openingBalance, "", new { @class = "text-danger" })
             </div>
@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label>Account No*:</label>
                     @Html.EditorFor(model => model.accountNo, new { htmlAttributes = new { @placeholder = "Account", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                  
                 </div>
                 @Html.ValidationMessageFor(model => model.accountNo, "", new { @class = "text-danger" })
             </div>

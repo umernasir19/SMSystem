@@ -193,7 +193,7 @@
                 if (result.value) {
                     $.ajax({
                         type: 'GET',
-                        url: '/Employee/DeleteEmployee?id=' + CustomerID,
+                        url: '/CompanyBank/DeleteCompanyBank?id=' + CustomerID,
                         dataType: 'JSON',
                         success: function (res) {
                             if (res.success) {
@@ -202,7 +202,7 @@
                                     'Blocked',
                                     'success'
                                     )
-                                window.location.href = "/Employee/ViewEmployee"
+                                window.location.href = "/CompanyBank/ViewCompanyBanks"
                             }
                             else {
                                 swalWithBootstrapButtons.fire(

@@ -70,12 +70,12 @@ namespace SMSYSTEM.Controllers
             {
                 PurchaseVM objPrchseVM = new PurchaseVM();
                 Product_Property objPrdct = new Product_Property();
-                objPrchseVM.VendorLST = DBClass.db.vendors.ToList().Select(p => new Vendor_Property
+                objPrchseVM.VendorLST = DBClass.db.vendors.Where(x => x.visible == 1).ToList().Select(p => new Vendor_Property
                 {
                     idx = p.idx,
                     vendorName = p.vendorName
                 }).ToList();
-                objPrchseVM.ProductList = DBClass.db.products.ToList().Select(p => new Product_Property
+                objPrchseVM.ProductList = DBClass.db.products.Where(x => x.visible == 1).ToList().Select(p => new Product_Property
                 {
                     idx = p.idx,
                     itemName = p.itemName
@@ -93,6 +93,7 @@ namespace SMSYSTEM.Controllers
 
                 objPrchseVM.BankList = (from e in DBClass.db.companyBanks
                                         join d in DBClass.db.banks on e.bankIdx equals d.idx
+                                        where e.visible=="1"
                                         select new Bank_Property
                                         {
                                             idx = e.idx,

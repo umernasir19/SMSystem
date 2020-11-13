@@ -295,7 +295,7 @@
                 if (result.value) {
                     $.ajax({
                         type: 'GET',
-                        url: '/Employee/DeleteEmployee?id=' + CustomerID,
+                        url: '/Product/DeleteProductType?id=' + CustomerID,
                         dataType: 'JSON',
                         success: function (res) {
                             if (res.success) {
@@ -304,7 +304,7 @@
                                     'Blocked',
                                     'success'
                                     )
-                                window.location.href = "/Employee/ViewEmployee"
+                                window.location.href = "/Product/ViewProductType"
                             }
                             else {
                                 swalWithBootstrapButtons.fire(

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HrProperty.Models
 {
-   public class ProductVM
+    public class ProductVM
     {
         public int idx { get; set; }
-        public int productTypeIdx { get; set; }
+        public int? productTypeIdx { get; set; }
         public string itemName { get; set; }
         public string itemCode { get; set; }
-        public int unit { get; set; }
+        public int? unit { get; set; }
         public string description { get; set; }
         public DateTime creationDate { get; set; }
         public int createdByUserIdx { get; set; }

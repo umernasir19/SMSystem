@@ -81,12 +81,12 @@ namespace SMSYSTEM.Controllers
             {
                 SalesVm objSaleVM = new SalesVm();
                 Product_Property objPrdct = new Product_Property();
-                objSaleVM.CustomerLST = DBClass.db.customers.ToList().Select(p => new Customer_Property
+                objSaleVM.CustomerLST = DBClass.db.customers.Where(x=>x.visible==1).ToList().Select(p => new Customer_Property
                 {
                     idx = p.idx,
                     customerName = p.customerName
                 }).ToList();
-                objSaleVM.ProductList = DBClass.db.products.ToList().Select(p => new Product_Property
+                objSaleVM.ProductList = DBClass.db.products.Where(x => x.visible == 1).ToList().Select(p => new Product_Property
                 {
                     idx = p.idx,
                     itemName = p.itemName
@@ -99,6 +99,7 @@ namespace SMSYSTEM.Controllers
 
                 var bnklist = (from e in DBClass.db.companyBanks
                                join d in DBClass.db.banks on e.bankIdx equals d.idx
+                               where e.visible=="1"
                                select new
                                {
                                    bankIdx = e.idx,
@@ -788,7 +789,7 @@ order by gl.createDate asc
                         objgj.userIdx = Convert.ToInt16(Session["Useridx"].ToString());
                         objgj.customerIdx = acountmaster.customerIdx;
                         objgj.createDate = DateTime.Now;
-                        objgj.coaIdx = 79;//SALES RETURN
+                        objgj.coaIdx = 82;//SALES RETURN
                         objgj.credit = 0.00m;
                         objgj.debit = objaccounthead.debit;
                         db.accountGJs.Add(objgj);
@@ -1011,6 +1012,36 @@ order by gl.createDate asc
             }
             return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
+        #region invoice
+        public ActionResult PrintInvoice(string id)
+        {
+            ViewBag.ReportData = (from A in DBClass.db.sales
+                                  join B in DBClass.db.salesDetails on A.idx equals B.salesIdx
+                                  join C in DBClass.db.customers on A.customerIdx equals C.idx
+                                  join D in DBClass.db.products on B.serviceIdx equals D.idx
+                                  where A.soNumber == id
+                                  select new
+                                  {
+                                      Vendor = C.customerName,
+                                      VendorContact = C.contact,
+                                      VAddress = C.address,
+                                      Invoce = A.soNumber,
+                                      Invoicedate = A.creationDate,
+                                      Prodctname = D.itemName,
+                                      Qty = B.serviceQty,
+                                      rate = B.serviceRate,
+                                      subtotal = B.serviceQty * B.serviceRate
+
+
+                                  }).ToList();
+
+
+            return View();
+        }
+
+
         #endregion
     }
 }

@@ -12,6 +12,7 @@ namespace SMSYSTEM.Controllers
     {
 
         // GET: Account
+        // GET: Account
         #region Login
         public ActionResult Login()
         {
@@ -31,7 +32,7 @@ namespace SMSYSTEM.Controllers
                 try
                 {
                     //Checking Database 
-                    var objUser = DBClass.db.Users.Where(p => p.loginId == objuser.loginId && p.password == objuser.password && p.isActive == 1).FirstOrDefault();
+                    var objUser = DBClass.db.Users.Where(p => p.loginId == objuser.loginId && p.password == objuser.password && p.isActive == 1 && p.visible == 1).FirstOrDefault();
                     if (objUser != null)
                     {
                         //If User Found then setting sessions
@@ -48,7 +49,7 @@ namespace SMSYSTEM.Controllers
                         return Json(new { success = true, statuscode = 400, msg = "Login Failed", url = "/Account/Login" }, JsonRequestBehavior.AllowGet);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     //If Exception
                     return Json(new { success = false, statuscode = 400, msg = ex.Message, url = "/Account/Login" }, JsonRequestBehavior.AllowGet);
@@ -57,9 +58,9 @@ namespace SMSYSTEM.Controllers
             }
             else
             {//Validation Failed
-                return Json(new {success=true,statuscode=400,msg="Validation Failed", url = "/Account/Login" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, statuscode = 400, msg = "Validation Failed", url = "/Account/Login" }, JsonRequestBehavior.AllowGet);
             }
-            
+
         }
         #endregion
 

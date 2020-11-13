@@ -163,8 +163,11 @@
         }
         function ShowEmployee(CustomerID) {
 
-            var url = "/Employee/ShowEmployee?Id=" + CustomerID;
-            window.location.href = url;
+            $("#modelbody").load("/Customer/AddNewCustomer?id="+CustomerID, function (e) {
+                $("#modal-default").modal("show");
+
+
+            });
             //$("#modelbody").load(url, function (e) {
             //    var id = $('#Customer_Id').val();
             //    if (id > 0) {
@@ -194,7 +197,7 @@
                 if (result.value) {
                     $.ajax({
                         type: 'GET',
-                        url: '/Employee/DeleteEmployee?id=' + CustomerID,
+                        url: '/Customer/DeleteCustomer?id=' + CustomerID,
                         dataType: 'JSON',
                         success: function (res) {
                             if (res.success) {
@@ -203,7 +206,7 @@
                                     'Blocked',
                                     'success'
                                     )
-                                window.location.href = "/Employee/ViewEmployee"
+                                window.location.href = "/Customer/ViewAllCustomers"
                             }
                             else {
                                 swalWithBootstrapButtons.fire(
