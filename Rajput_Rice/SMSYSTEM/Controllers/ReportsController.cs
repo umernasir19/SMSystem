@@ -102,5 +102,46 @@ namespace SMSYSTEM.Controllers
 
         }
 
+
+        public ActionResult BalanceSheetReport()
+        {
+            if (Session["LoggedIn"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+
+        public JsonResult GetBalanceSheetReports(Report_Manager objrprt)
+        {
+            try
+            {
+                String from = objrprt.From.ToString("yyyy-MM-dd");
+                string TO = objrprt.To.ToString("yyyy-MM-dd");
+                using (var db = new RAJPUT_RICE_DBEntities())
+                {
+                    var Assets = db.getBalanceSheetAssets(objrprt.From, objrprt.To).ToList();
+                    var Liabilties=db.getBalanceSheetLiabilties(objrprt.From, objrprt.To).ToList();
+                    var Capital = db.getBalanceSheetCapitalEquity(objrprt.From, objrprt.To).ToList();
+
+                    var RevenueData = db.getRevenuesForIncomeStatementReport(from, TO).ToList();
+                    var SalesDis = db.getSalesDiscountForIncomeStatementReport(from, TO).ToList();
+                    return Json(new { RevenueData = RevenueData, SalesDis = SalesDis, TotalEx = SalesDis.Sum(g => g.EXPENSEAMOUNT), TotalRv = RevenueData.Sum(g => g.REVAMOUNT) }, JsonRequestBehavior.AllowGet);
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "" }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
     }
 }

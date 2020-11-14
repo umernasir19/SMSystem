@@ -26,7 +26,7 @@ namespace SMSYSTEM.Controllers
         {
             try
             {
-                var data = DBClass.db.planners.ToList();
+                var data = DBClass.db.sp_Planner().ToList();
                 return Json(new { data = data }, JsonRequestBehavior.AllowGet);
 
             }

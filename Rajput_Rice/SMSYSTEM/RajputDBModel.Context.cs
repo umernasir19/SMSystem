@@ -225,6 +225,64 @@ public partial class RAJPUT_RICE_DBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSalesDiscountForIncomeStatementReport_Result>("getSalesDiscountForIncomeStatementReport", dtStartParameter, dtEndParameter);
     }
 
+
+    public virtual ObjectResult<sp_Planner_Result> sp_Planner()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Planner_Result>("sp_Planner");
+    }
+
+
+    public virtual ObjectResult<getBalanceSheetAssets_Result> getBalanceSheetAssets(Nullable<System.DateTime> dtStart, Nullable<System.DateTime> dtEnd)
+    {
+
+        var dtStartParameter = dtStart.HasValue ?
+            new ObjectParameter("dtStart", dtStart) :
+            new ObjectParameter("dtStart", typeof(System.DateTime));
+
+
+        var dtEndParameter = dtEnd.HasValue ?
+            new ObjectParameter("dtEnd", dtEnd) :
+            new ObjectParameter("dtEnd", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBalanceSheetAssets_Result>("getBalanceSheetAssets", dtStartParameter, dtEndParameter);
+    }
+
+
+    public virtual ObjectResult<getBalanceSheetCapitalEquity_Result> getBalanceSheetCapitalEquity(Nullable<System.DateTime> dtStart, Nullable<System.DateTime> dtEnd)
+    {
+
+        var dtStartParameter = dtStart.HasValue ?
+            new ObjectParameter("dtStart", dtStart) :
+            new ObjectParameter("dtStart", typeof(System.DateTime));
+
+
+        var dtEndParameter = dtEnd.HasValue ?
+            new ObjectParameter("dtEnd", dtEnd) :
+            new ObjectParameter("dtEnd", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBalanceSheetCapitalEquity_Result>("getBalanceSheetCapitalEquity", dtStartParameter, dtEndParameter);
+    }
+
+
+    public virtual ObjectResult<getBalanceSheetLiabilties_Result> getBalanceSheetLiabilties(Nullable<System.DateTime> dtStart, Nullable<System.DateTime> dtEnd)
+    {
+
+        var dtStartParameter = dtStart.HasValue ?
+            new ObjectParameter("dtStart", dtStart) :
+            new ObjectParameter("dtStart", typeof(System.DateTime));
+
+
+        var dtEndParameter = dtEnd.HasValue ?
+            new ObjectParameter("dtEnd", dtEnd) :
+            new ObjectParameter("dtEnd", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBalanceSheetLiabilties_Result>("getBalanceSheetLiabilties", dtStartParameter, dtEndParameter);
+    }
+
 }
 
 }

@@ -61,7 +61,7 @@ namespace SMSYSTEM.Controllers
                     var purchases = from s in DBClass.db.sales
                                     join sa in DBClass.db.customers on s.customerIdx equals sa.idx
                                     where s.visible == 1
-                                    select new { soNumber = s.soNumber, customerName = sa.customerName, salesDate = s.salesDate, netAmount = s.netAmount, description = s.description };
+                                    select new { soNumber = s.soNumber, customerName = sa.customerName, salesDate = s.salesDate, netAmount = s.netAmount,idx=s.idx, description = s.description };
                     //var products = DBClass.db.products.ToList();
                     return Json(new { data = purchases, success = true, statuscode = 200 }, JsonRequestBehavior.AllowGet);
                 }
@@ -1017,11 +1017,12 @@ order by gl.createDate asc
         #region invoice
         public ActionResult PrintInvoice(string id)
         {
+            int idx = Convert.ToInt32(id);
             ViewBag.ReportData = (from A in DBClass.db.sales
                                   join B in DBClass.db.salesDetails on A.idx equals B.salesIdx
                                   join C in DBClass.db.customers on A.customerIdx equals C.idx
                                   join D in DBClass.db.products on B.serviceIdx equals D.idx
-                                  where A.soNumber == id
+                                  where A.idx == idx
                                   select new
                                   {
                                       Vendor = C.customerName,
@@ -1037,8 +1038,8 @@ order by gl.createDate asc
 
                                   }).ToList();
 
-
             return View();
+          
         }
 
 

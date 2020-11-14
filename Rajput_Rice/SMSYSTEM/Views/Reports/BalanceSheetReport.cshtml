@@ -1,0 +1,332 @@
+﻿@model HrProperty.Models.Report_Manager
+@{
+    ViewBag.Title = "Income Statement Report";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Daily Reports</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Daily Reports</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <!-- /.card -->
+            <div class="card">
+                <div class="card-header">
+                    <form role="form" id="formadddemptype">
+                        <div class="row">
+
+                            @*  @Html.HiddenFor(model => model.ReportID, new { id = "natureOfVisitField", Value = 4 })*@
+                            <div class="col-sm-4">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Date From*:</label>
+                                    @Html.EditorFor(model => model.From, new { htmlAttributes = new { @placeholder = "Date From", @class = "form-control" } })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Date To*:</label>
+                                    @Html.EditorFor(model => model.To, new { htmlAttributes = new { @placeholder = "Date To", @class = "form-control" } })
+                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </form>
+                    <h3 class="card-title"><button class="btn btn-primary" id="searchpayments">Search Report</button></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <p class="aligncenter">
+                        <img style="display:none;" id="loadergif" src="~/dist/img/25ef280441ad6d3a5ccf89960b4e95eb.gif" />
+                    </p>
+                    <p>REVENUE</p>
+                    <table id="REVENUE" class="table-responsive-md table table-bordered table-striped"></table>
+                    <p>EXPENSE</p>
+                    <table id="EXPENSE" class="table-responsive-md table table-bordered table-striped"></table>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+
+                                <th>Revenue</th>
+                                <th>Expense</th>
+                                <th>Net Profit/Net Loss</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="tr"></td>
+                                <td id="te"></td>
+                                <td id="trr"></td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot align="right">
+
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- ./wrapper -->
+@section MyScripts{
+    <script type="text/javascript">
+        var dataTable;
+        var searchdata;
+        $(document).ready(function () {
+
+        });
+
+        //search buttton
+        $('#searchpayments').click(function (e) {
+            e.preventDefault();
+            var form = $("#formadddemptype");
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $("#loadergif").show();
+                $.ajax({
+                    type: "POST",
+                    url: "/Reports/GetIncomeReport",
+                    data: $(form).serialize(),
+                    //cache : false,
+                    //processData: false,
+                    success: function (res) {
+                        //binDataTable(res);
+                        binDataTableFORExpense(res);
+                        binDataTableRevenue(res);
+                        bindDatatableIS(res);
+                    },
+                    failure: function (res) {
+                        console.log(res);
+                    },
+                    err: function (res) {
+                        console.log(res);
+                    }
+
+                })
+            }
+            else {
+                return false;
+            }
+
+
+
+        });
+        function binDataTableFORExpense(res) {
+            //console.log(res.data)
+            //if ($.fn.DataTable.isDataTable('#example2')) {
+            //    $('#example2').dataTable().fnClearTable();
+            //    $('#example2').dataTable().fnDestroy();
+            //    $('#example2 tbody').empty();
+            //}
+            var data = res.SalesDis;// JSON.parse(res.data);
+            var columnNames;
+            //console.log(data);
+            var columns = [];
+            if (data.length > 0) {
+                if ($.fn.DataTable.isDataTable('#EXPENSE')) {
+                    $('#EXPENSE').dataTable().fnClearTable();
+                    $('#EXPENSE').dataTable().fnDestroy();
+                    $('#EXPENSE tbody').empty();
+                }
+                columnNames = Object.keys(data[0]);
+            }
+            else {
+                alert("No Data Found");
+                //$("#loadergif").hide();
+                // columnNames = ["No Value Found", "No Data Found"];
+            }
+            console.log(columnNames[3].replace(/_/g, " "));
+            for (var i in columnNames) {
+                columns.push({
+                    data: columnNames[i],
+                    title: capitalizeFirstLetter(columnNames[i])
+                });
+            }
+            table = $('#EXPENSE').DataTable(
+
+                {
+
+                    "sScrollX": "200%", //This is what made my columns increase in size.
+                    "bScrollCollapse": true,
+                    "sScrollY": "520px",
+
+                    dom: 'Bfrtip',
+                    buttons: [
+
+                    {
+                        extend: 'excel',
+                        title: 'Query Report',
+                        filename: 'Query Report'
+                    }, {
+                        extend: 'csv',
+                        filename: 'Query Report'
+                    }],
+
+                    data: data,
+                    columns: columns,
+                    bSort: false,
+
+                    fnFooterCallback: function (row, data, start, end, display) {
+                        var api = this.api();
+                        var footer = $(this).append('<tfoot><tr><th>Total</th></tr></tfoot>');
+
+                        var intVal = function (i) {
+                            return typeof i === 'string' ?
+                                i.replace(/[\$,]/g, '') * 1 :
+                                typeof i === 'number' ?
+                                i : 0;
+                        };
+
+                        var total = api
+                 .column(2)
+                 .data()
+                 .reduce(function (a, b) {
+                     return intVal(a) + intVal(b);
+                 }, 0);
+                        console.log(total);
+
+                        this.api().columns(0).every(function () {
+                            var column = this;
+                            $(footer).append('<th>Total</th>');
+                        });
+                        this.api().columns(2).every(function () {
+                            var column = this;
+                            $(footer).append('<th>' + total + '</th>');
+                        });
+                    }
+                });
+            //console.log(keys);
+            $("#loadergif").hide();
+        }
+        function binDataTableRevenue(res) {
+            //console.log(res.data)
+            //if ($.fn.DataTable.isDataTable('#example2')) {
+            //    $('#example2').dataTable().fnClearTable();
+            //    $('#example2').dataTable().fnDestroy();
+            //    $('#example2 tbody').empty();
+            //}
+            var data = res.RevenueData;// JSON.parse(res.data);
+            var columnNames;
+            //console.log(data);
+            var columns = [];
+            if (data.length > 0) {
+                if ($.fn.DataTable.isDataTable('#REVENUE')) {
+                    $('#REVENUE').dataTable().fnClearTable();
+                    $('#REVENUE').dataTable().fnDestroy();
+                    $('#REVENUE tbody').empty();
+                }
+                columnNames = Object.keys(data[0]);
+            }
+            else {
+                alert("No Data Found");
+                //$("#loadergif").hide();
+                // columnNames = ["No Value Found", "No Data Found"];
+            }
+            console.log(columnNames[3].replace(/_/g, " "));
+            for (var i in columnNames) {
+                columns.push({
+                    data: columnNames[i],
+                    title: capitalizeFirstLetter(columnNames[i])
+                });
+            }
+            table = $('#REVENUE').DataTable(
+
+
+
+                {
+
+
+
+                    "sScrollX": "200%", //This is what made my columns increase in size.
+                    "bScrollCollapse": true,
+                    "sScrollY": "520px",
+
+                    dom: 'Bfrtip',
+                    buttons: [
+
+                    {
+                        extend: 'excel',
+                        title: 'Query Report',
+                        filename: 'Query Report'
+                    }, {
+                        extend: 'csv',
+                        filename: 'Query Report'
+                    }],
+
+                    data: data,
+                    columns: columns,
+                    bSort: false,
+
+
+                    fnFooterCallback: function (row, data, start, end, display) {
+                        var api = this.api();
+                        var footer = $(this).append('<tfoot><tr><th>Total</th></tr></tfoot>');
+
+                        var intVal = function (i) {
+                            return typeof i === 'string' ?
+                                i.replace(/[\$,]/g, '') * 1 :
+                                typeof i === 'number' ?
+                                i : 0;
+                        };
+
+                      var total = api
+               .column(1)
+               .data()
+               .reduce(function (a, b) {
+                   return intVal(a) + intVal(b);
+               }, 0);
+                      console.log(total);
+
+                        this.api().columns(0).every(function () {
+                            var column = this;
+                            $(footer).append('<th>Total</th>');
+                        });
+                        this.api().columns(1).every(function () {
+                            var column = this;
+                            $(footer).append('<th>' + total + '</th>');
+                        });
+                    }
+                });
+            //console.log(keys);
+
+            $("#loadergif").hide();
+        }
+        function bindDatatableIS(res) {
+            $('#tr').text(res.TotalRv)
+            $('#te').text(res.TotalEx)
+            $('#trr').text(res.TotalRv - res.TotalEx)
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+
+    </script>
+}
+

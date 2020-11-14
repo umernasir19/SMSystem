@@ -26,18 +26,18 @@
             <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Plan</button></h3>
+                 @*   <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default" id="btnaddnewpopup">Add New Plan</button></h3>*@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Plan</th>
-                                <th>Date To Complete</th>
-                                <th>Date Created</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>Task</th>
+                                <th>Invoice No</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               
                             </tr>
                         </thead>
                     </table>
@@ -114,25 +114,30 @@
             var table = $('#example1').DataTable({
                 data: data.data,// JSON.parse(data.data),
                 columns: [
-                    { data: 'TO_DO' },
-                    { data: 'TO_DO_Date' },
-                    { data: 'DateCreated' },
-                    { data: 'status' },//or { data: 'MONTH', title: 'Month' }`
-
+                    { data: 'Task' },
+                    { data: 'invoiceNoIdx' },
+                    { data: 'Amount' },
+                    //{ data: 'DueDate' },//or { data: 'MONTH', title: 'Month' }`
+                     {
+                         data: 'DueDate',
+                         render: function (data, type, sort) {
+                             return moment(data).format("DD-MM-YYYY");
+                         }
+                     },
                     //{ data: 'accountNo' },
 
-                    {
-                        "data": "ID",
-                        "render": function (ID, type, full, meta) {
+                    //{
+                    //    //"data": "ID",
+                    //    //"render": function (ID, type, full, meta) {
 
-                            return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a> <a href="#" class="btn btn-danger" onclick="ConfirmDelete(' + ID + ')"><i class="fa fa-trash"></i></a>'
+                    //    //    return '<a href="#" class="btn btn-info" onclick="ShowEmployee(' + ID + ')"><i class="fa fa-eye"></i></a> <a href="#" class="btn btn-danger" onclick="ConfirmDelete(' + ID + ')"><i class="fa fa-trash"></i></a>'
 
-                        },
-                        "orderable": true,
-                        "searchable": true,
+                    //    //},
+                    //    "orderable": true,
+                    //    "searchable": true,
 
 
-                    }
+                    //}
                 ]
             });
 

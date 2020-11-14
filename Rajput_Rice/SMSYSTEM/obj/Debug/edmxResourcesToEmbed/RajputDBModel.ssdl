@@ -784,6 +784,7 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
     <Parameter Name="from" Type="nvarchar" Mode="In" />
     <Parameter Name="TO" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_Planner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="RAJPUT_RICE_DBModelStoreContainer">
     <EntitySet Name="accountGJ" EntityType="Self.accountGJ" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="accountMasterGL" EntityType="Self.accountMasterGL" Schema="dbo" store:Type="Tables" />

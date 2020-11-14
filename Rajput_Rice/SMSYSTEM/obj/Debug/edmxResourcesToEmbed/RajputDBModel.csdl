@@ -793,6 +793,7 @@
       <Parameter Name="dtStart" Mode="In" Type="String" />
       <Parameter Name="dtEnd" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_Planner" ReturnType="Collection(RAJPUT_RICE_DBModel.sp_Planner_Result)" />
   </EntityContainer>
   <EntityType Name="inventory_logs">
     <Key>
@@ -909,5 +910,11 @@
     <Property Type="Decimal" Name="EXPENSEAMOUNT" Nullable="false" Precision="38" Scale="2" />
     <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_Planner_Result">
+    <Property Type="String" Name="Task" Nullable="false" MaxLength="7" />
+    <Property Type="String" Name="invoiceNoIdx" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Amount" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

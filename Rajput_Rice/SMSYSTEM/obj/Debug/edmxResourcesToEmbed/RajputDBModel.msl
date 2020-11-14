@@ -907,5 +907,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Planner" FunctionName="RAJPUT_RICE_DBModel.Store.sp_Planner">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.sp_Planner_Result">
+          <ScalarProperty Name="Task" ColumnName="Task" />
+          <ScalarProperty Name="invoiceNoIdx" ColumnName="invoiceNoIdx" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

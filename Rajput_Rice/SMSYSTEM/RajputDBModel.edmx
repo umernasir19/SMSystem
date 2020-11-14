@@ -767,6 +767,18 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
           <Property Name="visible" Type="int" />
           <Property Name="openingBalance" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
+        <Function Name="getBalanceSheetAssets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dtStart" Type="datetime" Mode="In" />
+          <Parameter Name="dtEnd" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="getBalanceSheetCapitalEquity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dtStart" Type="datetime" Mode="In" />
+          <Parameter Name="dtEnd" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="getBalanceSheetLiabilties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dtStart" Type="datetime" Mode="In" />
+          <Parameter Name="dtEnd" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="getRevenuesForIncomeStatementReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dtStart" Type="varchar" Mode="In" />
           <Parameter Name="dtEnd" Type="varchar" Mode="In" />
@@ -789,6 +801,7 @@ warning 6002: The table/view 'RAJPUT_RICE_DB.dbo.Url' does not have a primary ke
           <Parameter Name="from" Type="nvarchar" Mode="In" />
           <Parameter Name="TO" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_Planner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RAJPUT_RICE_DBModelStoreContainer">
           <EntitySet Name="accountGJ" EntityType="Self.accountGJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accountMasterGL" EntityType="Self.accountMasterGL" Schema="dbo" store:Type="Tables" />
@@ -1646,6 +1659,19 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
             <Parameter Name="dtStart" Mode="In" Type="String" />
             <Parameter Name="dtEnd" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_Planner" ReturnType="Collection(RAJPUT_RICE_DBModel.sp_Planner_Result)" />
+          <FunctionImport Name="getBalanceSheetAssets" ReturnType="Collection(RAJPUT_RICE_DBModel.getBalanceSheetAssets_Result)">
+            <Parameter Name="dtStart" Mode="In" Type="DateTime" />
+            <Parameter Name="dtEnd" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="getBalanceSheetCapitalEquity" ReturnType="Collection(RAJPUT_RICE_DBModel.getBalanceSheetCapitalEquity_Result)">
+            <Parameter Name="dtStart" Mode="In" Type="DateTime" />
+            <Parameter Name="dtEnd" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="getBalanceSheetLiabilties" ReturnType="Collection(RAJPUT_RICE_DBModel.getBalanceSheetLiabilties_Result)">
+            <Parameter Name="dtStart" Mode="In" Type="DateTime" />
+            <Parameter Name="dtEnd" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="inventory_logs">
           <Key>
@@ -1761,6 +1787,30 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
           <Property Type="Int32" Name="REVAMOUNT" Nullable="false" />
           <Property Type="Decimal" Name="EXPENSEAMOUNT" Nullable="false" Precision="38" Scale="2" />
           <Property Type="String" Name="childHeadName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Planner_Result">
+          <Property Type="String" Name="Task" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="invoiceNoIdx" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Amount" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="getBalanceSheetAssets_Result">
+          <Property Type="Decimal" Name="DEBIT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CREDIT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getBalanceSheetCapitalEquity_Result">
+          <Property Type="Decimal" Name="DEBIT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CREDIT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getBalanceSheetLiabilties_Result">
+          <Property Type="Decimal" Name="DEBIT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CREDIT" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
@@ -2671,6 +2721,46 @@ FROM [dbo].[Url] AS [Url]</DefiningQuery>
                 <ScalarProperty Name="REVAMOUNT" ColumnName="REVAMOUNT" />
                 <ScalarProperty Name="EXPENSEAMOUNT" ColumnName="EXPENSEAMOUNT" />
                 <ScalarProperty Name="childHeadName" ColumnName="childHeadName" />
+                <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Planner" FunctionName="RAJPUT_RICE_DBModel.Store.sp_Planner">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.sp_Planner_Result">
+                <ScalarProperty Name="Task" ColumnName="Task" />
+                <ScalarProperty Name="invoiceNoIdx" ColumnName="invoiceNoIdx" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getBalanceSheetAssets" FunctionName="RAJPUT_RICE_DBModel.Store.getBalanceSheetAssets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getBalanceSheetAssets_Result">
+                <ScalarProperty Name="DEBIT" ColumnName="DEBIT" />
+                <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+                <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
+                <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getBalanceSheetCapitalEquity" FunctionName="RAJPUT_RICE_DBModel.Store.getBalanceSheetCapitalEquity">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getBalanceSheetCapitalEquity_Result">
+                <ScalarProperty Name="DEBIT" ColumnName="DEBIT" />
+                <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+                <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
+                <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getBalanceSheetLiabilties" FunctionName="RAJPUT_RICE_DBModel.Store.getBalanceSheetLiabilties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getBalanceSheetLiabilties_Result">
+                <ScalarProperty Name="DEBIT" ColumnName="DEBIT" />
+                <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+                <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
                 <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
               </ComplexTypeMapping>
             </ResultMapping>
