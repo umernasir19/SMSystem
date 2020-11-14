@@ -21,75 +21,67 @@
 </section>
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <div class="col-12">
-            <!-- /.card -->
-            <div class="card">
-                <div class="card-header">
-                    <form role="form" id="formadddemptype">
-                        <div class="row">
-
-                            @*  @Html.HiddenFor(model => model.ReportID, new { id = "natureOfVisitField", Value = 4 })*@
-                            <div class="col-sm-4">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Date From*:</label>
-                                    @Html.EditorFor(model => model.From, new { htmlAttributes = new { @placeholder = "Date From", @class = "form-control" } })
-                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                                </div>
-                                @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-sm-4">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Date To*:</label>
-                                    @Html.EditorFor(model => model.To, new { htmlAttributes = new { @placeholder = "Date To", @class = "form-control" } })
-                                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                                </div>
-                                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </form>
-                    <h3 class="card-title"><button class="btn btn-primary" id="searchpayments">Search Report</button></h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <p class="aligncenter">
-                        <img style="display:none;" id="loadergif" src="~/dist/img/25ef280441ad6d3a5ccf89960b4e95eb.gif" />
-                    </p>
-                    <p>REVENUE</p>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Accounts</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                   
                     <table id="REVENUE" class="table-responsive-md table table-bordered table-striped"></table>
-                    <p>EXPENSE</p>
-                    <table id="EXPENSE" class="table-responsive-md table table-bordered table-striped"></table>
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-
-                                <th>Revenue</th>
-                                <th>Expense</th>
-                                <th>Net Profit/Net Loss</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="tr"></td>
-                                <td id="te"></td>
-                                <td id="trr"></td>
-                            </tr>
-
-                        </tbody>
-                        <tfoot align="right">
-
-                        </tfoot>
-                    </table>
                 </div>
-                <!-- /.card-body -->
+           
+                
+
             </div>
-            <!-- /.card -->
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Accounts</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="REVENUE" class="table-responsive-md table table-bordered table-striped"></table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- general form elements disabled -->
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Custom Elements</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="REVENUE" class="table-responsive-md table table-bordered table-striped"></table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Revenue</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="REVENUE" class="table-responsive-md table table-bordered table-striped"></table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!--/.col (right) -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 <!-- ./wrapper -->

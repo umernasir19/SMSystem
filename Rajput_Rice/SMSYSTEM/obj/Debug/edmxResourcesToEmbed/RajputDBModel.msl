@@ -917,5 +917,35 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getBalanceSheetAssets" FunctionName="RAJPUT_RICE_DBModel.Store.getBalanceSheetAssets">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getBalanceSheetAssets_Result">
+          <ScalarProperty Name="DEBIT" ColumnName="DEBIT" />
+          <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+          <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
+          <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getBalanceSheetCapitalEquity" FunctionName="RAJPUT_RICE_DBModel.Store.getBalanceSheetCapitalEquity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getBalanceSheetCapitalEquity_Result">
+          <ScalarProperty Name="DEBIT" ColumnName="DEBIT" />
+          <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+          <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
+          <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getBalanceSheetLiabilties" FunctionName="RAJPUT_RICE_DBModel.Store.getBalanceSheetLiabilties">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RAJPUT_RICE_DBModel.getBalanceSheetLiabilties_Result">
+          <ScalarProperty Name="DEBIT" ColumnName="DEBIT" />
+          <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+          <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
+          <ScalarProperty Name="subHeadName" ColumnName="subHeadName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

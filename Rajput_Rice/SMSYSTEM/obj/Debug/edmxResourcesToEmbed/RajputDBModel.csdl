@@ -794,6 +794,18 @@
       <Parameter Name="dtEnd" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_Planner" ReturnType="Collection(RAJPUT_RICE_DBModel.sp_Planner_Result)" />
+    <FunctionImport Name="getBalanceSheetAssets" ReturnType="Collection(RAJPUT_RICE_DBModel.getBalanceSheetAssets_Result)">
+      <Parameter Name="dtStart" Mode="In" Type="DateTime" />
+      <Parameter Name="dtEnd" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="getBalanceSheetCapitalEquity" ReturnType="Collection(RAJPUT_RICE_DBModel.getBalanceSheetCapitalEquity_Result)">
+      <Parameter Name="dtStart" Mode="In" Type="DateTime" />
+      <Parameter Name="dtEnd" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="getBalanceSheetLiabilties" ReturnType="Collection(RAJPUT_RICE_DBModel.getBalanceSheetLiabilties_Result)">
+      <Parameter Name="dtStart" Mode="In" Type="DateTime" />
+      <Parameter Name="dtEnd" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="inventory_logs">
     <Key>
@@ -916,5 +928,23 @@
     <Property Type="String" Name="invoiceNoIdx" Nullable="true" MaxLength="50" />
     <Property Type="Decimal" Name="Amount" Nullable="true" Precision="10" Scale="2" />
     <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="getBalanceSheetAssets_Result">
+    <Property Type="Decimal" Name="DEBIT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="CREDIT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getBalanceSheetCapitalEquity_Result">
+    <Property Type="Decimal" Name="DEBIT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="CREDIT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getBalanceSheetLiabilties_Result">
+    <Property Type="Decimal" Name="DEBIT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="CREDIT" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="subHeadName" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

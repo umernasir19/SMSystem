@@ -724,6 +724,15 @@
     <Compile Include="gender.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="getBalanceSheetAssets_Result.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getBalanceSheetCapitalEquity_Result.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getBalanceSheetLiabilties_Result.cs">
+      <DependentUpon>RajputDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="getRevenuesForIncomeStatementReport_Result.cs">
       <DependentUpon>RajputDBModel.tt</DependentUpon>
     </Compile>
